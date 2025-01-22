@@ -8,7 +8,7 @@ header{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: relative;
     border-bottom: 2px solid #000;
     overflow: hidden;
     padding: 0 20px;
@@ -21,7 +21,7 @@ header{
         height: 100%;
         
         img{
-            height: 120%;
+            height: 55%;
             margin-right: 10px;
         }
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Btn({reverse, children, action, colorBg, colorBgH, color, size, styles, txt}) {
+export default function Btn({reverse, children, action, colorBg, colorBgH, color, size, styles, txt, hidden}) {
 
     const [isHovered, setIsHovered] = useState(false);
 
@@ -21,7 +21,7 @@ export default function Btn({reverse, children, action, colorBg, colorBgH, color
             style={{
                 ...styles,
                 flexDirection: reverse && "row-reverse",
-                backgroundColor: isHovered ? colorBgH : colorBg,
+                background: isHovered ? colorBgH : colorBg,
             }}
         >
             {children}
@@ -29,7 +29,8 @@ export default function Btn({reverse, children, action, colorBg, colorBgH, color
                 className='textbtn'
                 style={{
                     color: color,
-                    fontSize: size
+                    fontSize: size,
+                    display: hidden && "none"
                 }}
             >
                 { !txt ? "Texto del boton" : txt }

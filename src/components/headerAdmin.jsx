@@ -1,7 +1,7 @@
 import React from 'react'
 import Icon from '../assets/images/icon.png';
 
-export default function headerAdmin({children}){
+export default function HeaderAdmin({children}){
     const [before, after] = React.Children.toArray(children);
 
     return (

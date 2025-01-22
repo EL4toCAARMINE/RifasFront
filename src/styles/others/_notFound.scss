@@ -31,33 +31,7 @@
     p {
       color: #A3A3A3;
       font-size: 1.4rem;
-    }
-  }
-  
-  // Estilos del botón
-  .buttonGoH {
-    margin-top: 20px;
-    padding: 0.5rem 1rem; 
-    background-color: #000000;
-    border-radius: 10px; 
-    transition: background-color 0.3s ease-in-out;
-    border: none;
-    width: 200px;
-    height: 40px;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-around;
-  
-    .textbtn{
-      font-size: 1.4rem;
-      color: #ffffff;
-      font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
-      transition: background-color 0.3s ease-in-out;
-    }
-
-    &:hover {
-      background-color: colors.$greyFH; 
+      margin-bottom: 20px;
     }
   }
   

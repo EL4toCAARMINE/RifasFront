@@ -1,11 +1,10 @@
 @use "../others/colors";
 
 .buttonG {
-    margin-top: 20px;
     padding: 0.5rem 1rem; 
     background-color: #000000;
     border-radius: 10px; 
-    transition: background-color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     border: none;
     width: 200px;
     height: 40px;
@@ -19,10 +18,9 @@
       font-size: 1rem;
       color: #ffffff;
       font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
-      transition: background-color 0.3s ease-in-out;
     }
 
     &:hover {
-      background-color: colors.$greyFH; 
+      background: colors.$greyFH; 
     }
   }
