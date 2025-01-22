@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #000;
+    font-size: 10px;
+    font-family: OpenSansRegular, Arial, Helvetica, sans-serif;
+}
+
+#root{
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p, h1, h2, h3, h4, h5, label{
+    margin: 0;
+    padding: 0;
+}
