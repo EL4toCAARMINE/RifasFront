@@ -4,6 +4,8 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 
     .raffleC{
         height: 140px;

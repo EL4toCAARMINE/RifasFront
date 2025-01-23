@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { unixToStringYMD } from '../utils/DateUnixFunctions';
 
 export default function Raffles({data}){
     const navigate = useNavigate();
@@ -71,10 +72,10 @@ export default function Raffles({data}){
                     }
                 </div>
 
-                <p><span>Nombre de la rifa: </span>{raffleName}</p>
-                <p><span>Fecha: </span>{date}</p>
-                <p><span>Organizador: </span>{organizerName}</p>
-                <p><span>Cantidad de números: </span>{numberOfTickets}</p>
+                <p><span>Nombre de la rifa: </span>{raffleName ? raffleName : "..."}</p>
+                <p><span>Fecha: </span>{date ? unixToStringYMD(date) : "..."}</p>
+                <p><span>Organizador: </span>{organizerName ? organizerName : "..."}</p>
+                <p><span>Cantidad de números: </span>{numberOfTickets ? numberOfTickets : "..."}</p>
             </div>
         </div>
     );

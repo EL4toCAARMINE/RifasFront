@@ -5,11 +5,18 @@ import './styles/normalize.css';
 import './styles/main.scss';
 // Rutas
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// Cargando iconos
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 // Admin
 import LoginAdmin from './screens/admin/LoginAdmin';
 import DashAdmin from './screens/admin/DashAdmin';
 // 404
 import NotFound from './screens/NotFound';
+
+// Cargando iconos globales
+library.add(fas, fab);
 
 function App() {
 
