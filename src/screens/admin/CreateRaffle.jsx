@@ -13,7 +13,8 @@ export default function CreateRaffle(){
     const [organizerName, setOrganizerName] = useState("");
     const [contactPhone, setContactPhone] = useState("");
     const [canalW, setCanalW] = useState("");
-    
+    const [image, setImage] = useState(null);
+    const [previewImage, setPreviewImage] = useState(null)
     const [articleDetails, setArticleDetails] = useState("");
     const [raffleDetails, setRaffleDetails] = useState("Compra un boleto y paga un monto equivalente al número que obtengas en el sorteo.\nPor ejemplo, si el número que obtienes es 57, tendrás que pagar 57 pesos.\nEl número del sorteo determinará el monto a pagar.\nEs importante registrar tu nombre y teléfono correctamente, ya que serán los medios para contactarte e identificarte.\n¡Anímate a participar!");
     const [numberOfTickets, setNumberOfTickets] = useState("");
@@ -32,7 +33,7 @@ export default function CreateRaffle(){
     const [organizerNameError, setOrganizerNameError] = useState("");
     const [contactPhoneError, setContactPhoneError] = useState("");
     const [canalWError, setCanalWError] = useState("");
-
+    const [imageError, setImageError] = useState("");
     const [articleDetailsError, setArticleDetailsError] = useState("");
     const [raffleDetailsError, setRaffleDetailsError] = useState("");
     const [numberOfTicketsError, setNumberOfTicketsError] = useState("");
@@ -53,6 +54,15 @@ export default function CreateRaffle(){
         const today = new Date().toISOString().split('T')[0];
         setMinDate(today);
     }, []);
+
+    // Cargar imagen y mostrar preview
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setImage(file); // Almacena la imagen
+            setPreviewImage(URL.createObjectURL(file)); // Genera una URL para previsualización
+        }
+    };
 
     // Volver a login
     const backToDash = () => {
@@ -119,7 +129,34 @@ export default function CreateRaffle(){
                 />
 
                 <div className="imageInputC">
-                    <p>Imagen del articulo a rifar:</p>
+                    <p className='textP'>Imagen del articulo a rifar:</p>
+
+                    {!previewImage && 
+                        <label htmlFor="file" className="custum-file-upload">
+                            <div className="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="5rem" height="5rem" viewBox="0 0 512 512"><path d="M398.1 233.2c0-1.2.2-2.4.2-3.6 0-65-51.8-117.6-115.7-117.6-46.1 0-85.7 27.4-104.3 67-8.1-4.1-17.2-6.5-26.8-6.5-29.5 0-54.1 21.9-58.8 50.5C57.3 235.2 32 269.1 32 309c0 50.2 40.1 91 89.5 91H224v-80h-48.2l80.2-83.7 80.2 83.6H288v80h110.3c45.2 0 81.7-37.5 81.7-83.4 0-45.9-36.7-83.2-81.9-83.3z" fill="#A3A3A3"/></svg>
+                            </div>
+                            <p className="textU">Click para seleccionar una imagen</p>
+                        </label>
+                    }  
+
+                    {previewImage && (
+                        <div className='previewC'>
+                            <img src={previewImage} alt="preview" className='imagePreview'/>
+                            <label htmlFor="file" className='editI'>
+                                Cambiar imagen
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.8rem" height="1.8rem" viewBox="0 0 24 24"><path fill="#ffffff" d="m12.05 19l2.85-2.825l-2.85-2.825L11 14.4l1.075 1.075q-.7.025-1.362-.225t-1.188-.775q-.5-.5-.763-1.15t-.262-1.3q0-.425.113-.85t.312-.825l-1.1-1.1q-.425.625-.625 1.325T7 12q0 .95.375 1.875t1.1 1.65t1.625 1.088t1.85.387l-.95.95zm4.125-4.25q.425-.625.625-1.325T17 12q0-.95-.363-1.888T15.55 8.45t-1.638-1.075t-1.862-.35L13 6.05L11.95 5L9.1 7.825l2.85 2.825L13 9.6l-1.1-1.1q.675 0 1.375.263t1.2.762t.763 1.15t.262 1.3q0 .425-.112.85t-.313.825zM12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"/></svg>
+                            </label>
+                        </div>
+                    )}
+                    
+                    <input id="file" type="file" onChange={handleFileChange} />
+
+                    {imageError ?
+                        <p className='inputError'>{}{imageError}</p>
+                    :
+                        <div className="inputError"></div>
+                    }
                 </div>
 
                 <div className="textAreaC">
@@ -150,7 +187,7 @@ export default function CreateRaffle(){
                         textPlace={"0"}
                         maxL={3}
                         width={"50%"}
-                        textError={numberOfTickets}
+                        textError={numberOfTicketsError}
                         val={numberOfTickets}
                         setVal={numberOfTickets}
                     />

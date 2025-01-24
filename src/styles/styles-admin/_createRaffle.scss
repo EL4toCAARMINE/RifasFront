@@ -81,13 +81,98 @@
             width: 100%;
             display: flex;
             flex-direction: column;
+            align-items: center;
             padding: 10px;
             position: relative;
             margin-bottom: 10px;
 
-            p{
+            .textP{
                 font-size: 1.2rem;
                 font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+            }
+
+            .custum-file-upload {
+                height: 150px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                align-items: center;
+                justify-content: center;
+                border: 2px dashed colors.$grey;
+                background-color: #ffffff;
+                padding: 1rem;
+                border-radius: 10px;
+                margin-top: 20px;
+              
+                .icon {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+              
+                  svg {
+                    fill: colors.$grey;
+                  }
+                }
+              
+                .textU {
+                  color: colors.$grey;
+                }
+            }   
+
+            .previewC{
+                height: 200px;
+                min-width: 200px;
+                overflow: hidden;
+                max-width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                box-shadow: 0 0 4px #00000070;
+                margin-top: 20px;
+                position: relative;
+                
+                .imagePreview{
+                    height: 100%;
+                    margin: 0 auto;
+                }
+                
+                .editI{
+                    height: 30px;
+                    background-color: colors.$redViolet;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    font-size: 1.2rem;
+                    color: #fff;
+                    padding: 5px 10px;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    position: absolute;
+                    bottom: 10px;
+                    font-family: OpenSansSemiBold;
+
+                    svg{
+                        margin-left: 10px;
+                    }
+
+                    &:hover{
+                        background-color: #c8559e;
+                    }
+                }
+            }
+              
+            input {
+                display: none;
+            }
+
+            .inputError{
+                height: 1.2rem;
+                font-size: 1.2rem;
+                font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                color: #ff0000;
+                margin-top: 5px;
             }
         }
 
