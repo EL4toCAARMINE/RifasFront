@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HeaderAdmin from "../../components/headerAdmin";
 import Btn from "../../components/btn";
 import { useNavigate } from 'react-router-dom';
@@ -64,17 +64,24 @@ export default function DashAdmin(){
 
     //Paginacion
     const [page, setPage] = React.useState(1);
-    const [forPage, setForPage] = React.useState(2);
+    const [forPage, setForPage] = React.useState(6);
 
+    //cerrar sesion
     const logOut = () => {
         setLoaderIsVisible(true);
         setLoaderIsVisible(false);
         navigation("/loginAdmin");
     }
 
+    // ir a crear 
     const goToCreate = () => {
         navigation("/createRaffle");
     }
+
+    useEffect(() => {
+        // reiniciando el scroll
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className="container-fluid containerDashAdmin">
@@ -91,6 +98,9 @@ export default function DashAdmin(){
                     <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><g fill="none" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path strokeDasharray="36" strokeDashoffset="36" d="M12 4h-7c-0.55 0 -1 0.45 -1 1v14c0 0.55 0.45 1 1 1h7"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="36;0"/></path><path strokeDasharray="14" strokeDashoffset="14" d="M9 12h11.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="14;0"/></path><path strokeDasharray="6" strokeDashoffset="6" d="M20.5 12l-3.5 -3.5M20.5 12l-3.5 3.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" values="6;0"/></path></g></svg>
                 </Btn>
             </HeaderAdmin>
+
+            <div style={{height:50}}></div>
+
             <main>
                 <div className="topR">
                     <Btn

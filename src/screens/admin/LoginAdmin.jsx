@@ -25,6 +25,8 @@ export default function LoginAdmin(){
     return (  
         <div className='container-fluid containerLogin'>
           <HeaderAdmin></HeaderAdmin>
+          
+          <div style={{height:50}}></div>
 
           <main>
             <div className="containerFL">

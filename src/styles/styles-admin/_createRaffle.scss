@@ -1,0 +1,227 @@
+@use "../others/colors";
+
+.containerCreateRaffle{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    height: auto;
+
+    .arrowBack{
+        position: absolute;
+        left: 20px;
+        cursor: pointer;
+        scale: 1.1;
+    }
+
+    h2{
+        font-size: 2rem;
+        font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+        margin-block: 30px;
+    }
+
+    form{
+        flex: 1;
+        width: 90%;
+        max-width: 650px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .containerInputTwo{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .containerI{
+                width: 50%;
+                height: 80px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+                position: relative;
+                margin-bottom: 10px;
+            
+                label{
+                    font-size: 1.2rem;
+                    font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                }
+            
+                .textC{
+                    width: 100%;
+                    font-size: 1.2rem;
+                    font-family: OpenSansRegular, Arial, Helvetica, sans-serif;
+                    padding: 5px;
+                    height: 30px;
+                    border-radius: 5px;
+                    border: 1px solid colors.$grey;
+                    text-align: center;
+            
+                    &:focus{
+                        outline: none;
+                        border: 2px solid #000;
+                    }
+                }
+            
+                .inputError{
+                    font-size: 1.2rem;
+                    font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                    color: #ff0000;
+                    position: absolute;
+                    bottom: 0;
+                    left: 10px;
+                }
+            }
+        }
+
+        .imageInputC{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            position: relative;
+            margin-bottom: 10px;
+
+            p{
+                font-size: 1.2rem;
+                font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+            }
+        }
+
+        .textAreaC{
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            position: relative;
+            margin-bottom: 10px;
+
+            label{
+                font-size: 1.2rem;
+                font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+            }
+        
+            .textC{
+                width: 100%;
+                font-size: 1.2rem;
+                font-family: OpenSansRegular, Arial, Helvetica, sans-serif;
+                padding: 5px;
+                min-height: 150px;
+                max-height: 300px;
+                border-radius: 5px;
+                border: 1px solid colors.$grey;
+        
+                &:focus{
+                    outline: none;
+                    border: 2px solid #000;
+                }
+            }
+
+            .countCharacters{
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+            }
+        
+            .inputError{
+                height: 1.2rem;
+                font-size: 1.2rem;
+                font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                color: #ff0000;
+                margin-top: 5px;
+            }
+        }
+
+        .containerCheck{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 10px;
+            margin-bottom: 10px;
+
+            .instructionsP{
+                font-size: 1.2rem;
+                font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                margin-bottom: 20px;
+            }
+
+            .checks{
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+
+                label{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    font-family: OpnSansRegular, Arial, Helvetica, sans-serif;
+                    font-size: 1.2rem;
+                    
+                    input{
+                        cursor: pointer;
+                        margin-right: 3px;
+                        background-color: #000;
+
+                        &:checked{
+                            background-color: #000;
+                        }
+                    }
+                }
+            }
+            
+            .inputError{
+                height: 1.2rem;
+                font-size: 1.2rem;
+                font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                color: #ff0000;
+                margin-top: 5px;
+            }
+        }
+
+        .paymentI{
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+
+            h2{
+                font-size: 1.8rem;
+                font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                margin: 0;
+                margin-bottom: 15px;
+            }
+
+            .textP{
+                width: 90%;
+                font-size: 1.2rem;
+                text-align: center;
+                color: colors.$grey;
+            }
+
+            .inputsP{
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    .buttonsC{
+        width: 90%;
+        margin-bottom: 20px;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
