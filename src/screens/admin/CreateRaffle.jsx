@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import HeaderAmin from "../../components/headerAdmin";
 import InputText from '../../components/inputText';
 import Btn from "../../components/btn";
-import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 import { useNavigate } from 'react-router-dom';
+import { convertToUnix, unixToDate } from '../../utils/DateUnixFunctions';
+import { validateForm } from '../../utils/ValidateFormAdmin';
 
 export default function CreateRaffle(){
     const navigate = useNavigate();
@@ -49,16 +50,21 @@ export default function CreateRaffle(){
     const [minDate, setMinDate] = useState("");
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-        // Establecer la fecha mínima como la fecha de hoy
-        const today = new Date().toISOString().split('T')[0];
-        setMinDate(today);
+        const today = new Date().toLocaleString("en-US", { timeZone: "America/Mexico_City" });
+
+        const mexicoDate = new Date(today);
+        mexicoDate.setDate(mexicoDate.getDate() - 1);
+        const yesterday = mexicoDate.toISOString().split('T')[0];
+
+        setMinDate(yesterday)
     }, []);
+    
 
     // Cargar imagen y mostrar preview
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
+            setImageError("");
             setImage(file); // Almacena la imagen
             setPreviewImage(URL.createObjectURL(file)); // Genera una URL para previsualización
         }
@@ -68,12 +74,42 @@ export default function CreateRaffle(){
     const backToDash = () => {
         navigate("/dashAdmin")
     }
-
-    // validar los datos
-
+         
     // Crear la rifa
-    const createRaffle = () => {
-
+    const createNewRaffle = () => {
+        let isValid = validateForm({
+            setRaffleNameError,
+            setOrganizerNameError,
+            setContactPhoneError,
+            setCanalWError,
+            setImageError,
+            setArticleDetailsError,
+            setRaffleDetailsError,
+            setNumberOfTicketsError,
+            setDateError,
+            setPaymentError,
+            setNameCardError,
+            setCardError,
+            setNameAccountError,
+            setAccountError,
+            raffleName,
+            organizerName,
+            contactPhone,
+            canalW,
+            image,
+            articleDetails,
+            raffleDetails,
+            numberOfTickets,
+            date,
+            minDate,
+            paymentE,
+            paymentT,
+            paymentC,
+            nameCard,
+            card,
+            nameAccount,
+            account
+        });
     }
     
     return (  
@@ -109,8 +145,8 @@ export default function CreateRaffle(){
                     />
                     <InputText 
                         textError={contactPhoneError}
-                        text={"Numero de telefono para contacto (WhatsApp):"}
-                        textPlace={"Ingresa un numero de teléfono"}
+                        text={"Número de telefono para contacto (WhatsApp):"}
+                        textPlace={"Ingresa un número de teléfono"}
                         width={"50%"}
                         val={contactPhone}
                         setVal={setContactPhone}
@@ -183,18 +219,18 @@ export default function CreateRaffle(){
 
                 <div className="containerInputTwo">
                     <InputText
-                        text={"Numero de boletos:"}
+                        text={"Número de boletos:"}
                         textPlace={"0"}
                         maxL={3}
                         width={"50%"}
                         textError={numberOfTicketsError}
                         val={numberOfTickets}
-                        setVal={numberOfTickets}
+                        setVal={setNumberOfTickets}
                     />
 
                     <div className="containerI">
-                        <label htmlFor="artD">Numero de boletos:</label>
-                        <input type='date' name="date" className='textC' placeholder='0' maxLength={3} value={date} onChange={(e)=>setDate(e.target.value)} min={minDate}/>
+                        <label htmlFor="artD">Fecha del sorteo:</label>
+                        <input type='date' name="date" className='textC' value={unixToDate(date)} onChange={(e)=>setDate(convertToUnix(e.target.value))} min={minDate}/>
                         {dateError ?
                             <p className='inputError'>{}{dateError}</p>
                         :
@@ -328,7 +364,7 @@ export default function CreateRaffle(){
             </form>
             <div className="buttonsC">
                 <Btn txt={"Cancelar"} action={backToDash} colorBg={"#ff0000"} colorBgH={"#ff4444"} size={"1.4rem"} styles={{width: "45%"}}></Btn>
-                <Btn txt={"Crear Rifa"} action={createRaffle} size={"1.4rem"} styles={{width: "45%"}}></Btn>
+                <Btn txt={"Crear Rifa"} action={createNewRaffle} size={"1.4rem"} styles={{width: "45%"}}></Btn>
             </div>
         </div>
     );

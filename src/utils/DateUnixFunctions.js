@@ -9,7 +9,15 @@ function convertToUnix(dateTimeString) {
 function unixToDate(unixTime) {
     const date = new Date(unixTime * 1000);
 
-    return date;
+    if (!unixTime) {
+        return "";
+    }
+
+    const year = date.getUTCFullYear();
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+    const day = date.getUTCDate().toString().padStart(2, '0'); 
+
+    return `${year}-${month}-${day}`;
 }
 
 // Convierte unix en String
