@@ -13,6 +13,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import LoginAdmin from './screens/admin/LoginAdmin';
 import DashAdmin from './screens/admin/DashAdmin';
 import CreateRaffle from './screens/admin/CreateRaffle';
+import EditRaffle from './screens/admin/EditRaffle';
 // 404
 import NotFound from './screens/NotFound';
 
@@ -27,6 +28,7 @@ function App() {
         <Route path='/loginAdmin' element={<LoginAdmin/>}/>
         <Route path='/dashAdmin' element={<DashAdmin/>}/>
         <Route path='/createRaffle' element={<CreateRaffle/>}/>
+        <Route path='/editRaffle' element={<EditRaffle/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
