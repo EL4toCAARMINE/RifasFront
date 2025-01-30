@@ -1,0 +1,171 @@
+@use "../others/colors";
+
+.containerAdminRaffle{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    height: auto;
+
+    .arrowBack{
+        position: absolute;
+        left: 20px;
+        cursor: pointer;
+        scale: 1.1;
+    }
+
+    .editAndDeleteC{
+        position: absolute;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        right: 20px;
+    }
+
+    main{
+        width: 100%;
+        flex: 1;
+        height: auto;
+        
+        .containerData{
+            width: 100%;
+            height: calc(100vh - 50px);;
+            background: url("../assets/images/ruby.webp");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .dataR{
+                background-color: #CFCFCF40;
+                padding: 20px;
+                border-radius: 25px;
+                box-shadow: #00000075 0px 4px 4px;
+                backdrop-filter: blur(15px);
+                -moz-backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                width: 90%;
+                max-width: 1000px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                h2{
+                    color: colors.$violetBlue;
+                    font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+                    font-size: 2rem;
+                    width: 90%;
+                    text-align: center;
+                }
+
+                .row{
+                    width: 95%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    margin-block: 20px;
+
+                    .copyAreaC{
+                        display: flex;
+                        flex-direction: column;
+                        overflow: hidden;
+    
+                        .title{
+                            font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                            color: #000;
+                            font-size: 1.4rem;
+                        }
+    
+                        .copyArea{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+    
+                            .copyB{
+                                flex: 1;
+                                margin-right: 10px;
+                                border-radius: 10px;
+                                border: none;
+                                background: #00000070;
+                                height: 30px;
+                                color: #fff;
+                                padding-inline: 10px;
+                                font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                                font-size: 1.4rem;
+                                text-align: center;
+                                box-shadow: 0 4px 8px #00000070;
+                            }
+                            
+                            .buttonG{
+                                width: 20%;
+                            }
+                        }
+    
+                        .details{
+                            font-family: OpenSansRegular, Arial, Helvetica, sans-serif;
+                            margin-top: 5px;
+                            font-size: 1.3rem;
+                            color: #000;
+                        }
+                    }
+
+                    .paymentM{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        h3{
+                            font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                            font-size: 1.4rem;
+                            margin-bottom: 10px;
+                            text-align: center;
+                        }
+
+                        p{
+                            text-align: center;
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+
+                .date{
+                    width: 70%;
+                    min-height: 50px;
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-color: #00000070;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    p{
+                        color: #fff;
+                        font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                        font-size: 1.4rem;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+        .containerTickets{
+            width: 100%;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h2{
+                font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+                color: colors.$violetBlue;
+                margin-top: 40px;
+                font-size: 2rem;
+            }
+        }
+    }
+}

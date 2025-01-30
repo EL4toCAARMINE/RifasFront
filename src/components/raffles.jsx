@@ -32,6 +32,7 @@ export default function Raffles({data}){
     const updateR = (event) => {
         event.stopPropagation();
         setOptionsVisible(false);
+        navigate(`/editRaffle/${id}`)
     }
 
     const deleteR = (event) => {
@@ -45,11 +46,11 @@ export default function Raffles({data}){
     }
     
     const goToRaffle = () => {
-        navigate("/raffleAdmin");
+        navigate(`/adminRaffle/${id}`);
     }
 
     return (  
-        <div className="col-12 col-md-6 col-lg-5 col-xl-4 raffleComponentContainer" onClick={()=>goToRaffle()}>
+        <div className="col-12 col-md-6 col-lg-5 col-xl-4 raffleComponentContainer" onClick={goToRaffle}>
             <div className="raffleC">
                 <div className="optionsI">
                     <div className="statusC" style={{background: statustext.color}}>

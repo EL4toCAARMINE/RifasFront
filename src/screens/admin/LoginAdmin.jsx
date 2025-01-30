@@ -51,7 +51,7 @@ export default function LoginAdmin(){
                 {passError && <p>{passError}</p>}
               </div>
 
-              <Btn reverse={true} size={"1.4rem"} styles={{width: "70%", height: 50}} colorBg={"#00000040"} colorBgH={"#00000060"} action={()=>{logIn()}} >
+              <Btn reverse={true} txt={"Iniciar sesión"} size={"1.4rem"} styles={{width: "70%", height: 50}} colorBg={"#00000040"} colorBgH={"#00000060"} action={()=>{logIn()}} >
                 <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" className='loginIcon' viewBox="0 0 24 24"><g fill="none" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path strokeDasharray="36" strokeDashoffset="36" d="M13 4l7 0c0.55 0 1 0.45 1 1v14c0 0.55 -0.45 1 -1 1h-7"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="36;0"/></path><path strokeDasharray="14" strokeDashoffset="14" d="M3 12h11.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="14;0"/></path><path strokeDasharray="6" strokeDashoffset="6" d="M14.5 12l-3.5 -3.5M14.5 12l-3.5 3.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" values="6;0"/></path></g></svg>
               </Btn>
             </div>

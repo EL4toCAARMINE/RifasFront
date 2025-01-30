@@ -39,7 +39,7 @@ function unixToStringYMD(unixTimestamp) {
     const day = String(date.getDate()).padStart(2, "0");
     const month = months[date.getMonth()];
     const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
+    return `${day}/${month}/${year}`;
   }
 
 export {unixToDate, unixToString, convertToUnix, unixToStringYMD};

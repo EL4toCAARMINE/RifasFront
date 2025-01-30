@@ -10,9 +10,12 @@
 @use "components/loader";
 @use "components/pagination";
 @use "components/inputText";
+@use "components/errorScreenComponent";
 
 // Admin
 
 @use "styles-admin/loginAdmin";
 @use "styles-admin/dashAdmin";
-@use "styles-admin/createraffle";
+@use "styles-admin/createRaffle";
+@use "styles-admin/editRaffle";
+@use "styles-admin/adminRaffle";

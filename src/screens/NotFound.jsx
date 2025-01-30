@@ -1,14 +1,17 @@
 import React from 'react'
-
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import castiel from "../assets/images/castiel404.webp";
 import Btn from '../components/btn';
 
 export default function NotFound() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Aquí puedes agregar una lista de rutas válidas dentro de tu app
+  const validRoutes = ['/home', '/dashboard', '/profile'];
 
   const handleGoBack = () => {
-    if (window.history.length > 2) {
+    if ( validRoutes.includes(location.pathname) && window.history.length > 2) {
       // Si hay historial, regresa a la página anterior
       navigate(-1);
     } else {
