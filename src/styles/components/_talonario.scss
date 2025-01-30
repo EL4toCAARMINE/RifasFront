@@ -1,0 +1,55 @@
+@use "../others/colors";
+
+.containerTComponent{
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2{
+        font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+        color: colors.$violetBlue;
+        margin-block: 40px;
+        font-size: 2rem;
+    }
+
+    .tickets{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+}
+
+.ticketElement{
+    width: calc(10% - 5px);
+    height: auto;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: colors.$powderBlue;
+    margin: 5px 2.5px;
+    border-radius: 10px;
+    position: relative;
+
+    p{
+        font-size: 2rem;
+        font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+        z-index: 2;
+        color: #000;
+    }
+}
+
+.ticketElementN{
+    background-color: transparent;
+
+    svg{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+    }
+}

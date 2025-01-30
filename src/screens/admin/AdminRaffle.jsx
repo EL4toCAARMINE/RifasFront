@@ -5,6 +5,7 @@ import ErrorScreenComponent from '../../components/errorScreenComponent';
 import Btn from "../../components/btn";
 import Swal from 'sweetalert2';
 import { unixToStringYMD } from '../../utils/DateUnixFunctions';
+import Talonario from '../../components/talonario';
 
 export default function AdminRaffle(){
     const navigate = useNavigate();
@@ -97,6 +98,26 @@ export default function AdminRaffle(){
             });
         });
     }
+
+    const tickets = [
+        { numberTicket: 37, id: 1, idRafle: 89 },
+        { numberTicket: 22, id: 2, idRafle: 14 },
+        { numberTicket: 53, id: 3, idRafle: 45 },
+        { numberTicket: 91, id: 4, idRafle: 76 },
+        { numberTicket: 12, id: 5, idRafle: 30 },
+        { numberTicket: 48, id: 6, idRafle: 60 },
+        { numberTicket: 6, id: 7, idRafle: 98 },
+        { numberTicket: 85, id: 8, idRafle: 23 },
+        { numberTicket: 77, id: 9, idRafle: 55 },
+        { numberTicket: 34, id: 10, idRafle: 67 },
+        { numberTicket: 19, id: 11, idRafle: 42 },
+        { numberTicket: 63, id: 12, idRafle: 88 },
+        { numberTicket: 27, id: 13, idRafle: 11 },
+        { numberTicket: 74, id: 14, idRafle: 9 },
+        { numberTicket: 49, id: 15, idRafle: 31 },
+        { numberTicket: 90, id: 16, idRafle: 20 },
+        { numberTicket: 15, id: 17, idRafle: 70 },
+    ];
 
     return (  
         <div className="container-fluid containerAdminRaffle">
@@ -232,7 +253,7 @@ export default function AdminRaffle(){
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 20 20"><path fill="#ffffff" d="M12.437 3.25A5 5 0 0 0 10.001 5a5 5 0 0 0-2.437-1.75A3 3 0 0 1 10.001 2c1.003 0 1.892.493 2.436 1.25m-8.81 7.97a6.504 6.504 0 0 1 5.85-5.2a4 4 0 1 0-5.85 5.199m12.747 0a4 4 0 1 0-5.85-5.199a6.504 6.504 0 0 1 5.85 5.199M15.5 12.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0m-7.5-2a.5.5 0 0 0 .5.5h2.24q-.154.22-.32.485c-.483.772-1.028 1.846-1.166 2.953a.5.5 0 1 0 .992.124c.112-.893.567-1.819 1.022-2.547a11 11 0 0 1 .843-1.168l.012-.014l.004-.004A.5.5 0 0 0 11.75 10H8.5a.5.5 0 0 0-.5.5"/></svg>
                         </Btn>
-                        <h2>Talonario</h2>
+                        <Talonario isAdmin={true} number={100} arrSold={tickets}/>
                     </div>
                 </main>
             :
