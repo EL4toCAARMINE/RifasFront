@@ -13,6 +13,108 @@ export default function AdminRaffle(){
     
     const [existRaffle, setExistRaffle] = useState(true);
     const [dataRaffle, setDataRaffle] = useState(null);
+    const [tickets, setTickets] = useState([
+        { numberTicket: 1, id: 1, idRafle: 89, status: 2 },
+        { numberTicket: 2, id: 2, idRafle: 89, status: 3 },
+        { numberTicket: 3, id: 3, idRafle: 89, status: 1 },
+        { numberTicket: 4, id: 4, idRafle: 89, status: 2 },
+        { numberTicket: 5, id: 5, idRafle: 89, status: 1 },
+        { numberTicket: 6, id: 6, idRafle: 89, status: 3 },
+        { numberTicket: 7, id: 7, idRafle: 89, status: 2 },
+        { numberTicket: 8, id: 8, idRafle: 89, status: 1 },
+        { numberTicket: 9, id: 9, idRafle: 89, status: 3 },
+        { numberTicket: 10, id: 10, idRafle: 89, status: 2 },
+        { numberTicket: 11, id: 11, idRafle: 89, status: 1 },
+        { numberTicket: 12, id: 12, idRafle: 89, status: 3 },
+        { numberTicket: 13, id: 13, idRafle: 89, status: 2 },
+        { numberTicket: 14, id: 14, idRafle: 89, status: 1 },
+        { numberTicket: 15, id: 15, idRafle: 89, status: 3 },
+        { numberTicket: 16, id: 16, idRafle: 89, status: 2 },
+        { numberTicket: 17, id: 17, idRafle: 89, status: 1 },
+        { numberTicket: 18, id: 18, idRafle: 89, status: 3 },
+        { numberTicket: 19, id: 19, idRafle: 89, status: 2 },
+        { numberTicket: 20, id: 20, idRafle: 89, status: 1 },
+        { numberTicket: 21, id: 21, idRafle: 89, status: 3 },
+        { numberTicket: 22, id: 22, idRafle: 89, status: 2 },
+        { numberTicket: 23, id: 23, idRafle: 89, status: 1 },
+        { numberTicket: 24, id: 24, idRafle: 89, status: 3 },
+        { numberTicket: 25, id: 25, idRafle: 89, status: 2 },
+        { numberTicket: 26, id: 26, idRafle: 89, status: 1 },
+        { numberTicket: 27, id: 27, idRafle: 89, status: 3 },
+        { numberTicket: 28, id: 28, idRafle: 89, status: 2 },
+        { numberTicket: 29, id: 29, idRafle: 89, status: 1 },
+        { numberTicket: 30, id: 30, idRafle: 89, status: 3 },
+        { numberTicket: 31, id: 31, idRafle: 89, status: 2 },
+        { numberTicket: 32, id: 32, idRafle: 89, status: 1 },
+        { numberTicket: 33, id: 33, idRafle: 89, status: 3 },
+        { numberTicket: 34, id: 34, idRafle: 89, status: 2 },
+        { numberTicket: 35, id: 35, idRafle: 89, status: 1 },
+        { numberTicket: 36, id: 36, idRafle: 89, status: 3 },
+        { numberTicket: 37, id: 37, idRafle: 89, status: 2 },
+        { numberTicket: 38, id: 38, idRafle: 89, status: 1 },
+        { numberTicket: 39, id: 39, idRafle: 89, status: 3 },
+        { numberTicket: 40, id: 40, idRafle: 89, status: 2 },
+        { numberTicket: 41, id: 41, idRafle: 89, status: 1 },
+        { numberTicket: 42, id: 42, idRafle: 89, status: 3 },
+        { numberTicket: 43, id: 43, idRafle: 89, status: 2 },
+        { numberTicket: 44, id: 44, idRafle: 89, status: 1 },
+        { numberTicket: 45, id: 45, idRafle: 89, status: 3 },
+        { numberTicket: 46, id: 46, idRafle: 89, status: 2 },
+        { numberTicket: 47, id: 47, idRafle: 89, status: 1 },
+        { numberTicket: 48, id: 48, idRafle: 89, status: 3 },
+        { numberTicket: 49, id: 49, idRafle: 89, status: 2 },
+        { numberTicket: 50, id: 50, idRafle: 89, status: 1 },
+        { numberTicket: 51, id: 51, idRafle: 89, status: 3 },
+        { numberTicket: 52, id: 52, idRafle: 89, status: 2 },
+        { numberTicket: 53, id: 53, idRafle: 89, status: 1 },
+        { numberTicket: 54, id: 54, idRafle: 89, status: 3 },
+        { numberTicket: 55, id: 55, idRafle: 89, status: 2 },
+        { numberTicket: 56, id: 56, idRafle: 89, status: 1 },
+        { numberTicket: 57, id: 57, idRafle: 89, status: 3 },
+        { numberTicket: 58, id: 58, idRafle: 89, status: 2 },
+        { numberTicket: 59, id: 59, idRafle: 89, status: 1 },
+        { numberTicket: 60, id: 60, idRafle: 89, status: 3 },
+        { numberTicket: 61, id: 61, idRafle: 89, status: 2 },
+        { numberTicket: 62, id: 62, idRafle: 89, status: 1 },
+        { numberTicket: 63, id: 63, idRafle: 89, status: 3 },
+        { numberTicket: 64, id: 64, idRafle: 89, status: 2 },
+        { numberTicket: 65, id: 65, idRafle: 89, status: 1 },
+        { numberTicket: 66, id: 66, idRafle: 89, status: 3 },
+        { numberTicket: 67, id: 67, idRafle: 89, status: 2 },
+        { numberTicket: 68, id: 68, idRafle: 89, status: 1 },
+        { numberTicket: 69, id: 69, idRafle: 89, status: 3 },
+        { numberTicket: 70, id: 70, idRafle: 89, status: 2 },
+        { numberTicket: 71, id: 71, idRafle: 89, status: 1 },
+        { numberTicket: 72, id: 72, idRafle: 89, status: 3 },
+        { numberTicket: 73, id: 73, idRafle: 89, status: 2 },
+        { numberTicket: 74, id: 74, idRafle: 89, status: 1 },
+        { numberTicket: 75, id: 75, idRafle: 89, status: 3 },
+        { numberTicket: 76, id: 76, idRafle: 89, status: 2 },
+        { numberTicket: 77, id: 77, idRafle: 89, status: 1 },
+        { numberTicket: 78, id: 78, idRafle: 89, status: 3 },
+        { numberTicket: 79, id: 79, idRafle: 89, status: 2 },
+        { numberTicket: 80, id: 80, idRafle: 89, status: 1 },
+        { numberTicket: 81, id: 81, idRafle: 89, status: 3 },
+        { numberTicket: 82, id: 82, idRafle: 89, status: 2 },
+        { numberTicket: 83, id: 83, idRafle: 89, status: 1 },
+        { numberTicket: 84, id: 84, idRafle: 89, status: 3 },
+        { numberTicket: 85, id: 85, idRafle: 89, status: 2 },
+        { numberTicket: 86, id: 86, idRafle: 89, status: 1 },
+        { numberTicket: 87, id: 87, idRafle: 89, status: 3 },
+        { numberTicket: 88, id: 88, idRafle: 89, status: 2 },
+        { numberTicket: 89, id: 89, idRafle: 89, status: 1 },
+        { numberTicket: 90, id: 90, idRafle: 89, status: 3 },
+        { numberTicket: 91, id: 91, idRafle: 89, status: 2 },
+        { numberTicket: 92, id: 92, idRafle: 89, status: 1 },
+        { numberTicket: 93, id: 93, idRafle: 89, status: 3 },
+        { numberTicket: 94, id: 94, idRafle: 89, status: 2 },
+        { numberTicket: 95, id: 95, idRafle: 89, status: 1 },
+        { numberTicket: 96, id: 96, idRafle: 89, status: 3 },
+        { numberTicket: 97, id: 97, idRafle: 89, status: 2 },
+        { numberTicket: 98, id: 98, idRafle: 89, status: 1 },
+        { numberTicket: 99, id: 99, idRafle: 89, status: 3 },
+        { numberTicket: 100, id: 100, idRafle: 89, status: 2 }
+    ]);   
 
     const Toast = Swal.mixin({
         toast: true,
@@ -42,6 +144,9 @@ export default function AdminRaffle(){
         if (idRaffle > 6) {
             setExistRaffle(false);
         }
+        
+        // reiniciando el scroll
+        window.scrollTo(0, 0);
     }, [])
     
     // Copiando datos
@@ -97,54 +202,36 @@ export default function AdminRaffle(){
                 title: "Error al copiar"
             });
         });
-    }
-
-    const tickets = [
-        { numberTicket: 37, id: 1, idRafle: 89 },
-        { numberTicket: 22, id: 2, idRafle: 14 },
-        { numberTicket: 53, id: 3, idRafle: 45 },
-        { numberTicket: 91, id: 4, idRafle: 76 },
-        { numberTicket: 12, id: 5, idRafle: 30 },
-        { numberTicket: 48, id: 6, idRafle: 60 },
-        { numberTicket: 6, id: 7, idRafle: 98 },
-        { numberTicket: 85, id: 8, idRafle: 23 },
-        { numberTicket: 77, id: 9, idRafle: 55 },
-        { numberTicket: 34, id: 10, idRafle: 67 },
-        { numberTicket: 19, id: 11, idRafle: 42 },
-        { numberTicket: 63, id: 12, idRafle: 88 },
-        { numberTicket: 27, id: 13, idRafle: 11 },
-        { numberTicket: 74, id: 14, idRafle: 9 },
-        { numberTicket: 49, id: 15, idRafle: 31 },
-        { numberTicket: 90, id: 16, idRafle: 20 },
-        { numberTicket: 15, id: 17, idRafle: 70 },
-    ];
+    }   
 
     return (  
         <div className="container-fluid containerAdminRaffle">
             <HeaderAdmin>
                 <svg onClick={backToDash} className='arrowBack' xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 24 24"><path fill="#000000" d="m10 18l-6-6l6-6l1.4 1.45L7.85 11H20v2H7.85l3.55 3.55z"/></svg>
-
-                <div className="editAndDeleteC">
-                    <Btn 
-                        colorBg={"#c71585"} 
-                        colorBgH={"#c8559e"}
-                        size={"1.2rem"}
-                        txt={"Editar Rifa"}
-                        action={editRaffle}
-                        styles={{borderRadius: 25, width: 120, height: 35, justifyContent: "space-evenly", marginRight: 20}}
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 16l-1 4l4-1L19.586 7.414a2 2 0 0 0 0-2.828l-.172-.172a2 2 0 0 0-2.828 0zM15 6l3 3m-5 11h8"/></svg>
-                    </Btn>
-                    <Btn 
-                        hidden={true}
-                        colorBg={"#FF0000"} 
-                        colorBgH={"#dc2626"} 
-                        action={deleteRaffle}
-                        styles={{borderRadius: 25, width: 35, height: 35}}
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.8rem" height="1.8rem" viewBox="0 0 24 24"><path fill="#ffffff" d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7zm4 12H8v-9h2zm6 0h-2v-9h2zm.618-15L15 2H9L7.382 4H3v2h18V4z"/></svg>
-                    </Btn>
-                </div>
+                
+                {existRaffle && 
+                    <div className="editAndDeleteC">
+                        <Btn 
+                            colorBg={"#c71585"} 
+                            colorBgH={"#c8559e"}
+                            size={"1.2rem"}
+                            txt={"Editar Rifa"}
+                            action={editRaffle}
+                            styles={{borderRadius: 25, width: 120, height: 35, justifyContent: "space-evenly", marginRight: 20}}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m5 16l-1 4l4-1L19.586 7.414a2 2 0 0 0 0-2.828l-.172-.172a2 2 0 0 0-2.828 0zM15 6l3 3m-5 11h8"/></svg>
+                        </Btn>
+                        <Btn 
+                            hidden={true}
+                            colorBg={"#FF0000"} 
+                            colorBgH={"#dc2626"} 
+                            action={deleteRaffle}
+                            styles={{borderRadius: 25, width: 35, height: 35}}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.8rem" height="1.8rem" viewBox="0 0 24 24"><path fill="#ffffff" d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7zm4 12H8v-9h2zm6 0h-2v-9h2zm.618-15L15 2H9L7.382 4H3v2h18V4z"/></svg>
+                        </Btn>
+                    </div>
+                }
             </HeaderAdmin>
 
             <div style={{height:50, background: "#ff0000"}}></div>
@@ -210,7 +297,7 @@ export default function AdminRaffle(){
                             <div className="row">
                                 {/* {dataRaffle && dataRaffle.paymentE &&  */}
                                     <div className="col-12 col-md-4 paymentM">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10rem" height="10rem" viewBox="0 0 24 24"><g fill="none" stroke="#00000080" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="#000000"><path d="M2 4.5h6.757a3 3 0 0 1 2.122.879L14 8.5m-9 5H2m6.5-6l2 2a1.414 1.414 0 1 1-2 2L7 10c-.86.86-2.223.957-3.197.227L3.5 10"/><path d="M5 11v4.5c0 1.886 0 2.828.586 3.414S7.114 19.5 9 19.5h9c1.886 0 2.828 0 3.414-.586S22 17.386 22 15.5v-3c0-1.886 0-2.828-.586-3.414S19.886 8.5 18 8.5H9.5"/><path d="M15.25 14a1.75 1.75 0 1 1-3.5 0a1.75 1.75 0 0 1 3.5 0"/></g></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10rem" height="10rem" viewBox="0 0 24 24"><g fill="none" stroke="#00000080" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" color="#000000"><path d="M2 4.5h6.757a3 3 0 0 1 2.122.879L14 8.5m-9 5H2m6.5-6l2 2a1.414 1.414 0 1 1-2 2L7 10c-.86.86-2.223.957-3.197.227L3.5 10"/><path d="M5 11v4.5c0 1.886 0 2.828.586 3.414S7.114 19.5 9 19.5h9c1.886 0 2.828 0 3.414-.586S22 17.386 22 15.5v-3c0-1.886 0-2.828-.586-3.414S19.886 8.5 18 8.5H9.5"/><path d="M15.25 14a1.75 1.75 0 1 1-3.5 0a1.75 1.75 0 0 1 3.5 0"/></g></svg>
                                         <h3>Pago en efectivo</h3>
                                         <p>Los participantes deben pagar en efectivo antes de la fecha indicada. Pueden contactarte al número de WhatsApp visible en la página.</p>
                                     </div>
@@ -253,7 +340,7 @@ export default function AdminRaffle(){
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 20 20"><path fill="#ffffff" d="M12.437 3.25A5 5 0 0 0 10.001 5a5 5 0 0 0-2.437-1.75A3 3 0 0 1 10.001 2c1.003 0 1.892.493 2.436 1.25m-8.81 7.97a6.504 6.504 0 0 1 5.85-5.2a4 4 0 1 0-5.85 5.199m12.747 0a4 4 0 1 0-5.85-5.199a6.504 6.504 0 0 1 5.85 5.199M15.5 12.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0m-7.5-2a.5.5 0 0 0 .5.5h2.24q-.154.22-.32.485c-.483.772-1.028 1.846-1.166 2.953a.5.5 0 1 0 .992.124c.112-.893.567-1.819 1.022-2.547a11 11 0 0 1 .843-1.168l.012-.014l.004-.004A.5.5 0 0 0 11.75 10H8.5a.5.5 0 0 0-.5.5"/></svg>
                         </Btn>
-                        <Talonario isAdmin={true} number={100} arrSold={tickets}/>
+                        <Talonario isAdmin={true} arrSold={tickets}/>
                     </div>
                 </main>
             :

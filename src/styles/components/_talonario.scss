@@ -14,12 +14,37 @@
         font-size: 2rem;
     }
 
-    .tickets{
+    .containerfilter{
+        margin-bottom: 20px;
         width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .ticketsArea{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .tickets{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .bottomR{
+            margin-top: 30px;
+        }
+    }
+
+    .errorMenssage{
+        padding: 50px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
