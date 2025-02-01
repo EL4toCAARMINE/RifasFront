@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Btn from "./btn";
 import Pagination from "./pagination";
 import ErrorScreenComponent from "./errorScreenComponent";
+import UpdateStatusTicket from "./updateStatusTicket";
 
 const TicketS = ({dataT, action, isAdmin}) => {
     return(
@@ -20,6 +21,9 @@ export default function Talonario({isAdmin, arrSold}){
     const [arrSoldCollection, setArrSoldCollection] = useState(arrSold);
     const [filterFocus, setFilterFocus] = useState(0);
 
+    const [isVisible, setIsVisible] = useState(false);
+    const [ticketFocus, setTicketFocus] = useState(null);
+
     //Paginacion
     const [page, setPage] = React.useState(1);
     const [forPage, setForPage] = React.useState(100);
@@ -35,7 +39,8 @@ export default function Talonario({isAdmin, arrSold}){
     }
 
     const updateTickets = (id) => {
-        alert(id)
+        setTicketFocus(id);
+        setIsVisible(true);
     }
 
     return (  
@@ -78,24 +83,26 @@ export default function Talonario({isAdmin, arrSold}){
                     ></Btn>
                 </div>
             }
-                <div className="ticketsArea">
+            <div className="ticketsArea">
 
-                    {arrSoldCollection.length > 0 ? 
-                        <div className="tickets">
-                            {arrSoldCollection.slice((page - 1) * forPage, page * forPage).map((ticket, index) => {
-                                return <TicketS key={index} dataT={ticket} isAdmin={isAdmin} action={updateTickets}/>
-                            })}
-                        </div>
-                    :
+                {arrSoldCollection.length > 0 ? 
+                    <div className="tickets">
+                        {arrSoldCollection.slice((page - 1) * forPage, page * forPage).map((ticket, index) => {
+                            return <TicketS key={index} dataT={ticket} isAdmin={isAdmin} action={updateTickets}/>
+                        })}
+                    </div>
+                :
                     <div className="errorMenssage">
                         <ErrorScreenComponent message={"No hay boletos"}/>
                     </div>
-                    }
+                }
 
-                    <div className="bottomR">
-                        <Pagination page={page} setPage={setPage} forPage={forPage} arrLength={arrSoldCollection.length}/>
-                    </div>
+                <div className="bottomR">
+                    <Pagination page={page} setPage={setPage} forPage={forPage} arrLength={arrSoldCollection.length}/>
                 </div>
+            </div>
+
+            <UpdateStatusTicket visible={isVisible} setIsVisible={setIsVisible} data={ticketFocus} />
         </div>
     );
 }

@@ -28,10 +28,12 @@
         width: 100%;
         flex: 1;
         height: auto;
-        
+
         .containerData{
             width: 100%;
-            height: calc(100vh - 50px);;
+            padding: 100px 0;
+            min-height: calc(100vh - 50px);
+            height: auto;
             background: url("../assets/images/ruby.webp");
             background-repeat: no-repeat;
             background-size: cover;
@@ -73,19 +75,19 @@
                         display: flex;
                         flex-direction: column;
                         overflow: hidden;
-    
+
                         .title{
                             font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
                             color: #000;
                             font-size: 1.4rem;
                         }
-    
+
                         .copyArea{
                             width: 100%;
                             display: flex;
                             flex-direction: row;
                             justify-content: space-between;
-    
+
                             .copyB{
                                 flex: 1;
                                 margin-right: 10px;
@@ -100,15 +102,15 @@
                                 text-align: center;
                                 box-shadow: 0 4px 8px #00000070;
                             }
-                            
+
                             .buttonG{
                                 width: 20%;
                             }
                         }
-    
+
                         .details{
                             font-family: OpenSansRegular, Arial, Helvetica, sans-serif;
-                            margin-top: 5px;
+                            margin: 5px 0;
                             font-size: 1.3rem;
                             color: #000;
                         }
