@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import HeaderAmin from "../../components/headerAdmin";
-import InputText from '../../components/inputText';
-import Btn from "../../components/btn";
+import HeaderAmin from "../../components/admin/headerAdmin";
+import InputText from '../../components/generals/inputText';
+import Btn from "../../components/generals/btn";
 import { useNavigate } from 'react-router-dom';
 import { convertToUnix, unixToDate } from '../../utils/DateUnixFunctions';
 import { validateForm } from '../../utils/ValidateFormAdmin';

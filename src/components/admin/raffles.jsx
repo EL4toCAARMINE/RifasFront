@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { unixToStringYMD } from '../utils/DateUnixFunctions';
+import { unixToStringYMD } from '../../utils/DateUnixFunctions';
 
 export default function Raffles({data}){
     const navigate = useNavigate();

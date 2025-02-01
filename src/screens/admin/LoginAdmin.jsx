@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Btn from '../../components/btn';
-import HeaderAdmin from '../../components/headerAdmin';
+import Btn from '../../components/generals/btn';
+import HeaderAdmin from '../../components/admin/headerAdmin';
 import { useNavigate } from "react-router-dom";
-import Loader from '../../components/Loader';
+import Loader from '../../components/generals/Loader';
 
 export default function LoginAdmin(){
     const [isText, setIsText] = useState(false);

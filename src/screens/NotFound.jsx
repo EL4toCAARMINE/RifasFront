@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation, useNavigate } from "react-router-dom";
 import castiel from "../assets/images/castiel404.webp";
-import Btn from '../components/btn';
+import Btn from '../components/generals/btn';
 
 export default function NotFound() {
   const navigate = useNavigate();

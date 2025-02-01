@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import Btn from "../components/btn";
+import Btn from "../generals/btn";
 
 export default function ({visible, setIsVisible, data}){
     const [ticket, setTicket] = useState({

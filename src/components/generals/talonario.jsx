@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Btn from "./btn";
 import Pagination from "./pagination";
 import ErrorScreenComponent from "./errorScreenComponent";
-import UpdateStatusTicket from "./updateStatusTicket";
+import UpdateStatusTicket from "../admin/updateStatusTicket";
 
 const TicketS = ({dataT, action, isAdmin}) => {
     return(

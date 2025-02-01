@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import HeaderAmin from "../../components/headerAdmin";
-import InputText from '../../components/inputText';
-import Btn from "../../components/btn";
+import HeaderAmin from "../../components/admin/headerAdmin";
+import InputText from '../../components/generals/inputText';
+import Btn from "../../components/generals/btn";
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { convertToUnix, unixToDate } from '../../utils/DateUnixFunctions';
 import { validateForm } from '../../utils/ValidateFormAdmin';
-import ErrorScreenComponent from '../../components/errorScreenComponent';
+import ErrorScreenComponent from '../../components/generals/errorScreenComponent';
 
 export default function EditRaffle(){
     const navigate = useNavigate();

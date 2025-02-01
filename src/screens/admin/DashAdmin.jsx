@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import HeaderAdmin from "../../components/headerAdmin";
-import Btn from "../../components/btn";
+import HeaderAdmin from "../../components/admin/headerAdmin";
+import Btn from "../../components/generals/btn";
 import { useNavigate } from 'react-router-dom';
-import Raffles from '../../components/raffles';
-import Loader from '../../components/Loader';
-import Pagination from "../../components/pagination";
+import Raffles from '../../components/admin/raffles';
+import Loader from '../../components/generals/Loader';
+import Pagination from "../../components/generals/pagination";
 
 export default function DashAdmin(){
     const navigation = useNavigate();

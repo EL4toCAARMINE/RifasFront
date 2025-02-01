@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import HeaderAdmin from '../../components/headerAdmin';
+import HeaderAdmin from '../../components/admin/headerAdmin';
 import { useNavigate, useParams } from 'react-router-dom';
-import ErrorScreenComponent from '../../components/errorScreenComponent';
-import Btn from "../../components/btn";
+import ErrorScreenComponent from '../../components/generals/errorScreenComponent';
+import Btn from "../../components/generals/btn";
 import Swal from 'sweetalert2';
 import { unixToStringYMD } from '../../utils/DateUnixFunctions';
-import Talonario from '../../components/talonario';
+import Talonario from '../../components/generals/talonario';
 
 export default function AdminRaffle(){
     const navigate = useNavigate();
