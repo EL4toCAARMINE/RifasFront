@@ -17,8 +17,8 @@ const TicketS = ({dataT, action, isAdmin}) => {
     );
 } 
 
-export default function Talonario({isAdmin, arrSold}){
-    const [arrSoldCollection, setArrSoldCollection] = useState(arrSold);
+export default function Talonario({isAdmin, tickets, setTickets}){
+    const [arrSoldCollection, setArrSoldCollection] = useState(tickets);
     const [filterFocus, setFilterFocus] = useState(0);
 
     const [isVisible, setIsVisible] = useState(false);
@@ -31,9 +31,9 @@ export default function Talonario({isAdmin, arrSold}){
     // Filtro
     const filterTickets = (number) => {
         if (number == 0) {
-            setArrSoldCollection(arrSold);
+            setArrSoldCollection(tickets);
         }else{
-            setArrSoldCollection(arrSold.filter(ticket => ticket.status === number));
+            setArrSoldCollection(tickets.filter(ticket => ticket.status === number));
         }
         setFilterFocus(number);
     }
@@ -85,7 +85,7 @@ export default function Talonario({isAdmin, arrSold}){
             }
             <div className="ticketsArea">
 
-                {arrSoldCollection.length > 0 ? 
+                {arrSoldCollection && arrSoldCollection.length > 0 ? 
                     <div className="tickets">
                         {arrSoldCollection.slice((page - 1) * forPage, page * forPage).map((ticket, index) => {
                             return <TicketS key={index} dataT={ticket} isAdmin={isAdmin} action={updateTickets}/>
@@ -98,7 +98,7 @@ export default function Talonario({isAdmin, arrSold}){
                 }
 
                 <div className="bottomR">
-                    <Pagination page={page} setPage={setPage} forPage={forPage} arrLength={arrSoldCollection.length}/>
+                    <Pagination page={page} setPage={setPage} forPage={forPage} arrLength={arrSoldCollection && arrSoldCollection.length}/>
                 </div>
             </div>
 

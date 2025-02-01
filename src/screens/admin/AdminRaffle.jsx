@@ -4,15 +4,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ErrorScreenComponent from '../../components/generals/errorScreenComponent';
 import Btn from "../../components/generals/btn";
 import Swal from 'sweetalert2';
-import { unixToStringYMD } from '../../utils/DateUnixFunctions';
+import { convertToUnix, unixToString, unixToStringYMD } from '../../utils/DateUnixFunctions';
 import Talonario from '../../components/generals/talonario';
 
 export default function AdminRaffle(){
     const navigate = useNavigate();
     const {idRaffle} = useParams();
     
-    const [existRaffle, setExistRaffle] = useState(true);
+    const [today, setToday] = useState(null);
+    const [toraffleIsVisible, setToRaffleIsVisible] = useState(false);
     const [dataRaffle, setDataRaffle] = useState(null);
+
     const [tickets, setTickets] = useState([
         { numberTicket: 1, id: 1, idRafle: 89, status: 2 },
         { numberTicket: 2, id: 2, idRafle: 89, status: 3 },
@@ -126,7 +128,7 @@ export default function AdminRaffle(){
           toast.onmouseenter = Swal.stopTimer;
           toast.onmouseleave = Swal.resumeTimer;
         }
-      });
+    });
 
     const backToDash = () => {
         navigate("/dashAdmin");
@@ -141,13 +143,41 @@ export default function AdminRaffle(){
     }
 
     useEffect(() => {
-        if (idRaffle > 6) {
-            setExistRaffle(false);
-        }
+        
+        setDataRaffle({
+            id: 6,
+            raffleName: "Rifa de pantalla",
+            raffleLink: "https://www.rifasahuazo.com/rifa",
+            canalW: "https://www.whatsapp.com/channel/canalrifa",
+            date: 1738360000,
+            raffled: false
+        })
+
+        const getToday = new Date();
+        setToday(convertToUnix(getToday));
         
         // reiniciando el scroll
         window.scrollTo(0, 0);
-    }, [])
+    }, []);
+
+    const openRulette = () => {
+        if (!dataRaffle.raffled) {
+            if (dataRaffle.date < today) {
+                setToRaffleIsVisible(true);
+            }else{
+                Swal.fire({
+                    title: "Solo se puede realizar el sorteo en la fecha marcada " + unixToStringYMD(dataRaffle.date) + " o despues",
+                    icon: "info",
+                    confirmButtonText: "Entendido",
+                    customClass: {
+                        container: "alertErrorDate",
+                        confirmButton: "button",
+                        title: "title"
+                    }
+                })
+            }
+        }
+    }
     
     // Copiando datos
     const copyIdRaffle = () => {
@@ -209,7 +239,7 @@ export default function AdminRaffle(){
             <HeaderAdmin>
                 <svg onClick={backToDash} className='arrowBack' xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 24 24"><path fill="#000000" d="m10 18l-6-6l6-6l1.4 1.45L7.85 11H20v2H7.85l3.55 3.55z"/></svg>
                 
-                {existRaffle && 
+                {dataRaffle && 
                     <div className="editAndDeleteC">
                         <Btn 
                             colorBg={"#c71585"} 
@@ -236,7 +266,7 @@ export default function AdminRaffle(){
 
             <div style={{height:50, background: "#ff0000"}}></div>
 
-            {existRaffle ? 
+            {dataRaffle ? 
                 <main>
                     <div className="containerData">
                         <div className="dataR">
@@ -246,7 +276,7 @@ export default function AdminRaffle(){
                                 <div className="col-12 col-md-6 copyAreaC">
                                     <p className='title'>ID de la Rifa</p>
                                     <div className="copyArea">
-                                        <input type="text" className="copyB" value={dataRaffle ? dataRaffle.raffleName : "#"} id='idRaffle' disabled={true}/>
+                                        <input type="text" className="copyB" value={dataRaffle ? dataRaffle.id : "#"} id='idRaffle' disabled={true}/>
                                         <Btn
                                             action={copyIdRaffle}
                                             colorBg={"#c71585"}
@@ -261,7 +291,7 @@ export default function AdminRaffle(){
                                 <div className="col-12 col-md-6 copyAreaC">
                                     <p className='title'>Link de la Rifa</p>
                                     <div className="copyArea">
-                                        <input type="text" className="copyB" value={dataRaffle ? dataRaffle.raffleName : "https://..."} id='linkRaffle' disabled={true}/>
+                                        <input type="text" className="copyB" value={dataRaffle ? dataRaffle.raffleLink : "https://..."} id='linkRaffle' disabled={true}/>
                                         <Btn
                                             action={copyLink}
                                             colorBg={"#c71585"} 
@@ -277,7 +307,7 @@ export default function AdminRaffle(){
                                     <div className="col-12 copyAreaC">
                                         <p className='title'>Link al canal de WhatsApp</p>
                                         <div className="copyArea">
-                                            <input type="text" className="copyB" value={dataRaffle ? dataRaffle.raffleName : "https://www.whatsapp.com/channel/..."} id='linkChannelRaffle' disabled={true}/>
+                                            <input type="text" className="copyB" value={dataRaffle ? dataRaffle.canalW : "https://www.whatsapp.com/channel/..."} id='linkChannelRaffle' disabled={true}/>
                                             <Btn
                                                 action={copyLinkChannel}
                                                 colorBg={"#c71585"} 
@@ -327,7 +357,6 @@ export default function AdminRaffle(){
                     <div className="containerTickets">
                         <Btn
                             size={"1.6rem"}
-                            action={()=>{"agregar navegacion a sorteo"}}
                             styles={{
                                 justifyContent: "space-evenly", 
                                 width: 250, 
@@ -337,10 +366,11 @@ export default function AdminRaffle(){
                             txt={"Realizar sorteo"}
                             colorBg={"linear-gradient(90deg, #80E0E6 0%, #227ABA 50%, #C71585 100%)"}
                             colorBgH={"linear-gradient(90deg, #C71585 0%, #227ABA 50%, #80E0E6 100%)"}
+                            action={openRulette}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 20 20"><path fill="#ffffff" d="M12.437 3.25A5 5 0 0 0 10.001 5a5 5 0 0 0-2.437-1.75A3 3 0 0 1 10.001 2c1.003 0 1.892.493 2.436 1.25m-8.81 7.97a6.504 6.504 0 0 1 5.85-5.2a4 4 0 1 0-5.85 5.199m12.747 0a4 4 0 1 0-5.85-5.199a6.504 6.504 0 0 1 5.85 5.199M15.5 12.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0m-7.5-2a.5.5 0 0 0 .5.5h2.24q-.154.22-.32.485c-.483.772-1.028 1.846-1.166 2.953a.5.5 0 1 0 .992.124c.112-.893.567-1.819 1.022-2.547a11 11 0 0 1 .843-1.168l.012-.014l.004-.004A.5.5 0 0 0 11.75 10H8.5a.5.5 0 0 0-.5.5"/></svg>
                         </Btn>
-                        <Talonario isAdmin={true} arrSold={tickets}/>
+                        <Talonario isAdmin={true} tickets={tickets} setTickets={setTickets}/>
                     </div>
                 </main>
             :

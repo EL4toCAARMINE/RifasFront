@@ -116,9 +116,10 @@ export default function ({visible, setIsVisible, data}){
                                 txt={"Guardar cambios"}
                                 colorBg={"#c71585"}
                                 colorBgH={"#df47a7"}
+                                size={"1.2rem"}
                                 styles={{
                                     width: "48%",
-                                    height: 30,
+                                    height: 40,
                                     marginRight: 2
                                 }}
                                 action={updateStatus}
@@ -127,9 +128,10 @@ export default function ({visible, setIsVisible, data}){
                                 txt={"Cancelar"}
                                 colorBg={"##000"}
                                 colorBgH={"#4d4d4d"}
+                                size={"1.2rem"}
                                 styles={{
                                     width: "48%",
-                                    height: 30,
+                                    height: 40,
                                     marginLeft: 2
                                 }}
                                 action={cancelUpdateStatus}

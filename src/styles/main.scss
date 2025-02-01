@@ -4,15 +4,15 @@
 
 // Components
 
-@use "components/btn";
-@use "components/headerAdmin";
-@use "components/raffles";
-@use "components/loader";
-@use "components/pagination";
-@use "components/inputText";
-@use "components/errorScreenComponent";
-@use "components/talonario";
-@use "components/updateStatusTicket";
+@use "components/generals/btn";
+@use "components/admin/headerAdmin";
+@use "components/admin/raffles";
+@use "components/generals/loader";
+@use "components/generals/pagination";
+@use "components/generals/inputText";
+@use "components/generals/errorScreenComponent";
+@use "components/generals/talonario";
+@use "components/admin/updateStatusTicket";
 
 // Admin
 

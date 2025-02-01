@@ -23,11 +23,11 @@ function unixToDate(unixTime) {
 // Convierte unix en String
 function unixToString(unixTime) {
     const date = new Date(unixTime * 1000);
-    const year = date.getFullYear();
-    const month = ('0' + (date.getMonth() + 1)).slice(-2); 
-    const day = ('0' + date.getDate()).slice(-2);
-    const hour = ('0' + date.getHours()).slice(-2);
-    const minutes = ('0' + date.getMinutes()).slice(-2);
+    const year = date.getUTCFullYear();
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    const hour = ('0' + date.getUTCHours()).slice(-2);
+    const minutes = ('0' + date.getUTCSeconds()).slice(-2);
     
     return `${year}-${month}-${day} ${hour}:${minutes}`;
 }
@@ -36,9 +36,9 @@ function unixToString(unixTime) {
 function unixToStringYMD(unixTimestamp) {
     const months = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
     const date = new Date(unixTimestamp * 1000);
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = months[date.getMonth()];
-    const year = date.getFullYear();
+    const year = date.getUTCFullYear();
+    const month = months[(date.getUTCMonth())];
+    const day = date.getUTCDate().toString().padStart(2, '0');
     return `${day}/${month}/${year}`;
   }
 

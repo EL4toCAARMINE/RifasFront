@@ -1,4 +1,4 @@
-@use "../others/colors";
+@use "../../others/colors";
 
 .backUSP{
     width: 100%;
@@ -147,7 +147,11 @@
 
     .cancel{
         background-color: #000;
-        transition: all 0.3s ease;
+        height: 40px;
+        border-radius: 10px;
+        font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+        font-size: 1.2rem;
+        width: 100px;
 
         &:hover{
             background-color: colors.$greyFH;
@@ -156,7 +160,11 @@
 
     .confirm{
         background-color: colors.$redViolet;
-        transition: all 0.3s ease;
+        height: 40px;
+        border-radius: 10px;
+        font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+        font-size: 1.2rem;
+        width: 100px;
 
         &:hover{
             background-color: colors.$pinkFH;
