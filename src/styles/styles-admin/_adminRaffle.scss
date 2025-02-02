@@ -161,6 +161,34 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            .result{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #00ff1150;
+                padding-top: 20px;
+                padding-inline: 30px;
+                border-radius: 20px;
+
+                h3{
+                    font-family: OpenSansBold,Arial, Helvetica, sans-serif;
+                    font-size: 1.8rem;
+                    margin-bottom: 10px;
+                }
+
+                p{
+                    font-family: OpenSansRegular,Arial, Helvetica, sans-serif;
+                    font-size: 1.4rem;
+                    margin-bottom: 10px;
+                }
+
+                span{
+                    font-family: OpenSansBold,Arial, Helvetica, sans-serif;
+                    font-size: 3rem;
+                    margin-bottom: 10px;
+                }
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Btn from "../generals/btn";
 
@@ -11,6 +11,7 @@ export default function ({visible, setIsVisible, data}){
         buyerName: "John Doe",
         buyerPhone: "123-456-7890"
     });
+    
     const [selectedOption, setSelectedOption] = useState(2);
 
     //Manejar cambios en los radio buttons
@@ -65,7 +66,7 @@ export default function ({visible, setIsVisible, data}){
     }
 
     // Si visible es true, se bloquea el scroll
-    React.useEffect(() => {
+    useEffect(() => {
         const body = document.body;
     
         if (visible) {
@@ -75,27 +76,35 @@ export default function ({visible, setIsVisible, data}){
         }
     }, [visible]);
 
-    return visible && (  
+    useEffect(() => {
+        if (data) {
+            data.buyerName = ticket.buyerName;
+            data.buyerPhone = ticket.buyerPhone;
+            setTicket(data);
+        }
+    }, [data])
+    
+    return visible ? (  
         <div className="backUSP" onClick={cancelUpdateStatus}>
             <div className="containerFormUS" onClick={(e)=>e.stopPropagation()}>
-                {ticket.status == 3 &&
+                {ticket && ticket.status == 3 &&
                     <svg className="close" onClick={cancelUpdateStatus} xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 1216 1312"><path fill="#000000" d="M1202 1066q0 40-28 68l-136 136q-28 28-68 28t-68-28L608 976l-294 294q-28 28-68 28t-68-28L42 1134q-28-28-28-68t28-68l294-294L42 410q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294l294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68L880 704l294 294q28 28 28 68"/></svg>
                 }
 
                 <div className="textsC">
-                    <h4>Boleto #{ticket.numberTicket}</h4>
+                    <h4>Boleto #{ticket && ticket.numberTicket}</h4>
                     <hr />
                     <div className="textC">
                         <p>Comprador:</p>
-                        <p className="bold">{ticket.buyerName}</p>
+                        <p className="bold">{ticket && ticket.buyerName}</p>
                     </div>
                     <div className="textC">
                         <p>Numero:</p>
-                        <p className="bold">{ticket.buyerPhone}</p>
+                        <p className="bold">{ticket && ticket.buyerPhone}</p>
                     </div>
                 </div>
 
-                {ticket.status == 2 ?
+                {ticket && ticket.status == 2 ?
                     <div className="containerPayStatus">
                         <h4>Cambiar estado del boleto</h4>
                         <div className="containerRadio">
@@ -116,7 +125,7 @@ export default function ({visible, setIsVisible, data}){
                                 txt={"Guardar cambios"}
                                 colorBg={"#c71585"}
                                 colorBgH={"#df47a7"}
-                                size={"1.2rem"}
+                                size={"1.3rem"}
                                 styles={{
                                     width: "48%",
                                     height: 40,
@@ -128,7 +137,7 @@ export default function ({visible, setIsVisible, data}){
                                 txt={"Cancelar"}
                                 colorBg={"##000"}
                                 colorBgH={"#4d4d4d"}
-                                size={"1.2rem"}
+                                size={"1.3rem"}
                                 styles={{
                                     width: "48%",
                                     height: 40,
@@ -146,5 +155,5 @@ export default function ({visible, setIsVisible, data}){
                 }
             </div>
         </div>
-    );
+    ) : null
 }

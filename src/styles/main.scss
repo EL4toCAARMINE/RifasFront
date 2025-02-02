@@ -2,17 +2,21 @@
 
 @use "others/notFound";
 
-// Components
+// Components generals
 
 @use "components/generals/btn";
-@use "components/admin/headerAdmin";
-@use "components/admin/raffles";
 @use "components/generals/loader";
 @use "components/generals/pagination";
 @use "components/generals/inputText";
 @use "components/generals/errorScreenComponent";
 @use "components/generals/talonario";
+
+//Components admin
+
+@use "components/admin/headerAdmin";
+@use "components/admin/raffles";
 @use "components/admin/updateStatusTicket";
+@use "components/admin/toRaffle";
 
 // Admin
 

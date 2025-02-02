@@ -6,12 +6,15 @@ import Btn from "../../components/generals/btn";
 import Swal from 'sweetalert2';
 import { convertToUnix, unixToString, unixToStringYMD } from '../../utils/DateUnixFunctions';
 import Talonario from '../../components/generals/talonario';
+import ToRaffle from '../../components/admin/toRafle';
 
 export default function AdminRaffle(){
     const navigate = useNavigate();
     const {idRaffle} = useParams();
     
     const [today, setToday] = useState(null);
+    const [winner, setWinner] = useState(null);
+    const [existRaffle, setExistRaffle] = useState(true);
     const [toraffleIsVisible, setToRaffleIsVisible] = useState(false);
     const [dataRaffle, setDataRaffle] = useState(null);
 
@@ -143,6 +146,9 @@ export default function AdminRaffle(){
     }
 
     useEffect(() => {
+        if (idRaffle > 6) {
+            setExistRaffle(false);
+        }
         
         setDataRaffle({
             id: 6,
@@ -166,7 +172,7 @@ export default function AdminRaffle(){
                 setToRaffleIsVisible(true);
             }else{
                 Swal.fire({
-                    title: "Solo se puede realizar el sorteo en la fecha marcada " + unixToStringYMD(dataRaffle.date) + " o despues",
+                    title: "Sólo se puede realizar el sorteo en la fecha marcada " + unixToStringYMD(dataRaffle.date) + " o después.",
                     icon: "info",
                     confirmButtonText: "Entendido",
                     customClass: {
@@ -239,7 +245,7 @@ export default function AdminRaffle(){
             <HeaderAdmin>
                 <svg onClick={backToDash} className='arrowBack' xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 24 24"><path fill="#000000" d="m10 18l-6-6l6-6l1.4 1.45L7.85 11H20v2H7.85l3.55 3.55z"/></svg>
                 
-                {dataRaffle && 
+                {existRaffle && !winner && 
                     <div className="editAndDeleteC">
                         <Btn 
                             colorBg={"#c71585"} 
@@ -266,7 +272,7 @@ export default function AdminRaffle(){
 
             <div style={{height:50, background: "#ff0000"}}></div>
 
-            {dataRaffle ? 
+            {existRaffle ? 
                 <main>
                     <div className="containerData">
                         <div className="dataR">
@@ -355,27 +361,39 @@ export default function AdminRaffle(){
                     </div>
 
                     <div className="containerTickets">
-                        <Btn
-                            size={"1.6rem"}
-                            styles={{
-                                justifyContent: "space-evenly", 
-                                width: 250, 
-                                height: 50,
-                                boxShadow: "0px 4px 4px #00000060"
-                            }}
-                            txt={"Realizar sorteo"}
-                            colorBg={"linear-gradient(90deg, #80E0E6 0%, #227ABA 50%, #C71585 100%)"}
-                            colorBgH={"linear-gradient(90deg, #C71585 0%, #227ABA 50%, #80E0E6 100%)"}
-                            action={openRulette}
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 20 20"><path fill="#ffffff" d="M12.437 3.25A5 5 0 0 0 10.001 5a5 5 0 0 0-2.437-1.75A3 3 0 0 1 10.001 2c1.003 0 1.892.493 2.436 1.25m-8.81 7.97a6.504 6.504 0 0 1 5.85-5.2a4 4 0 1 0-5.85 5.199m12.747 0a4 4 0 1 0-5.85-5.199a6.504 6.504 0 0 1 5.85 5.199M15.5 12.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0m-7.5-2a.5.5 0 0 0 .5.5h2.24q-.154.22-.32.485c-.483.772-1.028 1.846-1.166 2.953a.5.5 0 1 0 .992.124c.112-.893.567-1.819 1.022-2.547a11 11 0 0 1 .843-1.168l.012-.014l.004-.004A.5.5 0 0 0 11.75 10H8.5a.5.5 0 0 0-.5.5"/></svg>
-                        </Btn>
+
+                        {!winner ? 
+                            <Btn
+                                size={"1.6rem"}
+                                styles={{
+                                    justifyContent: "space-evenly", 
+                                    width: 250, 
+                                    height: 50,
+                                    boxShadow: "0px 4px 4px #00000060"
+                                }}
+                                txt={"Realizar sorteo"}
+                                colorBg={"linear-gradient(90deg, #80E0E6 0%, #227ABA 50%, #C71585 100%)"}
+                                colorBgH={"linear-gradient(90deg, #C71585 0%, #227ABA 50%, #80E0E6 100%)"}
+                                action={openRulette}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 20 20"><path fill="#ffffff" d="M12.437 3.25A5 5 0 0 0 10.001 5a5 5 0 0 0-2.437-1.75A3 3 0 0 1 10.001 2c1.003 0 1.892.493 2.436 1.25m-8.81 7.97a6.504 6.504 0 0 1 5.85-5.2a4 4 0 1 0-5.85 5.199m12.747 0a4 4 0 1 0-5.85-5.199a6.504 6.504 0 0 1 5.85 5.199M15.5 12.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0m-7.5-2a.5.5 0 0 0 .5.5h2.24q-.154.22-.32.485c-.483.772-1.028 1.846-1.166 2.953a.5.5 0 1 0 .992.124c.112-.893.567-1.819 1.022-2.547a11 11 0 0 1 .843-1.168l.012-.014l.004-.004A.5.5 0 0 0 11.75 10H8.5a.5.5 0 0 0-.5.5"/></svg>
+                            </Btn>
+                        :
+                            <div className="result">
+                                <h3>Felicidades 🎉🎉</h3>
+                                <p>El número ganador es el:</p>
+                                <span>#{winner.numberTicket}</span>
+                            </div>
+                        }
+
                         <Talonario isAdmin={true} tickets={tickets} setTickets={setTickets}/>
                     </div>
                 </main>
             :
                 <ErrorScreenComponent message={"Error la esta rifa no existe"}/>
             }
+
+            <ToRaffle isVisible={toraffleIsVisible} setIsVisible={setToRaffleIsVisible} tickets={tickets} setWin={setWinner}/>
         </div>
     );
 }

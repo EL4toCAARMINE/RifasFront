@@ -99,10 +99,11 @@
                 label{
                     font-size: 1.2rem;
                     margin-right: 5px;
+                    cursor: pointer;
                 }
 
-                inpput{
-                    background-color: #000;
+                input{
+                    cursor: pointer;
                 }
             }
 
@@ -150,7 +151,7 @@
         height: 40px;
         border-radius: 10px;
         font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         width: 100px;
 
         &:hover{
@@ -163,7 +164,7 @@
         height: 40px;
         border-radius: 10px;
         font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         width: 100px;
 
         &:hover{
