@@ -15,12 +15,53 @@ export default function LoginAdmin(){
 
     const navigation = useNavigate();
 
+    const validateC = () => {
+      let vali = true;
+
+      setEmailError("");
+      setPassError("");
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email) {
+        setEmailError("Correo incorrecto");
+        vali = false;
+      }else if(!emailRegex.test(email)){
+        setEmailError("Formato de correo incorrecto");
+        vali = false;
+      }
+
+      if (!pass) {
+        setPassError("Contraseña incorrecta");
+        vali = false;
+      }
+
+      return vali;
+    }
+
     // Iniciando sesion
     const logIn = () => {
-      setLoaderIsVisible(true);
-      setLoaderIsVisible(false);
-      navigation("/dashAdmin");
+
+      if (validateC()) {
+        setLoaderIsVisible(true);
+        setLoaderIsVisible(false);
+        navigation("/dashAdmin");
+      }
     }
+
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter") {
+          event.preventDefault();
+          logIn();
+      }
+    };
+    
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyPress);
+    
+        return () => {
+            document.removeEventListener("keydown", handleKeyPress);
+        };
+    }, [email, pass]);
 
     return (  
         <div className='container-fluid containerLogin'>
