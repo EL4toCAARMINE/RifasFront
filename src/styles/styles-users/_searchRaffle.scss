@@ -1,0 +1,135 @@
+@use "../others/colors";
+
+.containerSearchRaffle{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: auto;
+    
+    main{
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        flex: 1;
+        padding: 100px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .containerI{
+            width: 90%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+
+            h2{
+                font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+                font-size: 4rem;
+                color: colors.$redViolet;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .welcome{
+                font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                font-size: 1.6rem;
+                text-align: center;
+                color: colors.$grey;
+                margin-bottom: 40px;
+
+                strong{
+                    font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+                    font-size: 1.6rem;
+                    text-align: center;
+                    color: #000;
+
+                }
+            }
+
+            .containerInputS{
+                width: 90%;
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                overflow: hidden;
+                padding: 10px;
+                border: 1px solid #000;
+                border-radius: 50px;
+                box-sizing: border-box;
+
+                .search{
+                    position: relative;
+                }
+
+                .searchA{
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+
+                    &:hover{
+                        scale: 1.1;
+                    }
+                }
+                
+                input{
+                    position: relative;
+                    flex: 1;
+                    border: none;
+                    padding-left: 10px;
+                    font-family: OpenSansRegular, Arial, Helvetica, sans-serif;
+                    font-size: 1.6rem;
+
+                    &:focus{
+                        outline: none;
+                    }
+                }
+
+                &:focus-within{
+                    outline: 1px solid #000;
+                }
+            }
+        }
+    }
+}
+
+.alertSwal{
+
+    div{
+        border-radius: 25px;
+
+        .title{
+            font-family: OpenSansRegular,Arial, Helvetica, sans-serif;
+            font-size: 1.8rem;
+        }
+
+        .button{
+            height: 40px;
+            width: 100px;
+            font-size: 1.2rem;
+            font-family: OpenSansSemiBold,Arial, Helvetica, sans-serif;
+            background-color: colors.$redViolet;
+            border-radius: 10px;
+
+            &:hover{
+                background-color: colors.$pinkFH;
+            }
+        }
+
+        .buttonCancel{
+            height: 40px;
+            width: 100px;
+            font-size: 1.2rem;
+            font-family: OpenSansSemiBold,Arial, Helvetica, sans-serif;
+            background-color: #000;
+            border-radius: 10px;
+
+            &:hover{
+                background-color: colors.$grey;
+            }
+        }
+    }
+}

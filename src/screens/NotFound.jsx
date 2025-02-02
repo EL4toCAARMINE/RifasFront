@@ -16,7 +16,7 @@ export default function NotFound() {
       navigate(-1);
     } else {
       // Si no hay historial, redirige al home
-      navigate("/loginAdmin");
+      navigate("/");
     }
   };
 

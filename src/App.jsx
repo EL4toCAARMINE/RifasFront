@@ -15,8 +15,11 @@ import DashAdmin from './screens/admin/DashAdmin';
 import CreateRaffle from './screens/admin/CreateRaffle';
 import EditRaffle from './screens/admin/EditRaffle';
 import AdminRaffle from './screens/admin/AdminRaffle';
+// User
+
 // 404
 import NotFound from './screens/NotFound';
+import SearchRaffle from './screens/users/searchRaffle';
 
 // Cargando iconos globales
 library.add(fas, fab);
@@ -31,6 +34,9 @@ function App() {
         <Route path='/createRaffle' element={<CreateRaffle/>}/>
         <Route path='/editRaffle/:idRaffle' element={<EditRaffle/>}/>
         <Route path='/adminRaffle/:idRaffle' element={<AdminRaffle/>}/>
+
+        <Route path='/' element={<SearchRaffle/>}/>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
