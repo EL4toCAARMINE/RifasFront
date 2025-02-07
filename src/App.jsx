@@ -20,6 +20,7 @@ import AdminRaffle from './screens/admin/AdminRaffle';
 // 404
 import NotFound from './screens/NotFound';
 import SearchRaffle from './screens/users/searchRaffle';
+import WelcomeUser from './screens/users/WelcomeUser';
 
 // Cargando iconos globales
 library.add(fas, fab);
@@ -34,6 +35,8 @@ function App() {
         <Route path='/createRaffle' element={<CreateRaffle/>}/>
         <Route path='/editRaffle/:idRaffle' element={<EditRaffle/>}/>
         <Route path='/adminRaffle/:idRaffle' element={<AdminRaffle/>}/>
+        
+        <Route path='/raffleInstructions/:idRaffle' element={<WelcomeUser/>}/>
 
         <Route path='/' element={<SearchRaffle/>}/>
 

@@ -7,11 +7,8 @@ export default function NotFound() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Aquí puedes agregar una lista de rutas válidas dentro de tu app
-  const validRoutes = ['/home', '/dashboard', '/profile'];
-
   const handleGoBack = () => {
-    if ( validRoutes.includes(location.pathname) && window.history.length > 2) {
+    if (window.history.length > 2) {
       // Si hay historial, regresa a la página anterior
       navigate(-1);
     } else {

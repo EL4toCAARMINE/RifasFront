@@ -18,6 +18,10 @@
 @use "components/admin/updateStatusTicket";
 @use "components/admin/toRaffle";
 
+//Components users
+
+@use "components/users/headerUser";
+
 // Admin
 
 @use "styles-admin/loginAdmin";
@@ -29,3 +33,4 @@
 // User
 
 @use "styles-users/searchRaffle";
+@use "styles-users/welcomeUser";

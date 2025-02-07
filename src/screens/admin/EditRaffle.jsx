@@ -10,10 +10,6 @@ import ErrorScreenComponent from '../../components/generals/errorScreenComponent
 export default function EditRaffle(){
     const navigate = useNavigate();
     const {idRaffle} = useParams();
-    const location = useLocation();
-
-    // Aquí puedes agregar una lista de rutas válidas dentro de tu app
-    const validRoutes = ['/home', '/dashboard', '/profile'];
 
     // AGREGARLE QUE SI YA SE LLEGO EL DIA DE LA RIFA NO SE UEDE EDITAR Y NOTIFICAR CON UN SWEETALERT
 
@@ -91,7 +87,7 @@ export default function EditRaffle(){
 
     // Volver a pantalla de administracion
     const backToAdminRaffle = () => {
-        if (validRoutes.includes(location.pathname) && window.history.length > 2) {
+        if (window.history.length > 2) {
             // Si hay historial, regresa a la página anterior
             navigate(-1);
         } else {

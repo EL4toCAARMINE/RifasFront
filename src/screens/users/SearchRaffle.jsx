@@ -64,7 +64,7 @@ export default function SearchRaffle(){
 
                     <div className="containerInputS">
 
-                        <svg className='search' xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 24 24"><path fill="none" stroke="#c71585" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/></svg>
+                        <svg className='search' xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 24 24"><path fill="none" stroke="#c71585" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/></svg>
 
                         <input type="text" name="search" id="search" className='search' placeholder='Ingresa el id de la rifa' maxLength={16} value={searchText} onChange={(e)=>setSearchText(e.target.value)}/>
 
