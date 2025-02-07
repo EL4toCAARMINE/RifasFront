@@ -1,0 +1,40 @@
+@use "../../others/colors";
+
+.paymentInstructionsComponent{
+    width: 100%;
+    max-width: 600px;
+
+    h3{
+        display: flex;
+        justify-self: center;
+        margin: 20px 0;
+        font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+        color: #000;
+        font-size: 1.8rem;
+    }
+
+    p{
+        margin: 20px 0;
+        color: #000;
+        font-size: 1.4rem;
+    }
+
+    li{
+        margin: 20px 0;
+        color: #000;
+        font-size: 1.4rem;
+
+        span{
+            margin: 20px 0;
+            color: #000;
+            font-size: 1.4rem;
+            font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+        }
+    }
+
+    img{
+        display: flex;
+        justify-self: center;
+        width: 300px;
+    }
+}

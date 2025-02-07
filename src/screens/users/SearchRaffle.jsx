@@ -8,8 +8,10 @@ export default function SearchRaffle(){
 
     const [searchText, setSearchText] = useState("");
 
+    // Busqueda de rifa
     const search = () => {
         if (searchText === "") {
+
             Swal.fire({
                 title: "Ingresa un id para buscar",
                 icon: "error",
@@ -20,9 +22,13 @@ export default function SearchRaffle(){
                     title: "title"
                 }
             });
+
         } else if (searchText <= 6) {
+
             navigate(`/raffleInstructions/${searchText}`);
+
         }else{
+
             Swal.fire({
                 title: "Esta rifa no existe",
                 icon: "warning",
@@ -36,6 +42,7 @@ export default function SearchRaffle(){
         }
     }
 
+    // Identificando presionado del enter
     const handleKeyPress = (event) => {
 
         if (event.key === "Enter") {

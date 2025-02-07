@@ -4,11 +4,11 @@ import HeaderUser from "../../components/users/headerUser";
 import ErrorScreenComponent from "../../components/generals/errorScreenComponent";
 import Btn from "../../components/generals/btn";
 
-export default function WelcomeUser(){
+export default function RaffleInstructions(){
     const {idRaffle} = useParams();
     const navigate = useNavigate();
 
-    const [raffleExist, setRaffleExist] = useState(true)
+    const [raffleExist, setRaffleExist] = useState(true);
     const [raffleData, setRaffleData] = useState({
         raffleName: "Rifa de Verano",
         organizerName: "Juan Pérez",
@@ -46,7 +46,7 @@ export default function WelcomeUser(){
 
     return (  
         <div className="container-fluid welcomeContainer">
-            <HeaderUser route={"/"} center={true} name={raffleData && raffleData.raffleName && raffleData.raffleName}/>
+            <HeaderUser route={"/"} center={true} name={raffleExist && raffleData.raffleName && raffleData.raffleName}/>
             {raffleExist ? 
                 <div className="row containerInstructions">
                     <div className="col-md-12 col-lg-6 dataC">
