@@ -10,6 +10,7 @@ import Tres from "../../assets/images/3.webp";
 import Cuatro from "../../assets/images/4.webp";
 import Cinco from "../../assets/images/5.webp";
 import PaymentInstructions from "../../components/users/paymentInstructions";
+import TicketComponent from "../../components/users/ticketComponent";
 
 export default function SearchTicket(){
     const {idRaffle} = useParams();
@@ -27,7 +28,7 @@ export default function SearchTicket(){
         raffleDetails: "Compra un boleto y participa enesta rifa única. Los ganadores serán contactadosdirectamente. Si no registras bien tus datos serealizara un nuevo sorteo.",
         numberOfTickets: "150",
         date: "1740000000",
-        paymentE: false,
+        paymentE: true,
         paymentT: true,
         paymentC: true,
         nameCard: "María López",
@@ -35,6 +36,21 @@ export default function SearchTicket(){
         nameAccount: "Carlos Ramírez",
         account: "123456789012345678",
     });
+    const [purchase, setPurchase] = useState({
+        nameClient: "Kevin Alejandro",
+        phoneClient: "7761236889",
+        datePurchase: "1739000000",
+        code: "AX23234"
+    })
+    const [tickets, setTickets] = useState([
+        { numberTicket: 1, id: 1, idRafle: 89, status: 2 },
+        { numberTicket: 23, id: 2, idRafle: 89, status: 3 },
+        { numberTicket: 3, id: 3, idRafle: 89, status: 3 },
+        { numberTicket: 45, id: 4, idRafle: 89, status: 2 },
+        { numberTicket: 5, id: 5, idRafle: 89, status: 3 },
+        { numberTicket: 63, id: 6, idRafle: 89, status: 3 },
+        { numberTicket: 72, id: 7, idRafle: 89, status: 2 }
+    ])
 
     const [seeTicket, setSeeTicket] = useState("");
     const [searchText, setSearchText] = useState("");
@@ -126,6 +142,8 @@ export default function SearchTicket(){
 
             {raffleExist && seeTicket && 
                 <div className="ticketFind">
+                    <TicketComponent raffleData={raffleData} purchase={purchase} tickets={tickets}/>
+
                     <Btn 
                         txt={"Descargar ticket"}
                         colorBg={"#c71585"}
