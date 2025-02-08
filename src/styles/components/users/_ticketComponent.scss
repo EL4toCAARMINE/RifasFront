@@ -137,6 +137,7 @@
     box-shadow: 0 0 4px #00000075;
     border-radius: 10px;
     margin-bottom: 10px;
+    border: 1px solid #A3A3A375;
 
     p{
         font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
@@ -150,7 +151,7 @@
 
         svg{
             margin: 0;
-            margin-left: 10px;
+            margin-right: 10px;
         }
     }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import HeaderUser from "../../components/users/headerUser";
 import ErrorScreenComponent from "../../components/generals/errorScreenComponent";
@@ -11,10 +11,17 @@ import Cuatro from "../../assets/images/4.webp";
 import Cinco from "../../assets/images/5.webp";
 import PaymentInstructions from "../../components/users/paymentInstructions";
 import TicketComponent from "../../components/users/ticketComponent";
+import Loader from "../../components/generals/loader";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
+import PreviewPDFModal from "../../components/users/previewPDFModal";
 
 export default function SearchTicket(){
     const {idRaffle} = useParams();
-    const navigate = useNavigate();
+
+    const [isVisible, setIsVisible] = useState(false);
+    const [isVisibleModal, setIsVisibleModal] = useState(false);
+    const [paymentV, setPaymentV] = useState(false);
 
     const [raffleExist, setRaffleExist] = useState(true);
     const [raffleData, setRaffleData] = useState({
@@ -41,7 +48,7 @@ export default function SearchTicket(){
         phoneClient: "7761236889",
         datePurchase: "1739000000",
         code: "AX23234"
-    })
+    });
     const [tickets, setTickets] = useState([
         { numberTicket: 1, id: 1, idRafle: 89, status: 2 },
         { numberTicket: 23, id: 2, idRafle: 89, status: 3 },
@@ -50,7 +57,7 @@ export default function SearchTicket(){
         { numberTicket: 5, id: 5, idRafle: 89, status: 3 },
         { numberTicket: 63, id: 6, idRafle: 89, status: 3 },
         { numberTicket: 72, id: 7, idRafle: 89, status: 2 }
-    ])
+    ]);
 
     const [seeTicket, setSeeTicket] = useState("");
     const [searchText, setSearchText] = useState("");
@@ -58,6 +65,7 @@ export default function SearchTicket(){
     // Busqueda de el ticket
     const search = () => {
         setSeeTicket(false);
+        setIsVisible(true);
 
         if (searchText === "") {
             Swal.fire({
@@ -84,6 +92,7 @@ export default function SearchTicket(){
                 }
             })
         }
+        setIsVisible(false);
     }
 
     // identificando cuando se da clichk en enter para buscar
@@ -109,7 +118,18 @@ export default function SearchTicket(){
         setRaffleExist(false)
       }
     }, [])
+
+    useEffect(() => {
+      if (raffleData.paymentC || raffleData.paymentT) {
+        setPaymentV(true);
+      }
+    }, [raffleData])
     
+
+    // Crear pdf para descargar
+    const showModal = () => {
+        setIsVisibleModal(true);
+    };
 
     return (  
         <div className="container-fluid searchTicketContainer">
@@ -154,11 +174,12 @@ export default function SearchTicket(){
                             width: "100%",
                             marginTop: 20
                         }}
+                        action={showModal}
                     >
                         <svg className="iconBtn" xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 24 24"><g fill="none"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="#ffffff" d="M12 11a1 1 0 0 1 1 1v6.584l1.293-1.292a1 1 0 0 1 1.414 1.416l-2.824 2.819c-.253.252-.5.473-.883.473c-.336 0-.566-.169-.788-.38l-2.919-2.912a1 1 0 0 1 1.414-1.416L11 18.584V12a1 1 0 0 1 1-1m-.5-9c2.784 0 5.16 1.75 6.086 4.212a6.003 6.003 0 0 1 .395 11.453a3 3 0 0 0-.858-1.785a3 3 0 0 0-1.914-.873L15 15v-3a3 3 0 0 0-5.995-.176L9 12v3a3 3 0 0 0-2.123.88a3 3 0 0 0-.875 2.02A5.002 5.002 0 0 1 5 8.416A6.5 6.5 0 0 1 11.5 2"/></g></svg>
                     </Btn>
 
-                    <PaymentInstructions visible={true}/>
+                    <PaymentInstructions visible={paymentV}/>
                 </div>
             }
 
@@ -173,6 +194,8 @@ export default function SearchTicket(){
                     <p className="copyright">2025, Rifas Ahuazo © Todos los derechos reservados</p>
                 </footer>
             }
+            <Loader visible={isVisible}/>
+            <PreviewPDFModal visibleM={isVisibleModal} purchase={purchase} tickets={tickets} raffleData={raffleData} setIsVisible={setIsVisible} setIsVisibleM={setIsVisibleModal}/>
         </div>
     );
 }

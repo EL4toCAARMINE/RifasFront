@@ -6,10 +6,10 @@ const Ticket = ({tic}) => {
     return(
         <div className="containerTicketOnTicket">
             <p className="status" style={{color: tic.status === 3 ? "#0FBA00" : tic.status === 2 && "#ff0000"}}>{tic.status === 3 ? "Pagado" : tic.status === 2 && "No pagado"}</p>
-            <p className='number'>
+            <div className='number'>
+                <p>Boleto #{tic.numberTicket}</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="#000000" d="M15.58 16.8L12 14.5l-3.58 2.3l1.08-4.12L6.21 10l4.25-.26L12 5.8l1.54 3.94l4.25.26l-3.29 2.68M20 12a2 2 0 0 1 2-2V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2a2 2 0 0 1-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 1-2-2"/></svg>
-                Boleto #{tic.numberTicket}
-            </p>
+            </div>
         </div>
     );
 }

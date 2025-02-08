@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function Loader({visible}){
     // Si visible es true, se bloquea el scroll
-    React.useEffect(() => {
+    useEffect(() => {
         const body = document.body;
     
         if (visible) {
@@ -14,7 +14,7 @@ export default function Loader({visible}){
 
     return visible ? (  
         <div className="loaderComponent">
-            <span class="loader"></span>
+            <span className="loader"></span>
             <p>Cargando...</p>
         </div>
     ) : null;

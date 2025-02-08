@@ -18,6 +18,8 @@
     "@iconify/react": "^5.2.0",
     "@reduxjs/toolkit": "^2.2.5",
     "bootstrap": "^5.3.3",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.2",
     "react": "^19.0.0",
     "react-content-loader": "^7.0.2",
     "react-dom": "^19.0.0",
