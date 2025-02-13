@@ -131,38 +131,4 @@
             margin-right: 20px;
         }
     }
-
-    footer{
-        height: 100px;
-        width: 100%;
-        background-color: #000;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .contact{
-            margin-bottom: 10px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-
-            .name, .phone{
-                color: #fff;
-                font-family: OpenSansBold, Arial, Helvetica, sans-serif;
-                font-size: 2rem;
-            }
-            svg{
-                margin: 0 20px;
-            }
-        }
-
-        .copyright{
-            color: #fff;
-            font-size: 1.4rem;
-            text-align: center;
-        }
-    }
 }

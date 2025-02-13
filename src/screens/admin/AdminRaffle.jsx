@@ -270,7 +270,7 @@ export default function AdminRaffle(){
                 }
             </HeaderAdmin>
 
-            <div style={{height:50, background: "#ff0000"}}></div>
+            <div style={{height:50}}></div>
 
             {existRaffle ? 
                 <main>
@@ -355,7 +355,7 @@ export default function AdminRaffle(){
                             </div>
 
                             <div className="date">
-                                <p>La rifa se llevara a cabo el día {dataRaffle ? dataRaffle.date ? unixToStringYMD(1766601600) : "dd/mm/yy" : unixToStringYMD(1766601600) }</p>
+                                <p>La rifa se llevara a cabo el día {dataRaffle ? dataRaffle.date ? unixToStringYMD(dataRaffle.date) : "dd/mm/yy" : "" }</p>
                             </div>
                         </div>
                     </div>
@@ -390,9 +390,10 @@ export default function AdminRaffle(){
                     </div>
                 </main>
             :
-                <ErrorScreenComponent message={"Error la esta rifa no existe"}/>
+                <ErrorScreenComponent message={"Error esta rifa no existe"}/>
             }
 
+            {/* Seccion para realizar el sorteo */}
             <ToRaffle isVisible={toraffleIsVisible} setIsVisible={setToRaffleIsVisible} tickets={tickets} setWin={setWinner}/>
         </div>
     );

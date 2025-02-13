@@ -16,12 +16,13 @@ import CreateRaffle from './screens/admin/CreateRaffle';
 import EditRaffle from './screens/admin/EditRaffle';
 import AdminRaffle from './screens/admin/AdminRaffle';
 // User
-
-// 404
-import NotFound from './screens/NotFound';
 import SearchRaffle from './screens/users/searchRaffle';
 import RaffleInstructions from './screens/users/RaffleInstructions';
 import SearchTicket from './screens/users/SearchTicket';
+import BuyTicket from './screens/users/BuyTicket';
+
+// 404
+import NotFound from './screens/NotFound';
 
 // Cargando iconos globales
 library.add(fas, fab);
@@ -39,6 +40,7 @@ function App() {
         
         <Route path='/raffleInstructions/:idRaffle' element={<RaffleInstructions/>}/>
         <Route path='/searchTicket/:idRaffle' element={<SearchTicket/>}/>
+        <Route path='/buyTicket/:idRaffle' element={<BuyTicket/>}/>
 
         <Route path='/' element={<SearchRaffle/>}/>
 

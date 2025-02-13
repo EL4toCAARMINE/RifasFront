@@ -28,6 +28,9 @@
         width: 100%;
         flex: 1;
         height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .containerData{
             width: 100%;

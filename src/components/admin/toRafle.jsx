@@ -24,6 +24,7 @@ export default function ToRaffle({isVisible, setIsVisible, tickets, setWin}){
         let ticketsP = tickets.filter(ticket => ticket.status === 3);
         const randomIndex = Math.floor(Math.random() * ticketsP.length);
         
+        //agregar que la api registre la fecha en que se realizo la rifa
 
         let resultApi = true;
 

@@ -1,0 +1,242 @@
+@use "../others/colors";
+
+.containerBuyTicket{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    height: auto;
+
+    .arrowBack{
+        position: absolute;
+        left: 20px;
+        cursor: pointer;
+        scale: 1.1;
+    }
+
+    .editAndDeleteC{
+        position: absolute;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        right: 20px;
+    }
+
+    .menu{
+        height: 100%;
+
+        ul{
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            .section{
+                height: 100%;
+                background-color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 20px;
+                text-decoration: none;
+
+                li{
+                    text-decoration: none;
+                    color: #000;
+                    font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                    text-align: center;
+                    font-size: 1.4rem;
+                    list-style: none;
+                }
+
+                &:hover{
+                    background-color: #f2f2f2;
+                }
+            }
+
+            .selected{
+                background-color: #000;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 20px;
+                text-decoration: none;
+
+                li{
+                    text-decoration: none;
+                    color: #fff;
+                    font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                    text-align: center;
+                    font-size: 1.4rem;
+                    list-style: none;
+                }
+            }
+        }
+    }
+
+    main{
+        width: 100%;
+        flex: 1;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .titles{
+            display: flex;
+            justify-self: center;
+            margin: 20px 0;
+            font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+            color: colors.$violetBlue;
+            font-size: 1.8rem;
+        }
+
+        .containerData{
+            width: 100%;
+            padding: 100px 0;
+            min-height: calc(100vh - 50px);
+            height: auto;
+            background: url("../assets/images/ruby.webp");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .dataR{
+                background-color: #CFCFCF40;
+                padding: 20px;
+                border-radius: 25px;
+                box-shadow: #00000075 0px 4px 4px;
+                backdrop-filter: blur(15px);
+                -moz-backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                width: 90%;
+                max-width: 1000px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                h2{
+                    color: colors.$violetBlue;
+                    font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+                    font-size: 2rem;
+                    width: 90%;
+                    text-align: center;
+                }
+
+                .row{
+                    width: 95%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    margin-block: 20px;
+
+                    .imgContainer{
+                        width: 100%;
+                        max-width: 250px;
+                        background-color: #fff;
+                        height: 250px;
+                        overflow: hidden;
+                        border-radius: 10px;
+                        display: flex;
+                        justify-content: center;
+                        margin: 20px;
+
+                        img{
+                            height: 100%;
+                        }
+                    }
+
+                    p{
+                        font-family: OpenSansRegular, Arial, Helvetica, sans-serif;
+                        color: #000;
+                        font-size: 1.3rem;
+                        text-align: start;
+                        flex: 1;
+                    }
+                }
+
+                .date{
+                    width: 70%;
+                    min-height: 50px;
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-color: #00000070;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    p{
+                        color: #fff;
+                        font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                        font-size: 1.4rem;
+                        text-align: center;
+                    }
+                }
+
+                .result{
+                    width: 70%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    background-color: #00ff1150;
+                    padding: 10px;
+                    border-radius: 10px;
+                    min-height: 50px;
+
+                    h3{
+                        font-family: OpenSansBold,Arial, Helvetica, sans-serif;
+                        font-size: 1.8rem;
+                        margin-bottom: 10px;
+                        color: #fff;
+                        margin-top: 5px;
+                    }
+
+                    p{
+                        font-family: OpenSansRegular,Arial, Helvetica, sans-serif;
+                        font-size: 1.4rem;
+                        margin-bottom: 10px;
+                        color: #fff;
+                    }
+
+                    span{
+                        font-family: OpenSansBold,Arial, Helvetica, sans-serif;
+                        font-size: 3rem;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        .paymentI{
+            width: 90%;
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .iconBtn{
+            margin-right: 20px;
+        }
+
+        .containerTickets{
+            width: 100%;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .fC{
+        width: 100%;
+    }
+}

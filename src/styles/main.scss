@@ -24,6 +24,7 @@
 @use "components/users/paymentInstructions";
 @use "components/users/ticketComponent";
 @use "components/users/previewPDFModal";
+@use "components/users/footerComponent";
 
 // Admin
 
@@ -38,3 +39,4 @@
 @use "styles-users/searchRaffle";
 @use "styles-users/raffleInstructions";
 @use "styles-users/searchTicket";
+@use "styles-users/buyTicket";
