@@ -11,6 +11,11 @@ import FooterComponent from '../../components/users/footerComponent';
 export default function BuyTicket(){
     const {idRaffle} = useParams();
     const navigate = useNavigate();
+
+    // ancho de la pantalla para mostrar un menu de un diseño u otro
+    const [width, setWidth] = useState(window.innerWidth);
+    // editar el menu burger del menu
+    const [menuOpen, setMenuOpen] = useState(false);
     
     const [raffleExist, setRaffleExist] = useState(true);
     const [menuStatus, setMenuStatus] = useState(1);
@@ -156,7 +161,24 @@ export default function BuyTicket(){
         
         // reiniciando el scroll
         window.scrollTo(0, 0);
+        
+        const handleResize = () => setWidth(window.innerWidth);
+    
+        window.addEventListener("resize", handleResize);
+        
+        return () => window.removeEventListener("resize", handleResize);
     }, [])
+
+    // detectar la apertura del menu
+    useEffect(() => {
+        const body = document.body;
+    
+        if (menuOpen) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = 'visible';
+        }
+    }, [menuOpen]);
 
     useEffect(()=>{
         if (raffleData) {
@@ -173,17 +195,27 @@ export default function BuyTicket(){
     return(
         <div className="container-fluid containerBuyTicket">
             <HeaderUser name={raffleData ? raffleData.raffleName : " "} route={`/raffleInstructions/${idRaffle}`}>
-                <nav className="menu">
-                    <ul>
-                        <a className={menuStatus == 1 ? 'selected' : 'section'} onClick={() => setMenuStatus(1)} href='#section1'><li>Detalles</li></a>
-                        <a className={menuStatus == 2 ? 'selected' : 'section'} onClick={() => setMenuStatus(2)} href='#section2'><li>Selección de boletos</li></a>
-                        {raffleData && (raffleData.paymentC || raffleData.paymentT) &&
-                            <a className={menuStatus == 3 ? 'selected' : 'section'} onClick={() => setMenuStatus(3)} href='#section3'><li>¿Cómo pagar?</li></a>
+                {width > 1000 ? 
+                    <nav className="menu">
+                        <ul>
+                            <a className={menuStatus == 1 ? 'selected' : 'section'} onClick={() => setMenuStatus(1)} href='#section1'><li>Detalles</li></a>
+                            <a className={menuStatus == 2 ? 'selected' : 'section'} onClick={() => setMenuStatus(2)} href='#section2'><li>Selección de boletos</li></a>
+                            {raffleData && (raffleData.paymentC || raffleData.paymentT) &&
+                                <a className={menuStatus == 3 ? 'selected' : 'section'} onClick={() => setMenuStatus(3)} href='#section3'><li>¿Cómo pagar?</li></a>
+                            }
+                            <a className={menuStatus == 4 ? 'selected' : 'section'} onClick={() => setMenuStatus(4)} href='#section4'><li>Talonario</li></a>
+                            <a className={menuStatus == 5 ? 'selected' : 'section'} onClick={() => setMenuStatus(5)} href='#section5'><li>Contacto</li></a>
+                        </ul>
+                    </nav>
+                :
+                    <div className='burgerMenu'>
+                        {menuOpen ? 
+                            <svg onClick={()=>setMenuOpen(!menuOpen)} xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M18 3v18M12 3v18M6 3v18"/></svg>
+                        :
+                            <svg onClick={()=>setMenuOpen(!menuOpen)} xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 6h18M3 12h18M3 18h18"/></svg>
                         }
-                        <a className={menuStatus == 4 ? 'selected' : 'section'} onClick={() => setMenuStatus(4)} href='#section4'><li>Talonario</li></a>
-                        <a className={menuStatus == 5 ? 'selected' : 'section'} onClick={() => setMenuStatus(5)} href='#section5'><li>Contacto</li></a>
-                    </ul>
-                </nav>
+                    </div>
+                }
             </HeaderUser>
 
             <div style={{height:50}}></div>
@@ -194,8 +226,8 @@ export default function BuyTicket(){
                         <div className="dataR">
                             <h2>Detalles del articulo que se rifara</h2>
                             
-                            <div className="row">
-                                <div className="imgContainer">
+                            <div className="row" style={{flexDirection: width < 800 && "column"}}>
+                                <div className="imgContainer" style={{maxWidth: width < 800 && "100%"}}>
                                     <img src={raffleData ? raffleData.image : "#"} alt="Articulo que se rifara" />
                                 </div>
                                 <p>{raffleData ? raffleData.articleDetails : ""}</p>
@@ -256,6 +288,18 @@ export default function BuyTicket(){
             <div id='section5' className="fC">
                 <FooterComponent isVisible={raffleExist} organizerName={raffleData && raffleData.organizerName} contactPhone={raffleData && raffleData.contactPhone}/>
             </div>
+
+            <nav className={`menuVertical ${menuOpen == 1 ? 'slide-in' : 'slide-out'}`}>
+                <ul>
+                    <a className={menuStatus == 1 ? 'selected' : 'section'} onClick={() => {setMenuStatus(1); setMenuOpen(!menuOpen);}}href='#section1'><li>Detalles</li></a>
+                    <a className={menuStatus == 2 ? 'selected' : 'section'} onClick={() => {setMenuStatus(2); setMenuOpen(!menuOpen);}}href='#section2'><li>Selección de boletos</li></a>
+                    {raffleData && (raffleData.paymentC || raffleData.paymentT) &&
+                        <a className={menuStatus == 3 ? 'selected' : 'section'} onClick={() => {setMenuStatus(3); setMenuOpen(!menuOpen);}} href='#section3'><li>¿Cómo pagar?</li></a>
+                    }
+                    <a className={menuStatus == 4 ? 'selected' : 'section'} onClick={() => {setMenuStatus(4); setMenuOpen(!menuOpen);}}href='#section4'><li>Talonario</li></a>
+                    <a className={menuStatus == 5 ? 'selected' : 'section'} onClick={() => {setMenuStatus(5); setMenuOpen(!menuOpen);}}href='#section5'><li>Contacto</li></a>
+                </ul>
+            </nav>
         </div>
     );
 }

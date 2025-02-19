@@ -1,5 +1,41 @@
 @use "../others/colors";
 
+// ANIMACIONES PARA ABRIR Y CERRAR MENU
+
+/* Animación de entrada */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-150vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(50px); 
+    opacity: 1;
+  }
+}
+
+/* Animación de salida */
+@keyframes slideOut {
+  0% {
+    transform: translateY(50px);
+    opacity: 1; 
+  }
+  100% {
+    transform: translateY(-150vh);
+    opacity: 0;
+  }
+}
+
+/* Clase para aplicar la animación de entrada */
+.slide-in {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Clase para aplicar la animación de salida */
+.slide-out {
+  animation: slideOut 0.5s ease-in forwards;
+}
+
 .containerBuyTicket{
     padding: 0;
     display: flex;
@@ -39,7 +75,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding: 10px 20px;
+                padding: 5px 10px;
                 text-decoration: none;
 
                 li{
@@ -47,7 +83,7 @@
                     color: #000;
                     font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
                     text-align: center;
-                    font-size: 1.4rem;
+                    font-size: 1.3rem;
                     list-style: none;
                 }
 
@@ -62,7 +98,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding: 10px 20px;
+                padding: 5px 10px;
                 text-decoration: none;
 
                 li{
@@ -70,11 +106,16 @@
                     color: #fff;
                     font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
                     text-align: center;
-                    font-size: 1.4rem;
+                    font-size: 1.3rem;
                     list-style: none;
                 }
             }
         }
+    }
+
+    .burgerMenu{
+        cursor: pointer;
+        padding: 5px;
     }
 
     main{
@@ -238,5 +279,70 @@
 
     .fC{
         width: 100%;
+    }
+
+    .menuVertical{
+        width: 100%;
+        height: calc(100vh - 50px);
+        background-color: #fff;
+        position: fixed;
+        transform: translateY(-50px);
+        z-index: 9;
+
+        ul{
+            height: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            padding: 0;
+
+            .section{
+                height: 50px;
+                width: 100%;
+                background-color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 5px 0;
+                text-decoration: none;
+                border-bottom: 1px solid #a1a1a1;
+
+                li{
+                    text-decoration: none;
+                    color: #000;
+                    font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                    text-align: center;
+                    font-size: 1.3rem;
+                    list-style: none;
+                    margin-left: 20px;
+                }
+
+                &:hover{
+                    background-color: #f2f2f2;
+                }
+            }
+
+            .selected{
+                background-color: #000;
+                height: 50px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 5px 0;
+                text-decoration: none;
+
+                li{
+                    text-decoration: none;
+                    color: #fff;
+                    font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                    text-align: center;
+                    font-size: 1.3rem;
+                    list-style: none;
+                    margin-left: 20px;
+                }
+            }
+        }
     }
 }
