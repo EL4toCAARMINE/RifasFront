@@ -77,13 +77,13 @@ export default function TicketComponent({raffleData, tickets, purchase}) {
             <div className="containerPayM">
                 <p>Puedes realizar el pago de tus boletos a través de los siguientes medios:</p>
 
-                {raffleData.paymentC && (
+                {raffleData && raffleData.paymentC && (
                     <p>Número de cuenta CLABE: <span>{raffleData.nameAccount} | {raffleData.account}</span></p>
                 )}
-                {raffleData.paymentT && (
+                {raffleData && raffleData.paymentT && (
                     <p>Tarjeta de débito: <span>{raffleData.nameCard} | {raffleData.card}</span></p>
                 )}
-                {raffleData.paymentE && (
+                {raffleData && raffleData.paymentE && (
                     <p>Efectivo: <span>Contáctame por WhatsApp o por Teléfono al {raffleData.contactPhone}</span></p>
                 )}
             </div>

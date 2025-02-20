@@ -7,6 +7,7 @@ import PaymentInstructions from '../../components/users/paymentInstructions';
 import ErrorScreenComponent from '../../components/generals/errorScreenComponent';
 import Btn from '../../components/generals/btn';
 import FooterComponent from '../../components/users/footerComponent';
+import RandomTicket from '../../components/users/randomTicket';
 
 export default function BuyTicket(){
     const {idRaffle} = useParams();
@@ -130,32 +131,12 @@ export default function BuyTicket(){
 
     const [raffleData, setRaffleData] = useState(null);
 
+    const getAllData = () => {
+        //Aqui consumo de la api y actualizacion de la lista de tickets y data de la rifa
+    };
+
     // Verificar que la rifa exista
     useEffect(() => {
-        if (idRaffle > 6) {
-          setRaffleExist(false)
-        }
-
-        setRaffleData({
-            raffleName: "Rifa de Verano",
-            organizerName: "Juan Pérez",
-            contactPhone: "5551234567",
-            canalW: "https://micanalw.com",
-            image: "https://preview.redd.it/mx302upz546a1.jpg?width=640&crop=smart&auto=webp&s=8ea96b6996795c62084d3384e9ec3f9537ce3aa9",
-            articleDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis eros sit amet tortor tempus, nec imperdiet eros faucibus. Ut rhoncus gravida turpis nec blandit. Ut sit amet eleifend velit. Donec facilisis ex viverra, egestas diam id, lacinia metus. Ut ante ante, tincidunt ac est sed, venenatis pulvinar risus. Nunc malesuada, magna nec fringilla facilisis, quam metus finibus diam, sit amet pretium odio neque viverra urna. Maecenas a tortor dapibus, iaculis urna quis, placerat mi. \nInteger at mattis massa. In commodo mollis leo non posuere. Vestibulum sed nibh mattis, dignissim velit eget, hendrerit mauris. \nNulla facilisi. Morbi lacinia ultrices elementum. Donec non elit venenatis risus ullamcorper condimentum et ut neque. Integer sed.",
-            raffleDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis eros sit amet tortor tempus, nec imperdiet eros faucibus. Ut rhoncus gravida turpis nec blandit. Ut sit amet eleifend velit. Donec facilisis ex viverra, egestas diam id, lacinia metus. Ut ante ante, tincidunt ac est sed, venenatis pulvinar risus. Nunc malesuada, magna nec fringilla facilisis, quam metus finibus diam, sit amet pretium odio neque viverra urna. Maecenas a tortor dapibus, iaculis urna quis, placerat mi. \nInteger at mattis massa. In commodo mollis leo non posuere. Vestibulum sed nibh mattis, dignissim velit eget, hendrerit mauris. \nNulla facilisi. Morbi lacinia ultrices elementum. Donec non elit venenatis risus ullamcorper condimentum et ut neque. Integer sed.",
-            numberOfTickets: "150",
-            date: "1740000000",
-            dateRaffled: "1740000000",
-            paymentE: true,
-            paymentT: true,
-            paymentC: true,
-            nameCard: "María López",
-            card: "1234567812345678",
-            nameAccount: "Carlos Ramírez",
-            account: "123456789012345678",
-        });
-
         const getToday = new Date();
         setToday(convertToUnix(getToday));
         
@@ -165,7 +146,32 @@ export default function BuyTicket(){
         const handleResize = () => setWidth(window.innerWidth);
     
         window.addEventListener("resize", handleResize);
-        
+
+        if (idRaffle > 6) {
+            setRaffleExist(false);
+        }else{
+            setRaffleExist(true);
+            setRaffleData({
+                raffleName: "Rifa de Verano",
+                organizerName: "Juan Pérez",
+                contactPhone: "5551234567",
+                canalW: "https://micanalw.com",
+                image: "https://preview.redd.it/mx302upz546a1.jpg?width=640&crop=smart&auto=webp&s=8ea96b6996795c62084d3384e9ec3f9537ce3aa9",
+                articleDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis eros sit amet tortor tempus, nec imperdiet eros faucibus. Ut rhoncus gravida turpis nec blandit. Ut sit amet eleifend velit. Donec facilisis ex viverra, egestas diam id, lacinia metus. Ut ante ante, tincidunt ac est sed, venenatis pulvinar risus. Nunc malesuada, magna nec fringilla facilisis, quam metus finibus diam, sit amet pretium odio neque viverra urna. Maecenas a tortor dapibus, iaculis urna quis, placerat mi. \nInteger at mattis massa. In commodo mollis leo non posuere. Vestibulum sed nibh mattis, dignissim velit eget, hendrerit mauris. \nNulla facilisi. Morbi lacinia ultrices elementum. Donec non elit venenatis risus ullamcorper condimentum et ut neque. Integer sed.",
+                raffleDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis eros sit amet tortor tempus, nec imperdiet eros faucibus. Ut rhoncus gravida turpis nec blandit. Ut sit amet eleifend velit. Donec facilisis ex viverra, egestas diam id, lacinia metus. Ut ante ante, tincidunt ac est sed, venenatis pulvinar risus. Nunc malesuada, magna nec fringilla facilisis, quam metus finibus diam, sit amet pretium odio neque viverra urna. Maecenas a tortor dapibus, iaculis urna quis, placerat mi. \nInteger at mattis massa. In commodo mollis leo non posuere. Vestibulum sed nibh mattis, dignissim velit eget, hendrerit mauris. \nNulla facilisi. Morbi lacinia ultrices elementum. Donec non elit venenatis risus ullamcorper condimentum et ut neque. Integer sed.",
+                numberOfTickets: "150",
+                date: "1740000000",
+                dateRaffled: "1740000000",
+                paymentE: true,
+                paymentT: true,
+                paymentC: true,
+                nameCard: "María López",
+                card: "1234567812345678",
+                nameAccount: "Carlos Ramírez",
+                account: "123456789012345678",
+            });
+        }
+
         return () => window.removeEventListener("resize", handleResize);
     }, [])
 
@@ -183,11 +189,11 @@ export default function BuyTicket(){
     useEffect(()=>{
         if (raffleData) {
             if (raffleData.paymentC || raffleData.paymentT) {
-                setNeedInstructionsP(true)
+                setNeedInstructionsP(true);
             }
         }
     }, [raffleData]);
-
+    
     const goToSearch = () => {
         navigate(`/searchTicket/${idRaffle}`)
     };
@@ -254,8 +260,8 @@ export default function BuyTicket(){
                         </div>
                     </div>
 
-                    <h2 id='section2' className='titles'>Selección de boletos</h2>
-                    <div className="ticketsSelection">
+                    <div id="section2" className="ticketsSelection">
+                        <RandomTicket listAvailableT={tickets} raffleData={raffleData} reloadPage={getAllData}/>
                     </div>
 
                     <div id='section3' className="paymentI">

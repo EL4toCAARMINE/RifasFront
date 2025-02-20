@@ -1,0 +1,53 @@
+@use "../../others/colors";
+
+.containerRandomTicketForm{
+    width: 90%;
+    max-width: 650px;
+    height: auto;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 4px #00000070;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    .inputRF{
+        height: 90px;
+        margin-bottom: 0;
+        padding-top: 0;
+
+        label{
+            font-size: 1.4rem;
+        }
+
+        input{
+            height: 40px;
+            font-size: 1.4rem;
+        }
+
+        .inputError{
+            font-size: 1.3rem;
+        }
+    }
+
+    .containerPayM{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        p{
+            font-size: 1.4rem;
+            font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+            color: colors.$grey;
+            margin-bottom: 2px;
+            text-align: center;
+
+            span{
+                font-size: 1.4rem;
+                font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+            }
+        }
+    }
+}
