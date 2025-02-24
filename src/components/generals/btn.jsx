@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Btn({reverse, children, action, colorBg, colorBgH, color, size, styles, txt, hidden}) {
+export default function Btn({reverse, children, action, colorBg, colorBgH, color, size, styles, txt, hidden, disable}) {
 
     const [isHovered, setIsHovered] = useState(false);
 
@@ -23,6 +23,7 @@ export default function Btn({reverse, children, action, colorBg, colorBgH, color
                 flexDirection: reverse && "row-reverse",
                 background: isHovered ? colorBgH : colorBg,
             }}
+            disabled={disable}
         >
             {children}
             <p 

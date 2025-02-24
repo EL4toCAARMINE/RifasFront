@@ -16,6 +16,7 @@
         height: 90px;
         margin-bottom: 0;
         padding-top: 0;
+        padding: 0;
 
         label{
             font-size: 1.4rem;
@@ -28,6 +29,86 @@
 
         .inputError{
             font-size: 1.3rem;
+        }
+    }
+
+    .containerAddBtn{
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .ticketsS{
+            max-width: 50%;
+            font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+            font-size: 1.6rem;
+        }
+    }
+
+    .ticketsRR{
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: auto;
+
+        .errorPage{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 150px;
+
+            p{
+                font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                color: colors.$grey;
+                font-size: 1.8rem;
+            }
+        }
+
+        .ticketsSelected{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+
+            .ticketS{
+                width: 100%;
+                height: 50px;
+                margin-block: 10px;
+                border-radius: 10px;
+                box-shadow: 0 0 4px colors.$grey;
+                background-color: #fff;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+
+                p{
+                    font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+                    font-size: 1.4rem;
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+    .containerTotalC{
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-block: 20px;
+
+        .totalTxt{
+            max-width: 30%;
+            font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+            font-size: 2rem;
         }
     }
 
@@ -48,6 +129,34 @@
                 font-size: 1.4rem;
                 font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
             }
+        }
+    }
+}
+
+.swalHTMLBuy{
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p{
+            color: #000;
+            font-family: OpenSansSemiBold,Arial, Helvetica, sans-serif;
+            font-size: 1.2rem;
+        }
+
+        span{
+            color: colors.$redViolet;
+            font-family: OpenSansSemiBold,Arial, Helvetica, sans-serif;
+            font-size: 1.3rem;
+            margin-block: 10px;
+        }
+
+        strong{
+            color: colors.$redViolet;
+            font-family: OpenSansBold,Arial, Helvetica, sans-serif;
+            font-size: 1.3rem;
+            margin-block: 10px;
         }
     }
 }
