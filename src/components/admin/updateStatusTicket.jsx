@@ -8,8 +8,8 @@ export default function ({visible, setIsVisible, data}){
         id: 1,
         idRaffle: 89,
         status: 2,
-        buyerName: "John Doe",
-        buyerPhone: "123-456-7890"
+        nameClient: "John Doe",
+        phoneClient: "123-456-7890"
     });
     
     const [selectedOption, setSelectedOption] = useState(2);
@@ -78,8 +78,8 @@ export default function ({visible, setIsVisible, data}){
 
     useEffect(() => {
         if (data) {
-            data.buyerName = ticket.buyerName;
-            data.buyerPhone = ticket.buyerPhone;
+            data.nameClient = ticket.nameClient;
+            data.phoneClient = ticket.phoneClient;
             setTicket(data);
         }
     }, [data])
@@ -96,11 +96,11 @@ export default function ({visible, setIsVisible, data}){
                     <hr />
                     <div className="textC">
                         <p>Comprador:</p>
-                        <p className="bold">{ticket && ticket.buyerName}</p>
+                        <p className="bold">{ticket && ticket.nameClient}</p>
                     </div>
                     <div className="textC">
                         <p>Numero:</p>
-                        <p className="bold">{ticket && ticket.buyerPhone}</p>
+                        <p className="bold">{ticket && ticket.phoneClient}</p>
                     </div>
                 </div>
 

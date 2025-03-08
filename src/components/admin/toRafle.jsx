@@ -21,6 +21,7 @@ export default function ToRaffle({isVisible, setIsVisible, tickets, setWin}){
 
     const getWinner = async () => {
         // Agregar api para actualizar el ganador en la bd
+        // Agregar validacion para saber si hay tickets registrados antes de que haga el rifado
         let ticketsP = tickets.filter(ticket => ticket.status === 3);
         const randomIndex = Math.floor(Math.random() * ticketsP.length);
         
