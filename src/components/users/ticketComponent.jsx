@@ -42,7 +42,7 @@ export default function TicketComponent({raffleData, tickets, purchase}) {
                 <p className="value">{purchase && purchase.phoneClient}</p>
             </div>
             <div className="containerDataPurchase">
-                <p className="text">Fecha de solicitud</p>
+                <p className="text">Fecha de seleccón de boletos</p>
                 <p className="value">{purchase && unixToStringYMD(purchase.datePurchase)}</p>
             </div>
             <div className="containerDataPurchase">
