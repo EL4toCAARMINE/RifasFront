@@ -11,7 +11,9 @@ export default function RandomTicket({listAvailableT, raffleData, reloadPage}){
     const [total, setTotal] = useState(0);
     
     const [ticketsSelected, setTicketsSelected] = useState([]);
+    // Lista de tickets disponibles Falata verificar 
     const [ticketsA, setTicketsA] = useState(listAvailableT);
+    // Para descargar ticket
     const [purchase, setPurchase] = useState({
         purchaseData:{
             nameClient: "Kevin Alejandro",
@@ -139,7 +141,8 @@ export default function RandomTicket({listAvailableT, raffleData, reloadPage}){
             }).then((result) => {
                 // Al cerrar limpiamos
                 if (result.dismiss === Swal.DismissReason.cancel) {
-                    // mostramos la pantalla de preview para el ticket y que se descargue
+                    // mostramos la pantalla de preview para el ticket y que se descargue pero si algun ticket no se pudo apartar porque ya estaba apartado mandmos una alrta antes de mostrar el modal
+                    
                     // cuando se cierra el modal se borrara lo que contenga el listado de tickets seleccionados habra que hacer que una api consuma y traiga los datos de la compra con los tickets que selecciono o aue cuando se registren por defecto ala api los retorne para poder insertarlos en el pdf recordar que los datos de la purchase igual hay q eliminarlos al cerrar el modal
                     setIsVisibleModal(true);
                 }
