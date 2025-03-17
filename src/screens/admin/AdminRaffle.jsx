@@ -153,7 +153,7 @@ export default function AdminRaffle(){
         setDataRaffle({
             id: 6,
             raffleName: "Rifa de pantalla",
-            raffleLink: "https://www.rifasahuazo.com/rifa",
+            raffleLink: "https://www.rifasahuazo.com/raffleInstructions/6",
             canalW: "https://www.whatsapp.com/channel/canalrifa",
             date: 1738360000,
             raffled: false

@@ -4,7 +4,7 @@ import { unixToStringYMD } from '../../utils/DateUnixFunctions';
 
 export default function Raffles({data}){
     const navigate = useNavigate();
-    const { id, raffleName, status, date, organizerName, numberOfTickets } = data;
+    const { id, raffleName, date, organizerName, numberOfTickets, winner, soldTickets} = data;
     
     const [statustext, setStatusText] = useState({
         text: "Status",
@@ -13,19 +13,16 @@ export default function Raffles({data}){
     const [optionsVisible, setOptionsVisible] = useState(false);
 
     useEffect(()=>{
-        switch (status) {
-            case 1:
-                setStatusText({text: "LLeno", color: "#ff9500"});
-                break;
-            case 2:
-                setStatusText({text: "Finalizado", color: "#ff0000"});
-                break;
-            case 3:
-                setStatusText({text: "Disponible", color: "#0CA732"});
-                break;
-            default:
-                setStatusText({text: "Status", color: "#A3A3A3"});
-                break;
+        if(winner){
+            setStatusText({text: "Finalizado", color: "#ff0000"});
+        }
+
+        if(soldTickets >= numberOfTickets && !winner){
+            setStatusText({text: "LLeno", color: "#ff9500"});
+        }
+
+        if(!winner && numberOfTickets > soldTickets){
+            setStatusText({text: "Disponible", color: "#0CA732"});
         }
     },[]);
 

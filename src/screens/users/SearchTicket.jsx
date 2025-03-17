@@ -114,6 +114,7 @@ export default function SearchTicket(){
         };
     }, [searchText]);
 
+    // recuerda ejecutar el llamado a la api de las 2 pantallas anteriores
     // Verificar que la rifa exista
     useEffect(() => {
       if (idRaffle > 6) {
