@@ -38,7 +38,7 @@ export default function SearchRaffle() {
                     if (res.response) {
                         navigate(`/raffleInstructions/${res.result.id}`, {state: res.result});
                     } else {
-                        showAlert("Esta rifa no existe", "warning");
+                        showAlert(res.message, "warning");
                     }
                 });
             }catch(e){
