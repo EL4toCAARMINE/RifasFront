@@ -20,29 +20,43 @@ import SearchRaffle from './screens/users/searchRaffle';
 import RaffleInstructions from './screens/users/RaffleInstructions';
 import SearchTicket from './screens/users/SearchTicket';
 import BuyTicket from './screens/users/BuyTicket';
-
 // 404
 import NotFound from './screens/NotFound';
+// Importantes para hacer uso del store
+import { useDispatch, useSelector } from 'react-redux';
+//action login del store
+import { verifySession } from './features/AuthSlice';
 
 // Cargando iconos globales
 library.add(fas, fab);
 
 function App() {
 
+  //Permite acceder a los actions del store
+  const dispatch = useDispatch();
+
+  // lllamamos al action
+  const verifyS = (data) => {
+    dispatch(verifySession(data));
+  };
+
+  // obtenemos el estado
+  const auth = useSelector((state) => state.auth);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/loginAdmin' element={<LoginAdmin/>}/>
-        <Route path='/dashAdmin' element={<DashAdmin/>}/>
-        <Route path='/createRaffle' element={<CreateRaffle/>}/>
-        <Route path='/editRaffle/:idRaffle' element={<EditRaffle/>}/>
-        <Route path='/adminRaffle/:idRaffle' element={<AdminRaffle/>}/>
-        
-        <Route path='/raffleInstructions/:idRaffle' element={<RaffleInstructions/>}/>
-        <Route path='/searchTicket/:idRaffle' element={<SearchTicket/>}/>
-        <Route path='/buyTicket/:idRaffle' element={<BuyTicket/>}/>
+        <Route path='/loginAdmin' element={<LoginAdmin />} />
+        <Route path='/dashAdmin' element={<DashAdmin />} />
+        <Route path='/createRaffle' element={<CreateRaffle />} />
+        <Route path='/editRaffle/:idRaffle' element={<EditRaffle />} />
+        <Route path='/adminRaffle/:idRaffle' element={<AdminRaffle />} />
 
-        <Route path='/' element={<SearchRaffle/>}/>
+        <Route path='/raffleInstructions/:idRaffle' element={<RaffleInstructions />} />
+        <Route path='/searchTicket/:idRaffle' element={<SearchTicket />} />
+        <Route path='/buyTicket/:idRaffle' element={<BuyTicket />} />
+
+        <Route path='/' element={<SearchRaffle />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
