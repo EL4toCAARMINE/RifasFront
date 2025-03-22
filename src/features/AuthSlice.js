@@ -3,10 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 // Definimos el estado inicial puede ser un arreglo o un objeto
 const initState = {
     id: null,
-    type: null,
     session: false,
     token: null,
-    name: ""
+    expiration: null
 };
 
 // Actions

@@ -4,6 +4,8 @@ import Btn from "../generals/btn";
 import Swal from "sweetalert2";
 import PreviewPDFModal from "./previewPDFModal";
 import Loader from "../generals/loader";
+import Api from "../../utils/Api";
+import { convertToUnix, unixToString } from "../../utils/DateUnixFunctions";
 
 export default function RandomTicket({ listAvailableT, raffleData, reloadPage }) {
     const [name, setName] = useState("");
@@ -11,7 +13,6 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
     const [total, setTotal] = useState(0);
 
     const [ticketsSelected, setTicketsSelected] = useState([]);
-    // Lista de tickets disponibles Falata verificar 
     const [ticketsA, setTicketsA] = useState(listAvailableT);
     // Para descargar ticket debera setearese volviendo a llamar a getRaffle
     const [purchase, setPurchase] = useState(null);
@@ -59,6 +60,34 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
         });
     };
 
+    // Limpiar la pagina
+    const clearPage = () => {
+        setTicketsSelected([]);
+        setTotal(0);
+        setName("");
+        setNameError("");
+        setPhone("");
+        setPhoneError("");
+        setCanBuy(true);
+        setCanRaffle(false);
+        reloadPage();
+    }
+
+    // Función para mostrar alertas y recargar con SweetAlert2
+    const showAlertReload = (title, icon) => {
+        Swal.fire({
+            title: title,
+            icon: icon,
+            confirmButtonText: "Entendido",
+            didClose: clearPage,
+            customClass: {
+                container: "alertSwal",
+                confirmButton: "button",
+                title: "title"
+            }
+        });
+    };
+
     // Seleccionar lo boletos
     function randomTicketSelect() {
         // Evitar errores si no hay boletos disponibles
@@ -83,67 +112,105 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
         setTicketsSelected([...ticketsS2, ticSel]); // Agregar el nuevo boleto al array
     }
 
+    const alertSuccess = (purchaseCode) => {
+        Swal.fire({
+            title: "Se han registrado tus boletos",
+            icon: "success",
+            confirmButtonText: "Entendido",
+            showCancelButton: true,
+            cancelButtonText: '<svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="#ffffff" d="M13 13v5.585l1.828-1.828l1.415 1.415L12 22.414l-4.243-4.242l1.415-1.415L11 18.585V13zM12 2a7 7 0 0 1 6.954 6.194A5.5 5.5 0 0 1 18 18.978V17a6 6 0 0 0-11.996-.225L6 17v1.978a5.5 5.5 0 0 1-.954-10.784A7 7 0 0 1 12 2"/></svg> Descargar ticket',
+            reverseButtons: true,
+            html: ` <div> <p>Para concluir y asegurar tus boletos, no olvides realizar tu pago, ya que los boletos no pagados no se tomarán en cuenta para el sorteo</p> <span>Número de seguimiento:</span> <strong>${purchaseCode}</strong> <p>Guarda este código, ya que te servirá para consultar esta transacción en otro momento o descargar tu ticket</p> </div>`,
+            allowOutsideClick: true,
+            customClass: {
+                container: "alertSwal",
+                confirmButton: "buttonCancel buttonCancel2",
+                cancelButton: "button button2",
+                title: "text",
+                htmlContainer: "swalHTMLBuy",
+                actions: "foot"
+            },
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.cancel) {
+                setIsVisibleModal(true);
+            } else {
+                clearPage();
+            }
+        });
+    }
+
     // guardar los boletos seleccionados
     const createPurchase = async () => {
-
-        // Limpiar la pagina
-        const clearPage = () => {
-            setTicketsSelected([]);
-            setTotal(0);
-            setName("");
-            setNameError("");
-            setPhone("");
-            setPhoneError("");
-            setCanBuy(true);
-            setCanRaffle(false);
-            reloadPage();
-        }
+        setIsVisibleLoader(true);
 
         // verificamos si los datos de contacto fueron registrados antes de guardar los boletos 
         let canContinue = validateInputs();
 
         if (canContinue) {
-            // hay que consultar la api y en caso de que salga todo bien hay que mostrar el alert
-
-            Swal.fire({
-                title: "Se han registrado tus boletos",
-                icon: "success",
-                confirmButtonText: "Entendido",
-                showCancelButton: true,
-                cancelButtonText: '<svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="#ffffff" d="M13 13v5.585l1.828-1.828l1.415 1.415L12 22.414l-4.243-4.242l1.415-1.415L11 18.585V13zM12 2a7 7 0 0 1 6.954 6.194A5.5 5.5 0 0 1 18 18.978V17a6 6 0 0 0-11.996-.225L6 17v1.978a5.5 5.5 0 0 1-.954-10.784A7 7 0 0 1 12 2"/></svg> Descargar ticket',
-                reverseButtons: true,
-                html: ' <div> <p>Para concluir y asegurar tus boletos, no olvides realizar tu pago, ya que los boletos no pagados no se tomarán en cuenta para el sorteo</p> <span>Número de seguimiento:</span> <strong>AKO54</strong> <p>Guarda este número, ya que te servirá para consultar esta transacción en otro momento o descargar tu ticket</p> </div>',
-                allowOutsideClick: true,
-                didClose: clearPage,
-                customClass: {
-                    container: "alertSwal",
-                    confirmButton: "buttonCancel buttonCancel2",
-                    cancelButton: "button button2",
-                    title: "text",
-                    htmlContainer: "swalHTMLBuy",
-                    actions: "foot"
-                },
-            }).then((result) => {
-                // Al cerrar limpiamos
-                if (result.dismiss === Swal.DismissReason.cancel) {
-                    // mostramos la pantalla de preview para el ticket y que se descargue pero si algun ticket no se pudo apartar porque ya estaba apartado mandmos una alrta antes de mostrar el modal
-
-                    // cuando se cierra el modal se borrara lo que contenga el listado de tickets seleccionados habra que hacer que una api consuma y traiga los datos de la compra con los tickets que selecciono o aue cuando se registren por defecto ala api los retorne para poder insertarlos en el pdf recordar que los datos de la purchase igual hay q eliminarlos al cerrar el modal
-                    setIsVisibleModal(true);
+            try {
+                let uri = import.meta.env.VITE_URL + "raffleUser/createPurchase";
+                let params = {
+                    idRaffle: raffleData.id,
+                    nameClient: name,
+                    phoneClient: phone,
+                    datePurchase: convertToUnix(new Date()),
+                    tickets: ticketsSelected
                 }
-            });
+                let api = new Api(uri, "POST", params);
+                await api.call().then(async (res) => {
+                    setIsVisibleLoader(false);
+
+                    if (res.response) {
+                        // ya que vimos que si se registro traemos los datos de la compra para poder imprimir el ticket 
+                        try {
+                            setIsVisibleLoader(true);
+                            let uri2 = import.meta.env.VITE_URL + "raffleUser/getPurchase/" + raffleData.id + "/" + res.result.code;
+                            let api2 = new Api(uri2, "GET");
+                            await api2.call().then((res2) => {
+                                setIsVisibleLoader(false);
+
+                                if (res2.response) {
+                                    setPurchase(res2.result);
+
+                                    // si todo se registro bien proseguimos
+                                    if (res.result.codeResponse) {
+                                        alertSuccess(res.result.code);
+                                        // si algun boleto no se pudo registrar lo indicamos y cuando se cierre el mensaje 
+                                    } else {
+                                        Swal.fire({
+                                            title: res.message,
+                                            icon: "warning",
+                                            confirmButtonText: "Ver mi código",
+                                            didClose: () => {
+                                                alertSuccess(res.result.code);
+                                            },
+                                            customClass: {
+                                                container: "alertSwal",
+                                                confirmButton: "button button2",
+                                                title: "title",
+                                                actions: "foot"
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    showAlertReload("No pudimos obtener tu ticket en este momento, pero puedes consultarlo en otro momento por medio de tu código de compra: " + res.result.code, "warning")
+                                }
+                            });
+                        } catch (e) {
+                            setIsVisibleLoader(false);
+                            showAlertReload("No pudimos obtener tu ticket en este momento, pero puedes consultarlo en otro momento por medio de tu código de compra: " + res.result.code, "warning")
+                        }
+                    } else {
+                        showAlertReload(res.message);
+                    }
+                });
+            } catch (e) {
+                showAlert("Error de conexión", "error");
+            }
         } else {
-            Swal.fire({
-                title: "Recuerda que debes registrar tu nombre y número de teléfono correctamente, ya que son los medios por los cuales se te podrá identificar y entregar tu premio en caso de salir ganador.",
-                icon: "warning",
-                confirmButtonText: "Entendido",
-                customClass: {
-                    container: "alertSwal",
-                    confirmButton: "button",
-                    title: "title"
-                }
-            });
+            showAlert("Recuerda que debes registrar tu nombre y número de teléfono correctamente, ya que son los medios por los cuales se te podrá identificar y entregar tu premio en caso de salir ganador.", "error");
         }
+        setIsVisibleLoader(false);
     }
 
     // limpiamos el purchase al cerrar el modal del pdf
@@ -260,7 +327,7 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
 
             <Loader visible={isVisibleLoader} />
             {purchase &&
-                <PreviewPDFModal visibleM={isVisibleModal} purchase={purchase.purchaseData} tickets={purchase.ticketsPurchase} raffleData={purchase.dataRaffle} setIsVisible={setIsVisibleLoader} setIsVisibleM={setIsVisibleModal} />
+                <PreviewPDFModal visibleM={isVisibleModal} purchase={purchase.purchase} tickets={purchase.tickets} raffleData={purchase.raffle} setIsVisible={setIsVisibleLoader} setIsVisibleM={setIsVisibleModal} needReload={true} reload={clearPage} />
             }
         </div>
     )

@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-export default function PreviewPDFModal({visibleM, setIsVisibleM, raffleData, purchase, tickets, setIsVisible}){
+export default function PreviewPDFModal({visibleM, setIsVisibleM, raffleData, purchase, tickets, setIsVisible, needReload, reload}){
     // Ref poara almacenar el componente
     const ticketRef = useRef(null);
 
@@ -22,6 +22,10 @@ export default function PreviewPDFModal({visibleM, setIsVisibleM, raffleData, pu
     
     const close = (e) => {
         e.stopPropagation();
+        // Si nesesitamos recargar la pagina de origen hacemos el reload
+        if(needReload){
+            reload();
+        }
         setIsVisibleM(false);
     };
 
@@ -79,6 +83,11 @@ export default function PreviewPDFModal({visibleM, setIsVisibleM, raffleData, pu
         );
 
         pdf.save(raffleData.raffleName + "-" + purchase.code);
+
+        // Si nesesitamos recargar la pagina de origen hacemos el reload
+        if(needReload){
+            reload();
+        }
 
         setIsVisible(false);
         setIsVisibleM(false);
