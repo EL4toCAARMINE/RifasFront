@@ -16,14 +16,14 @@ export const authSlice = createSlice({
     initialState: initState,
     // Actions que reciben el estado inicial como state y los parametros como action.payload
     reducers: {
-        logIn: (state, action) => {
+        logInReducer: (state, action) => {
             // Asignando nuevo valor
             localStorage.setItem("tokenUser", JSON.stringify(action.payload));
 
             return { ...state, ...action.payload }
         },
 
-        logOut: (state) => {
+        logOutReducer: (state) => {
             localStorage.removeItem("tokenUser");
 
             return { ...state, ...initState }
@@ -50,5 +50,5 @@ export const authSlice = createSlice({
     }
 });
 
-export const { logIn, logOut, verifySession } = authSlice.actions;
+export const { logInReducer, logOutReducer, verifySession } = authSlice.actions;
 export default authSlice.reducer;

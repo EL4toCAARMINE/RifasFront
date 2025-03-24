@@ -5,69 +5,36 @@ import { useNavigate } from 'react-router-dom';
 import Raffles from '../../components/admin/raffles';
 import Loader from '../../components/generals/Loader';
 import Pagination from "../../components/generals/pagination";
+import { logOutReducer } from '../../features/AuthSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import Api from '../../utils/Api';
+import { showAlert } from '../../utils/showAlert';
 
 export default function DashAdmin() {
     const navigation = useNavigate();
+    //Permite acceder a los actions del store
+    const dispatch = useDispatch();
 
     const [loaderIsVisible, setLoaderIsVisible] = useState(false);
 
-    const [raffles, setRaffles] = useState([
-        {
-            "id": 1,
-            "raffleName": "Gran Rifa de Tecnología",
-            "organizerName": "Juan Pérez",
-            "date": 2025033023,
-            "numberOfTickets": 22,
-            "winner": false,
-            "soldTickets": 21
-        },
-        {
-            "id": 2,
-            "raffleName": "Gran Rifa de Verano",
-            "organizerName": "Juan Pérez",
-            "date": 2025033023,
-            "numberOfTickets": 10,
-            "winner": false,
-            "soldTickets": 10
-        },
-        {
-            "id": 3,
-            "raffleName": "Rifa de Moto",
-            "organizerName": "Juan Pérez",
-            "date": 2025033023,
-            "numberOfTickets": 500,
-            "winner": true,
-            "soldTickets": 1
-        },
-        {
-            "id": 3,
-            "raffleName": "Rifa de Moto",
-            "organizerName": "Juan Pérez",
-            "date": 2025033023,
-            "numberOfTickets": 500,
-            "winner": true,
-            "soldTickets": 1
-        },
-        {
-            "id": 3,
-            "raffleName": "Rifa de Moto",
-            "organizerName": "Juan Pérez",
-            "date": 2025033023,
-            "numberOfTickets": 500,
-            "winner": true,
-            "soldTickets": 1
-        }
-    ]);
+    const [raffles, setRaffles] = useState(null);
 
     //Paginacion
     const [page, setPage] = React.useState(1);
     const [forPage, setForPage] = React.useState(6);
 
+    const auth = useSelector((state) => state.auth);
+
+    // lllamamos al action
+    const logOutR = () => {
+        dispatch(logOutReducer());
+    };
+
     //cerrar sesion
     const logOut = () => {
         setLoaderIsVisible(true);
         setLoaderIsVisible(false);
-        navigation("/loginAdmin");
+        logOutR();
     }
 
     // ir a crear 
@@ -75,7 +42,30 @@ export default function DashAdmin() {
         navigation("/createRaffle");
     }
 
+    const getAllRaffles = async () => {
+        setLoaderIsVisible(true);
+        try {
+            let uri = import.meta.env.VITE_URL + "raffle/getRaffles";
+
+            let api = new Api(uri, "GET", {}, auth.token);
+            await api.call().then((res) => {
+                if (res.response) {
+                    setRaffles(res.result);
+                } else {
+                    showAlert(res.message, "warning");
+                }
+            });
+        } catch ($e) {
+            showAlert("Error al obtener todas las rifas, intenntalo nuevamente", "error");
+        }
+        setLoaderIsVisible(false);
+    }
+
     useEffect(() => {
+        if (!raffles) {
+            getAllRaffles();
+        }
+
         // reiniciando el scroll
         window.scrollTo(0, 0);
     }, []);
@@ -100,35 +90,38 @@ export default function DashAdmin() {
 
             <main>
                 <div className="topR">
-                    <Btn
-                        reverse={true}
-                        size={"1.4rem"}
-                        action={() => goToCreate()}
-                        styles={{
-                            justifyContent: "space-evenly",
-                            width: 250,
-                            height: 50,
-                            boxShadow: "0px 4px 4px #00000060"
-                        }}
-                        txt={"Crear nueva rifa"}
-                        colorBg={"linear-gradient(90deg, #80E0E6 0%, #227ABA 50%, #C71585 100%)"}
-                        colorBgH={"linear-gradient(90deg, #C71585 0%, #227ABA 50%, #80E0E6 100%)"}
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="#ffffff" d="M18 10h-4V6a2 2 0 0 0-4 0l.071 4H6a2 2 0 0 0 0 4l4.071-.071L10 18a2 2 0 0 0 4 0v-4.071L18 14a2 2 0 0 0 0-4" /></svg>
-                    </Btn>
+
+                    {raffles &&
+                        <Btn
+                            reverse={true}
+                            size={"1.4rem"}
+                            action={() => goToCreate()}
+                            styles={{
+                                justifyContent: "space-evenly",
+                                width: 250,
+                                height: 50,
+                                boxShadow: "0px 4px 4px #00000060"
+                            }}
+                            txt={"Crear nueva rifa"}
+                            colorBg={"linear-gradient(90deg, #80E0E6 0%, #227ABA 50%, #C71585 100%)"}
+                            colorBgH={"linear-gradient(90deg, #C71585 0%, #227ABA 50%, #80E0E6 100%)"}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="#ffffff" d="M18 10h-4V6a2 2 0 0 0-4 0l.071 4H6a2 2 0 0 0 0 4l4.071-.071L10 18a2 2 0 0 0 4 0v-4.071L18 14a2 2 0 0 0 0-4" /></svg>
+                        </Btn>
+                    }
                 </div>
                 {raffles ?
                     <div className="row midR">
                         {raffles.slice((page - 1) * forPage, page * forPage).map((raffle, index) => {
-                            return <Raffles key={index} data={raffle} />
+                            return <Raffles key={index} data={raffle} getRaffles={getAllRaffles} />
                         })}
                     </div>
-                    :
-                    <div className="midRN">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16rem" height="16rem" viewBox="0 0 24 24"><g fill="none" stroke="#A3a3a3" stroke-width="1.5"><circle cx="12" cy="12" r="2" /><path stroke-linecap="round" d="M12 10c5 0 4.6 12-3 12" /><path stroke-linecap="round" d="M12.312 14c-5 0-4.6-12 3-12" /><path stroke-linecap="round" d="M10 12.312c0-2.78 3.707-3.89 7-3.024m5 6.024c0-1.97-.806-3.456-2-4.49M14 12c0 2.779-3.707 3.89-7 3.024M2 9c0 1.68.586 3.008 1.5 4.004" /></g></svg>
-                        <p>Aún no has creado rifas</p>
-                    </div>
-                }
+                    : !loaderIsVisible && (
+                        <div className="midRN">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16rem" height="16rem" viewBox="0 0 24 24"><g fill="none" stroke="#A3a3a3" strokeWidth="1.5"><circle cx="12" cy="12" r="2" /><path strokeLinecap="round" d="M12 10c5 0 4.6 12-3 12" /><path strokeLinecap="round" d="M12.312 14c-5 0-4.6-12 3-12" /><path strokeLinecap="round" d="M10 12.312c0-2.78 3.707-3.89 7-3.024m5 6.024c0-1.97-.806-3.456-2-4.49M14 12c0 2.779-3.707 3.89-7 3.024M2 9c0 1.68.586 3.008 1.5 4.004" /></g></svg>
+                            <p>Aún no has creado rifas</p>
+                        </div>
+                    )}
 
                 {raffles &&
                     <div className="bottomR">

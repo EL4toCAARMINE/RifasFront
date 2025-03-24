@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // Estilos
 import './styles/fonts.css';
 import './styles/normalize.css';
 import './styles/main.scss';
 // Rutas
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 // Cargando iconos
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -40,14 +40,18 @@ function App() {
     dispatch(verifySession(data));
   };
 
+  useEffect(()=>{
+    verifyS()
+  },[]);
+
   // obtenemos el estado
   const auth = useSelector((state) => state.auth);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/loginAdmin' element={<LoginAdmin />} />
-        <Route path='/dashAdmin' element={<DashAdmin />} />
+        <Route path='/loginAdmin' element={auth.session ? <Navigate to="/dashAdmin"/> : <LoginAdmin />} />
+        <Route path='/dashAdmin' element={auth.session ? <DashAdmin/> : <Navigate to="/loginAdmin"/>} />
         <Route path='/createRaffle' element={<CreateRaffle />} />
         <Route path='/editRaffle/:idRaffle' element={<EditRaffle />} />
         <Route path='/adminRaffle/:idRaffle' element={<AdminRaffle />} />
@@ -55,7 +59,6 @@ function App() {
         <Route path='/raffleInstructions/:idRaffle' element={<RaffleInstructions />} />
         <Route path='/searchTicket/:idRaffle' element={<SearchTicket />} />
         <Route path='/buyTicket/:idRaffle' element={<BuyTicket />} />
-
         <Route path='/' element={<SearchRaffle />} />
 
         <Route path="*" element={<NotFound />} />

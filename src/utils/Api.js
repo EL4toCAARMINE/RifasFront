@@ -13,7 +13,7 @@ export default class Api {
                 method: this.metodo,
                 headers: {
                     "Accept": 'application/json',
-                    "Authorization": `Baerer ${this.token}`
+                    "Authorization": `Bearer ${this.token}`
                 }
             }
         } else {
@@ -22,7 +22,7 @@ export default class Api {
                 body: JSON.stringify(this.parametros),
                 headers: {
                     "Accept": 'application/json',
-                    "Authorization": `Baerer ${this.token}`
+                    "Authorization": `Bearer ${this.token}`
                 }
             }
         }
@@ -34,7 +34,8 @@ export default class Api {
                     } else if (res.status === 401) {
                         return {
                             response: false,
-                            result: 401
+                            result: 401,
+                            message: "No autorizado"
                         };
                     } else if (response.status === 404) {
                         return {
@@ -44,7 +45,7 @@ export default class Api {
                         };
 
                     } else {
-                        return res.text()
+                        return res.text();
                     }
                 });
             return response;
@@ -57,6 +58,7 @@ export default class Api {
                     message: "Error de conexión",
                 };
             }
+            
             return {
                 response: false,
                 result: [],
