@@ -15,6 +15,7 @@ import Loader from "../../components/generals/loader";
 import PreviewPDFModal from "../../components/users/previewPDFModal";
 import FooterComponent from "../../components/users/footerComponent";
 import Api from "../../utils/Api";
+import { showAlert } from "../../utils/showAlert";
 
 export default function SearchTicket() {
     const { idRaffle } = useParams();
@@ -32,20 +33,6 @@ export default function SearchTicket() {
 
     const [seeTicket, setSeeTicket] = useState("");
     const [searchText, setSearchText] = useState("");
-
-    // Función para mostrar alertas con SweetAlert2
-    const showAlert = (title, icon) => {
-        Swal.fire({
-            title: title,
-            icon: icon,
-            confirmButtonText: "Entendido",
-            customClass: {
-                container: "alertSwal",
-                confirmButton: "button",
-                title: "title"
-            }
-        });
-    };
 
     // Busqueda de el ticket
     const search = async (id) => {
@@ -73,7 +60,7 @@ export default function SearchTicket() {
                 });
             } catch (e) {
                 setSeeTicket(false);
-                showAlert("Error de conexión", "error");
+                showAlert("Error al obtener tu ticket, intentalo nuevamente", "error");
             }
         }
         setIsVisible(false);
@@ -106,7 +93,7 @@ export default function SearchTicket() {
             });
         } catch (e) {
             setRaffleExist(false);
-            showAlert("Error de conexión", "error");
+            showAlert("Error al obtener la rifa, intentalo nuevamente", "error");
         }
 
         setIsVisible(false);

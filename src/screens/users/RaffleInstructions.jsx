@@ -6,6 +6,7 @@ import Btn from "../../components/generals/btn";
 import Api from "../../utils/Api";
 import Loader from "../../components/generals/loader";
 import Swal from "sweetalert2";
+import { showAlert } from "../../utils/showAlert";
 
 export default function RaffleInstructions() {
     const { idRaffle } = useParams();
@@ -22,20 +23,6 @@ export default function RaffleInstructions() {
 
     const goToBuy = () => {
         navigate(`/buyTicket/${idRaffle}`)
-    };
-
-    // Función para mostrar alertas con SweetAlert2
-    const showAlert = (title, icon) => {
-        Swal.fire({
-            title: title,
-            icon: icon,
-            confirmButtonText: "Entendido",
-            customClass: {
-                container: "alertSwal",
-                confirmButton: "button",
-                title: "title"
-            }
-        });
     };
 
     // Obtener de rifa
@@ -56,7 +43,7 @@ export default function RaffleInstructions() {
             });
         } catch (e) {
             setRaffleExist(false);
-            showAlert("Error de conexión", "error");
+            showAlert("Error al obtener la rifa, intentalo nuevamente", "error");
         }
 
         setIsVisible(false);

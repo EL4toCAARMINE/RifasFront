@@ -4,26 +4,13 @@ import Loader from '../../components/generals/loader';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import Api from "../../utils/Api";
+import { showAlert } from '../../utils/showAlert';
 
 export default function SearchRaffle() {
     const navigate = useNavigate();
     
     const [isVisible, setIsVisible] = useState(false);
     const [searchText, setSearchText] = useState("");
-
-    // Función para mostrar alertas con SweetAlert2
-    const showAlert = (title, icon) => {
-        Swal.fire({
-            title: title,
-            icon: icon,
-            confirmButtonText: "Entendido",
-            customClass: {
-                container: "alertSwal",
-                confirmButton: "button",
-                title: "title"
-            }
-        });
-    };
 
     // Busqueda de rifa
     const search = async () => {
@@ -42,7 +29,7 @@ export default function SearchRaffle() {
                     }
                 });
             }catch(e){
-                showAlert("Error de conexión", "error");
+                showAlert("Error al buscar la rifa, intenatalo nuevamente", "error");
             }
         }
         setIsVisible(false);

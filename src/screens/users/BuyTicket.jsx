@@ -11,6 +11,7 @@ import RandomTicket from '../../components/users/randomTicket';
 import Loader from '../../components/generals/loader';
 import Swal from 'sweetalert2';
 import Api from '../../utils/Api';
+import { showAlert } from '../../utils/showAlert';
 
 export default function BuyTicket() {
     const { idRaffle } = useParams();
@@ -35,20 +36,6 @@ export default function BuyTicket() {
 
     const [raffleData, setRaffleData] = useState(null);
 
-    // Función para mostrar alertas con SweetAlert2
-    const showAlert = (title, icon) => {
-        Swal.fire({
-            title: title,
-            icon: icon,
-            confirmButtonText: "Entendido",
-            customClass: {
-                container: "alertSwal",
-                confirmButton: "button",
-                title: "title"
-            }
-        });
-    };
-
     // Busqueda de el ticket
     const getAllData = async () => {
         setIsVisible(true);
@@ -61,7 +48,7 @@ export default function BuyTicket() {
                     setTickets(tickestsL);
                     delete res.result.tickets;
                     if (res.result.winner === 1) {
-                        setWinner({ winner: res.result === 1 ? true : false, numberWinner: res.result.winnerNumber })
+                        setWinner({ winner: res.result.winner === 1 ? true : false, numberWinner: res.result.winnerNumber })
                     }
                     setRaffleData(res.result);
                     setRaffleExist(true);
@@ -71,7 +58,7 @@ export default function BuyTicket() {
                 }
             });
         } catch (e) {
-            showAlert("Error de conexión", "error");
+            showAlert("Error al obtener la rifa, intentalo nuevamente", "error");
             setRaffleExist(false);
         }
 
@@ -172,7 +159,7 @@ export default function BuyTicket() {
                             {winner ?
                                 <div className="result">
                                     <h3>Felicidades 🎉🎉</h3>
-                                    <p>La rifa se llevo a cabo el día 📅  {raffleData ? raffleData.dateRaffled ? unixToStringYMD(raffleData.date) : "dd/mm/yy" : "dd/mm/yy"}</p>
+                                    <p>La rifa se llevo a cabo el día 📅  {raffleData ? raffleData.dateRaffled ? unixToStringYMD(raffleData.dateRaffled) : "dd/mm/yy" : "dd/mm/yy"}</p>
                                     <p>El número ganador es el:</p>
                                     <span>#{winner.numberWinner}</span>
                                 </div>

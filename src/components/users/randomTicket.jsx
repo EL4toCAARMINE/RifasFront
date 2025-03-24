@@ -6,6 +6,7 @@ import PreviewPDFModal from "./previewPDFModal";
 import Loader from "../generals/loader";
 import Api from "../../utils/Api";
 import { convertToUnix, unixToString } from "../../utils/DateUnixFunctions";
+import { showAlert } from "../../utils/showAlert";
 
 export default function RandomTicket({ listAvailableT, raffleData, reloadPage }) {
     const [name, setName] = useState("");
@@ -45,20 +46,6 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
 
         return flag;
     }
-
-    // Función para mostrar alertas con SweetAlert2
-    const showAlert = (title, icon) => {
-        Swal.fire({
-            title: title,
-            icon: icon,
-            confirmButtonText: "Entendido",
-            customClass: {
-                container: "alertSwal",
-                confirmButton: "button",
-                title: "title"
-            }
-        });
-    };
 
     // Limpiar la pagina
     const clearPage = () => {
@@ -205,7 +192,7 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
                     }
                 });
             } catch (e) {
-                showAlert("Error de conexión", "error");
+                showAlert("Error al registrar tu compra, intentalo nuevamente", "error");
             }
         } else {
             showAlert("Recuerda que debes registrar tu nombre y número de teléfono correctamente, ya que son los medios por los cuales se te podrá identificar y entregar tu premio en caso de salir ganador.", "error");

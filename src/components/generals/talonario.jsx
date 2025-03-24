@@ -3,12 +3,14 @@ import Btn from "./btn";
 import Pagination from "./pagination";
 import ErrorScreenComponent from "./errorScreenComponent";
 import UpdateStatusTicket from "../admin/updateStatusTicket";
+import Loader from "./Loader";
+import { showAlert } from "../../utils/showAlert";
 
 const TicketS = ({dataT, action, isAdmin}) => {
     return(
         <div 
             className={`ticketElement ${dataT.status !== 1 &&  "ticketElementN"}`} 
-            onClick={()=>{ isAdmin && dataT.status !== 1 && action(dataT)}}
+            onClick={()=>{ isAdmin && dataT.status === 1 ? showAlert("No puedes modificar este boleto, ya que aun no ha sido apartado", "info") : action(dataT)}}
             style={{cursor: isAdmin && dataT.status !== 1 && "pointer"}}
         >
             {dataT.status !== 1 && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="#df47a7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/><path d="M7 12a5 5 0 1 0 10 0a5 5 0 1 0-10 0m5-9v4m0 10v4m-9-9h4m10 0h4m-2.636-6.364l-2.828 2.828m-7.072 7.072l-2.828 2.828m0-12.728l2.828 2.828m7.072 7.072l2.828 2.828"/></g></svg>}
@@ -17,10 +19,11 @@ const TicketS = ({dataT, action, isAdmin}) => {
     );
 } 
 
-export default function Talonario({isAdmin, tickets, setTickets}){
-    const [arrSoldCollection, setArrSoldCollection] = useState(tickets);
+export default function Talonario({isAdmin, tickets, getRaffle}){
+    const [arrSoldCollection, setArrSoldCollection] = useState(null);
     const [filterFocus, setFilterFocus] = useState(0);
 
+    const [isLoaderVisible, setIsLoaderVisible] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [ticketFocus, setTicketFocus] = useState(null);
 
@@ -33,6 +36,7 @@ export default function Talonario({isAdmin, tickets, setTickets}){
         if (number == 0) {
             setArrSoldCollection(tickets);
         }else{
+            setPage(1);
             setArrSoldCollection(tickets.filter(ticket => ticket.status === number));
         }
         setFilterFocus(number);
@@ -42,6 +46,12 @@ export default function Talonario({isAdmin, tickets, setTickets}){
         setTicketFocus(d);
         setIsVisible(true);
     }
+
+    useEffect(()=>{
+        if (tickets) {
+            setArrSoldCollection(tickets);
+        }
+    }, [tickets])
 
     return (  
         <div className="containerTComponent">
@@ -102,7 +112,9 @@ export default function Talonario({isAdmin, tickets, setTickets}){
                 </div>
             </div>
 
-            <UpdateStatusTicket visible={isVisible} setIsVisible={setIsVisible} data={ticketFocus} />
+            <UpdateStatusTicket visible={isVisible} setIsVisible={setIsVisible} data={ticketFocus} getRaffle={getRaffle} loaderVisible={isLoaderVisible} setLoaderVisible={setIsLoaderVisible}/>
+
+            <Loader visible={isLoaderVisible}/>
         </div>
     );
 }

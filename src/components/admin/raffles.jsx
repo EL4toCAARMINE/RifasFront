@@ -56,7 +56,7 @@ export default function Raffles({ data, getRaffles }) {
                 }
             });
         } catch ($e) {
-            showAlert("Error al obtener todas las rifas, intenntalo nuevamente", "error");
+            showAlert("Error al eliminar la rifa, intentalo nuevamente", "error");
         }
 
         setOptionsVisible(false);
