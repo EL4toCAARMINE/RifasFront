@@ -98,6 +98,12 @@ export default function BuyTicket() {
             if (raffleData.paymentC || raffleData.paymentT) {
                 setNeedInstructionsP(true);
             }
+
+            const now = Math.floor(new Date().getTime() / 1000);
+
+            if (raffleData.date && now > raffleData.date) {
+                setWinner({ winner: raffleData.winner === 1 ? true : false, numberWinner: raffleData.winnerNumber })
+            }
         }
     }, [raffleData]);
 

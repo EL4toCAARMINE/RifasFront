@@ -84,10 +84,10 @@ export default function Raffles({ data, getRaffles }) {
                     </div>
                     {optionsVisible &&
                         <div className="optionsEE" onMouseLeave={() => setOptionsVisible(false)}>
-                            <div onClick={updateR}>
+                            {!winner && <div onClick={updateR}>
                                 <p>Editar</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="none" stroke="#324AB2" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m5 16l-1 4l4-1L19.586 7.414a2 2 0 0 0 0-2.828l-.172-.172a2 2 0 0 0-2.828 0zM15 6l3 3m-5 11h8" /></svg>
-                            </div>
+                            </div>}
                             <div onClick={deleteR}>
                                 <p>Eliminar</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="none" stroke="#ff0000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" /></svg>
