@@ -107,9 +107,9 @@ export default function EditRaffle() {
                         if (raffleData.numberOfTickets !== null) setNumberOfTickets(raffleData.numberOfTickets);
                         if (raffleData.date !== null) setDate(raffleData.date);
 
-                        setPaymentE(raffleData.paymentE === 1);
-                        setPaymentT(raffleData.paymentT === 1);
-                        setPaymentC(raffleData.paymentC === 1);
+                        setPaymentE(raffleData.paymentE === 1 ? true : false);
+                        setPaymentT(raffleData.paymentT === 1 ? true : false);
+                        setPaymentC(raffleData.paymentC === 1 ? true : false);
 
                         if (raffleData.paymentT === 1) {
                             if (raffleData.nameCard !== null) setNameCard(raffleData.nameCard);
@@ -135,6 +135,67 @@ export default function EditRaffle() {
         setIsLoading(false);
     }
 
+    //Actualizar rifa // AL CREAR EN CREAR SCREEN QUE SE NAVEGUE HACIA LA RIFA CREADA
+    const updateRaffle = async () => {
+        setIsLoading(true);
+
+        const params = {
+            id: idRaffle,
+            contactPhone: contactPhone,
+            canalW: canalW,
+            articleDetails: articleDetails,
+            raffleDetails: raffleDetails,
+            numberOfTickets: numberOfTickets,
+            date: date,
+            paymentE: paymentE,
+            paymentT: paymentT,
+            paymentC: paymentC,
+            nameCard: paymentT ? nameCard : null,
+            card: paymentT ? card : null,
+            nameAccount: paymentC ? nameAccount : null,
+            account: paymentC ? account : null
+        };
+
+        try {
+            let uri = import.meta.env.VITE_URL + "raffle/updateRaffle";
+            let api = new Api(uri, "PUT", params, auth.token);
+            await api.call().then(async(res) => {
+                if (res.response) {
+                    
+                    const formData = new FormData();
+                    formData.append("image", image);
+
+                    try {
+                        let uri2 = import.meta.env.VITE_URL + "raffle/addImageRaffle/" * idRaffle;
+                        let api2 = new Api(uri2, "PUT", formData, auth.token);
+                        await api2.call().then(async(res2) => {
+                            if(res2.resonse){
+                                showAlert("Rifa actualizada correctamente", "success")
+                            }else{
+                                showAlert(res.message, "warning")
+                            }
+                        });
+                    } catch (error) {
+                        showAlert("Error al actualizar la imagen, intentalo nuevamente", "error")
+                    }
+                } else {
+                    if (res.result) {
+                        if (res.result.code) {
+                            setNumberOfTicketsError(res.message)
+                        }
+                    }
+
+                    showAlert(res.message, "warning")
+                }
+            });
+        } catch (e) {
+            showAlert("Error al actualizar la rifa, intentalo nuevamente", "error")
+        }
+        setIsLoading(false);
+
+        getAllData();
+    }
+
     useEffect(() => {
         const getMinDate = () => {
             const today = new Date().toLocaleString("en-US", { timeZone: "America/Mexico_City" });
@@ -157,10 +218,10 @@ export default function EditRaffle() {
 
             if (now > date) {
                 showAlert("No se puede editar una rifa que ya pasó su fecha de sorteo indicada", "warning")
-                navigate("/dashAdmin");
+                navigate(-1);
             } else if (winner === 1) {
                 showAlert("No se puede editar una rifa que ya tiene un ganador", "warning")
-                navigate("/dashAdmin");
+                navigate(-1);
             }
         }
     }, [date]);
@@ -223,7 +284,7 @@ export default function EditRaffle() {
         });
 
         if (isValid) {
-            // Aqui agragr el api para actualizar la rifa
+            updateRaffle();
         }
     }
 
@@ -304,7 +365,7 @@ export default function EditRaffle() {
                                 </div>
                             )}
 
-                            <input id="file" type="file" onChange={handleFileChange} />
+                            <input id="file" name='image' type="file" onChange={handleFileChange} />
 
                             {imageError ?
                                 <p className='inputError'>{ }{imageError}</p>
