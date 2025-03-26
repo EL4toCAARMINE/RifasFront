@@ -428,15 +428,8 @@ export default function EditRaffle() {
                                     <input
                                         type="checkbox"
                                         name="paymentE"
-                                        value={paymentE}
                                         checked={paymentE}
-                                        onChange={(e) => {
-                                            if (paymentE) {
-                                                setPaymentE(!e.target.value);
-                                            } else {
-                                                setPaymentE(e.target.value);
-                                            }
-                                        }}
+                                        onChange={() => setPaymentE(!paymentE)}
                                     />
                                     Pago con efectivo
                                 </label>

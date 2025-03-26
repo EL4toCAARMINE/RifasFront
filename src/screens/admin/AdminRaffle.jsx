@@ -17,9 +17,9 @@ export default function AdminRaffle() {
     const { idRaffle } = useParams();
     const auth = useSelector((state) => state.auth);
     // dev
-    const linkRaffle = "http://localhost:5173/adminRaffle/"
+    const linkRaffle = "http://localhost:5173/buyTicket/"
     // prod
-    // const linkRaffle = "http://localhost:5173/adminRaffle/"
+    // const linkRaffle = "http://localhost:5173/buyTicket/"
 
     const [today, setToday] = useState(null);
     const [winner, setWinner] = useState(null);

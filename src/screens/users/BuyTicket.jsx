@@ -122,8 +122,10 @@ export default function BuyTicket() {
                                 <a className={menuStatus == 2 ? 'selected' : 'section'} onClick={() => setMenuStatus(2)} href='#section2'><li>Selección de boletos</li></a>
                             }
                             {!winner &&
-                                (raffleData && (raffleData.paymentC || raffleData.paymentT) &&
+                                (raffleData && (raffleData.paymentC || raffleData.paymentT) ?
                                     <a className={menuStatus == 3 ? 'selected' : 'section'} onClick={() => setMenuStatus(3)} href='#section3'><li>¿Cómo pagar?</li></a>
+                                    :
+                                    null
                                 )
                             }
                             <a className={menuStatus == 4 ? 'selected' : 'section'} onClick={() => setMenuStatus(4)} href='#section4'><li>Talonario</li></a>
@@ -150,7 +152,13 @@ export default function BuyTicket() {
                             <h2>Detalles del articulo que se rifara</h2>
 
                             <div className="row" style={{ flexDirection: width < 800 && "column" }}>
-                                <div className="imgContainer" style={{ maxWidth: width < 800 && "100%" }}>
+                                <div className="imgContainer" style={{
+                                    maxWidth: width < 800 && "100%",
+                                    margin: width < 800 && 0,
+                                    marginBottom: width < 800 && 20,
+                                    height: width < 800 && "auto",
+                                    aspectRatio: width < 800 && "1/1"
+                                }}>
                                     <img src={raffleData ? raffleData.image : "#"} alt="Articulo que se rifara" />
                                 </div>
                                 <p>{raffleData ? raffleData.articleDetails : ""}</p>
@@ -226,8 +234,10 @@ export default function BuyTicket() {
                         <a className={menuStatus == 2 ? 'selected' : 'section'} onClick={() => { setMenuStatus(2); setMenuOpen(0); }} href='#section2'><li>Selección de boletos</li></a>
                     }
                     {!winner &&
-                        (raffleData && (raffleData.paymentC || raffleData.paymentT) &&
+                        (raffleData && (raffleData.paymentC || raffleData.paymentT) ?
                             <a className={menuStatus == 3 ? 'selected' : 'section'} onClick={() => { setMenuStatus(3); setMenuOpen(0); }} href='#section3'><li>¿Cómo pagar?</li></a>
+                            :
+                            null
                         )
                     }
                     <a className={menuStatus == 4 ? 'selected' : 'section'} onClick={() => { setMenuStatus(4); setMenuOpen(0); }} href='#section4'><li>Talonario</li></a>

@@ -89,7 +89,7 @@ export const validateForm = (inputs) => {
         setArticleDetailsError("Descripción del artículo requerida.");
         isValid = false;
     } else if(articleDetails.trim().length<100){
-        setArticleDetailsError("Tu descripción debe ser mas extensa.");
+        setArticleDetailsError("Tu descripción debe ser mas extensa, mínimo 100 caracteres.");
         isValid = false;
     }
 
@@ -97,7 +97,7 @@ export const validateForm = (inputs) => {
         setRaffleDetailsError("Detalles de la rifa requeridos.");
         isValid = false;
     } else if(raffleDetails.trim().length<100){
-        setRaffleDetailsError("Tu descripción debe ser mas extensa.");
+        setRaffleDetailsError("Tu descripción debe ser mas extensa, mínimo 100 caracteres.");
         isValid = false;
     }
 
