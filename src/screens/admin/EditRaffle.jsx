@@ -8,6 +8,7 @@ import { validateForm } from '../../utils/ValidateFormAdmin';
 import ErrorScreenComponent from '../../components/generals/errorScreenComponent';
 import Loader from '../../components/generals/Loader';
 import Api from '../../utils/Api';
+import ApiFiles from '../../utils/ApiFiles';
 import { showAlert } from '../../utils/showAlert';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
@@ -28,6 +29,7 @@ export default function EditRaffle() {
     const [contactPhone, setContactPhone] = useState("");
     const [canalW, setCanalW] = useState("");
     const [image, setImage] = useState("");
+    const [imagePrevious, setImagePrevious] = useState("");
     const [previewImage, setPreviewImage] = useState("");
     const [articleDetails, setArticleDetails] = useState("");
     const [raffleDetails, setRaffleDetails] = useState("");
@@ -94,32 +96,27 @@ export default function EditRaffle() {
 
                     if (raffleData) {
 
-                        if (raffleData.raffleName !== null) setRaffleName(raffleData.raffleName);
-                        if (raffleData.organizerName !== null) setOrganizerName(raffleData.organizerName);
-                        if (raffleData.contactPhone !== null) setContactPhone(raffleData.contactPhone);
-                        if (raffleData.canalW !== null) setCanalW(raffleData.canalW);
-                        if (raffleData.image !== null) {
-                            setImage(raffleData.image);
-                            setPreviewImage(raffleData.image);
-                        }
-                        if (raffleData.articleDetails !== null) setArticleDetails(raffleData.articleDetails);
-                        if (raffleData.raffleDetails !== null) setRaffleDetails(raffleData.raffleDetails);
-                        if (raffleData.numberOfTickets !== null) setNumberOfTickets(raffleData.numberOfTickets);
-                        if (raffleData.date !== null) setDate(raffleData.date);
+                        setRaffleName(raffleData.raffleName !== null ? raffleData.raffleName : "");
+                        setOrganizerName(raffleData.organizerName !== null ? raffleData.organizerName : "");
+                        setContactPhone(raffleData.contactPhone !== null ? raffleData.contactPhone : "");
+                        setCanalW(raffleData.canalW !== null ? raffleData.canalW : "");
+                        setImage(raffleData.image !== null ? raffleData.image : "");
+                        setImagePrevious(raffleData.image !== null ? raffleData.image : "");
+                        setPreviewImage(raffleData.image !== null ? raffleData.image : "");
+                        setArticleDetails(raffleData.articleDetails !== null ? raffleData.articleDetails : "");
+                        setRaffleDetails(raffleData.raffleDetails !== null ? raffleData.raffleDetails : "");
+                        setNumberOfTickets(raffleData.numberOfTickets !== null ? raffleData.numberOfTickets : "");
+                        setDate(raffleData.date !== null ? raffleData.date : "");
 
                         setPaymentE(raffleData.paymentE === 1 ? true : false);
                         setPaymentT(raffleData.paymentT === 1 ? true : false);
                         setPaymentC(raffleData.paymentC === 1 ? true : false);
 
-                        if (raffleData.paymentT === 1) {
-                            if (raffleData.nameCard !== null) setNameCard(raffleData.nameCard);
-                            if (raffleData.card !== null) setCard(raffleData.card);
-                        }
+                        setNameCard(raffleData.nameCard !== null ? raffleData.nameCard : "");
+                        setCard(raffleData.card !== null ? raffleData.card : "");
+                        setNameAccount(raffleData.nameAccount !== null ? raffleData.nameAccount : "");
+                        setAccount(raffleData.account !== null ? raffleData.account : "");
 
-                        if (raffleData.paymentC === 1) {
-                            if (raffleData.nameAccount !== null) setNameAccount(raffleData.nameAccount);
-                            if (raffleData.account !== null) setAccount(raffleData.account);
-                        }
                     }
                 }
                 else {
@@ -159,29 +156,35 @@ export default function EditRaffle() {
         try {
             let uri = import.meta.env.VITE_URL + "raffle/updateRaffle";
             let api = new Api(uri, "PUT", params, auth.token);
-            await api.call().then(async(res) => {
-                if (res.response) {
-                    
-                    const formData = new FormData();
-                    formData.append("image", image);
+            await api.call().then(async (res) => {
 
-                    try {
-                        let uri2 = import.meta.env.VITE_URL + "raffle/addImageRaffle/" * idRaffle;
-                        let api2 = new Api(uri2, "PUT", formData, auth.token);
-                        await api2.call().then(async(res2) => {
-                            if(res2.resonse){
-                                showAlert("Rifa actualizada correctamente", "success")
-                            }else{
-                                showAlert(res.message, "warning")
-                            }
-                        });
-                    } catch (error) {
-                        showAlert("Error al actualizar la imagen, intentalo nuevamente", "error")
+                if (res.response) {
+                    if (image !== imagePrevious) {
+                        const formData = new FormData();
+                        formData.append("image", image);
+
+                        try {
+                            let uri2 = import.meta.env.VITE_URL + "raffle/addImageRaffle/" + idRaffle;
+
+                            let api2 = new ApiFiles(uri2, "POST", formData, auth.token);
+                            await api2.call().then(async (res2) => {
+
+                                if (res2.response) {
+                                    showAlert("Rifa actualizada correctamente", "success")
+                                } else {
+                                    showAlert(res2.message, "warning")
+                                }
+                            });
+                        } catch (error) {
+                            showAlert("Error al actualizar la imagen, intentalo nuevamente", "error")
+                        }
+                    } else {
+                        showAlert("Rifa actualizada correctamente", "success")
                     }
                 } else {
                     if (res.result) {
                         if (res.result.code) {
-                            setNumberOfTicketsError(res.message)
+                            setNumberOfTicketsError(res.message);
                         }
                     }
 
@@ -442,15 +445,8 @@ export default function EditRaffle() {
                                     <input
                                         type="checkbox"
                                         name="paymentT"
-                                        value={paymentT}
                                         checked={paymentT}
-                                        onChange={(e) => {
-                                            if (paymentT) {
-                                                setPaymentT(!e.target.value);
-                                            } else {
-                                                setPaymentT(e.target.value);
-                                            }
-                                        }}
+                                        onChange={() => setPaymentT(!paymentT)}
                                     />
                                     Pago con tarjeta
                                 </label>
@@ -459,15 +455,8 @@ export default function EditRaffle() {
                                     <input
                                         type="checkbox"
                                         name="paymentC"
-                                        value={paymentC}
                                         checked={paymentC}
-                                        onChange={(e) => {
-                                            if (paymentC) {
-                                                setPaymentC(!e.target.value);
-                                            } else {
-                                                setPaymentC(e.target.value);
-                                            }
-                                        }}
+                                        onChange={() => setPaymentC(!paymentC)}
                                     />
                                     Transferencia cuenta CLABE
                                 </label>

@@ -64,7 +64,7 @@ export const validateForm = (inputs) => {
         isValid = false;
     }
 
-    if (!contactPhone.trim()) {
+    if (!contactPhone) {
         setContactPhoneError("Número de teléfono requerido.");
         isValid = false;
     } else if (contactPhone.length < 10 || isNaN(contactPhone)) {
@@ -101,7 +101,7 @@ export const validateForm = (inputs) => {
         isValid = false;
     }
 
-    if (!numberOfTickets.trim()) {
+    if (!numberOfTickets) {
         setNumberOfTicketsError("Cantidad de boletos requerida.");
         isValid = false;
     } else if (isNaN(numberOfTickets)) {
@@ -131,7 +131,7 @@ export const validateForm = (inputs) => {
             isValid = false;
         }
 
-        if (!card.trim()) {
+        if (!card) {
             setCardError("Número de tarjeta requerido.");
             isValid = false;
         } else {
@@ -153,7 +153,7 @@ export const validateForm = (inputs) => {
             isValid = false;
         }
 
-        if (!account.trim()) {
+        if (!account) {
             setAccountError("Número de cuenta CLABE requerido.");
             isValid = false;
         } else {

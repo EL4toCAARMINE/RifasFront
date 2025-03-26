@@ -322,7 +322,7 @@ export default function AdminRaffle() {
                             </div>
 
                             <div className="date">
-                                <p>La rifa se llevara a cabo el día {dataRaffle ? dataRaffle.date ? unixToStringYMD(dataRaffle.date) : "dd/mm/yy" : ""}</p>
+                                <p>Fecha del sorteo {dataRaffle ? dataRaffle.date ? unixToStringYMD(dataRaffle.date) : "dd/mm/yy" : ""}</p>
                             </div>
                         </div>
                     </div>

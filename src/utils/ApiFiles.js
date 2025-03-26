@@ -1,8 +1,10 @@
 export default class ApiFiles {
+    
     constructor(url, metodo, params = null, token = null) {
         this.url = url;
         this.metodo = metodo;
         this.params = params;
+        this.token = token;
     }
     async call() {
         let init = {

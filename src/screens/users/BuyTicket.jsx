@@ -171,7 +171,7 @@ export default function BuyTicket() {
                                 </div>
                                 :
                                 <div className="date">
-                                    <p>La rifa se llevara a cabo el día 📅  {raffleData ? raffleData.date ? unixToStringYMD(raffleData.dateRaffled) : "dd/mm/yy" : "dd/mm/yy"}</p>
+                                    <p>Fecha del sorteo 📅  {raffleData ? raffleData.date ? unixToStringYMD(raffleData.dateRaffled) : "dd/mm/yy" : "dd/mm/yy"}</p>
                                 </div>
                             }
                         </div>

@@ -59,11 +59,14 @@ export default class Api {
                 };
             }
             
+            console.log(error, "sfs");
+            
             return {
                 response: false,
                 result: [],
                 message: "Ha ocurrido un error inesperado",
             };
+            
         }
     }
 }
