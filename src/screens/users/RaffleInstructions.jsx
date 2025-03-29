@@ -16,6 +16,14 @@ export default function RaffleInstructions() {
     const [raffleExist, setRaffleExist] = useState(false);
     const [raffleData, setRaffleData] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const goToSearch = () => {
         navigate(`/searchTicket/${idRaffle}`, {state: raffleData})
@@ -111,10 +119,10 @@ export default function RaffleInstructions() {
                             txt={"Buscar mi ticket"}
                             colorBg={"#c71585"}
                             colorBgH={"#df47a7"}
-                            size={"1.6rem"}
+                            size={width <= 500 ? "1.8rem" : "1.6rem"}
                             action={goToSearch}
                             styles={{
-                                height: 50,
+                                height: width <= 500 ? 40 : 50,
                                 width: "100%"
                             }}
                         >
@@ -123,10 +131,10 @@ export default function RaffleInstructions() {
 
                         <Btn
                             txt={"Seleccionar boletos"}
-                            size={"1.6rem"}
+                            size={width <= 500 ? "1.8rem" : "1.6rem"}
                             action={goToBuy}
                             styles={{
-                                height: 50,
+                                height: width <= 500 ? 40 : 50,
                                 width: "100%",
                                 marginTop: 10
                             }}

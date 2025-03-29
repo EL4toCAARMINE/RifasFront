@@ -51,7 +51,7 @@
                 font-family: OpenSansBold, Arial, Helvetica, sans-serif;
                 font-size: 2.4rem;
                 margin-top: 15px;
-                color: colors.$violetBlue;
+                color: #fff;
             }
 
             .containerSub{
@@ -91,6 +91,7 @@
             h2{
                 color: #000;
                 margin-bottom: 50px;
+                font-size: 2.4rem;
             }
 
             ol{
@@ -133,6 +134,50 @@
 
             .iconBtn{
                 margin-right: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px){
+    .welcomeContainer{
+        .containerInstructions{
+            .dataC{
+                h2{
+                    font-size: 3rem;
+                }
+
+                .containerSub{
+                    h3{
+                        font-size: 2.2rem;
+                    }
+                }
+
+                ul{
+                    li{
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+
+            .dataCRight{
+                h2{
+                    margin-bottom: 20px;
+                }
+
+                ol{
+                    li, a{
+                        font-size: 1.6rem;
+                    }
+                }
+
+                .containerWin{
+                    padding: 10px;
+
+                    p{
+                        font-size: 1.7rem;
+                    }
+                }
             }
         }
     }

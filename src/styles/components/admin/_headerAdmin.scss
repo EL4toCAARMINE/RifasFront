@@ -34,3 +34,17 @@ header{
         }
     }
 }
+
+@media (max-width: 500px){
+    header{
+        .title{
+            img{
+                height: 50%;
+            }
+
+            h1{
+                font-size: 2.2rem;
+            }
+        }
+    }
+}

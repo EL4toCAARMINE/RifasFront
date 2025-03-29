@@ -310,7 +310,7 @@ export default function EditRaffle() {
                             width={"100%"}
                             val={raffleName}
                             setVal={setRaffleName}
-                            maxL={200}
+                            maxL={50}
                             dis={true}
                         />
 

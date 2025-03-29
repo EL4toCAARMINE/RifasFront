@@ -39,16 +39,11 @@
             margin-right: 10px;
             aspect-ratio: 1/1;
         }
-
-        h1{
-            font-size: 2.4rem;
-            font-family: OpenSansBold, Arial, Helvetica, sans-serif;
+        
+        h2{
+            font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
+            font-size: 2.2rem;
             color: colors.$violetBlue;
-
-            span{
-                font-size: 2.4rem;
-                color: colors.$violetBlue;
-            }
         }
     }
 }
@@ -63,6 +58,39 @@
         svg{
             position: absolute;
             left: 0;
+        }
+
+        h2{
+            max-width: 600px;
+        }
+    }
+}
+
+@media (max-width: 800px){
+    .headerUser{
+        .title{
+            img{
+                height: 50%;
+            }
+
+            h2{
+                font-size: 2.2rem;
+                max-width: 300px;
+            }
+        }
+    }
+}
+
+@media (max-width: 450px){
+    .headerUserCenter{
+        justify-content: flex-start;
+
+        .title{
+            justify-content: flex-start;
+            
+            svg{
+                position: relative;
+            }
         }
     }
 }
