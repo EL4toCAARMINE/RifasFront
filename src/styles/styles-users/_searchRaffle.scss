@@ -107,7 +107,21 @@
         main{
             .containerI{
                 h2{
-                    font-size: 3rem;
+                    font-size: 2.4rem;
+                }
+
+                .welcome{
+                    font-size: 1.4rem;
+
+                    strong{
+                        font-size: 1.4rem;
+                    }
+                }
+
+                .containerInputS{
+                    input{
+                        font-size: 1.4rem;
+                    }
                 }
 
                 .containerInputS{
@@ -126,7 +140,21 @@
                 width: 100%;
                 
                 h2{
-                    font-size: 2.3rem;
+                    font-size: 1.6rem;
+                }
+
+                .welcome{
+                    font-size: 1.2rem;
+                    
+                    strong{
+                        font-size: 1.2rem;
+                    }
+                }
+
+                .containerInputS{
+                    input{
+                        font-size: 1.2rem;
+                    }
                 }
 
                 .containerInputS{

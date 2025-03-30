@@ -56,6 +56,8 @@ export default function ({ visible, setIsVisible, data, getRaffle, loaderVisible
             let uri = import.meta.env.VITE_URL + "raffle/getTicket/" + data.id;
             let api = new Api(uri, "GET", null, auth.token);
             await api.call().then((res) => {
+                console.log(res);
+                
                 if (res.response) {
                     setTicket(res.result);
                 } else {

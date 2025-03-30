@@ -4,39 +4,41 @@
 
 /* Animación de entrada */
 @keyframes slideIn {
-  0% {
-    top: -150vh;
-    opacity: 0;
-  }
-  100% {
-    top: 50px; 
-    opacity: 1;
-  }
+    0% {
+        top: -150vh;
+        opacity: 0;
+    }
+
+    100% {
+        top: 50px;
+        opacity: 1;
+    }
 }
 
 /* Animación de salida */
 @keyframes slideOut {
-  0% {
-    top: 50px; 
-    opacity: 1; 
-  }
-  100% {
-    top: -150vh;
-    opacity: 0;
-  }
+    0% {
+        top: 50px;
+        opacity: 1;
+    }
+
+    100% {
+        top: -150vh;
+        opacity: 0;
+    }
 }
 
 /* Clase para aplicar la animación de entrada */
 .slide-in {
-  animation: slideIn 0.5s ease-out forwards;
+    animation: slideIn 0.5s ease-out forwards;
 }
 
 /* Clase para aplicar la animación de salida */
 .slide-out {
-  animation: slideOut 0.5s ease-in forwards;
+    animation: slideOut 0.5s ease-in forwards;
 }
 
-.containerBuyTicket{
+.containerBuyTicket {
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -44,14 +46,14 @@
     min-height: 100vh;
     height: auto;
 
-    .arrowBack{
+    .arrowBack {
         position: absolute;
         left: 20px;
         cursor: pointer;
         scale: 1.1;
     }
 
-    .editAndDeleteC{
+    .editAndDeleteC {
         position: absolute;
         height: 100%;
         display: flex;
@@ -60,16 +62,16 @@
         right: 20px;
     }
 
-    .menu{
+    .menu {
         height: 100%;
 
-        ul{
+        ul {
             height: 100%;
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
 
-            .section{
+            .section {
                 height: 100%;
                 background-color: #fff;
                 display: flex;
@@ -78,7 +80,7 @@
                 padding: 5px 10px;
                 text-decoration: none;
 
-                li{
+                li {
                     text-decoration: none;
                     color: #000;
                     font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
@@ -87,12 +89,12 @@
                     list-style: none;
                 }
 
-                &:hover{
+                &:hover {
                     background-color: #f2f2f2;
                 }
             }
 
-            .selected{
+            .selected {
                 background-color: #000;
                 height: 100%;
                 display: flex;
@@ -101,7 +103,7 @@
                 padding: 5px 10px;
                 text-decoration: none;
 
-                li{
+                li {
                     text-decoration: none;
                     color: #fff;
                     font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
@@ -113,12 +115,12 @@
         }
     }
 
-    .burgerMenu{
+    .burgerMenu {
         cursor: pointer;
         padding: 5px;
     }
 
-    main{
+    main {
         width: 100%;
         flex: 1;
         height: auto;
@@ -126,7 +128,7 @@
         flex-direction: column;
         align-items: center;
 
-        .titles{
+        .titles {
             display: flex;
             justify-self: center;
             margin: 20px 0;
@@ -135,7 +137,7 @@
             font-size: 1.8rem;
         }
 
-        .containerData{
+        .containerData {
             width: 100%;
             padding: 100px 0;
             min-height: calc(100vh - 50px);
@@ -148,7 +150,7 @@
             align-items: center;
             justify-content: center;
 
-            .dataR{
+            .dataR {
                 background-color: #CFCFCF40;
                 padding: 20px;
                 border-radius: 25px;
@@ -162,7 +164,7 @@
                 flex-direction: column;
                 align-items: center;
 
-                h2{
+                h2 {
                     color: colors.$violetBlue;
                     font-family: OpenSansBold, Arial, Helvetica, sans-serif;
                     font-size: 2rem;
@@ -170,7 +172,7 @@
                     text-align: center;
                 }
 
-                .row{
+                .row {
                     width: 95%;
                     display: flex;
                     flex-direction: row;
@@ -179,7 +181,7 @@
                     flex-wrap: wrap;
                     margin-block: 20px;
 
-                    .imgContainer{
+                    .imgContainer {
                         width: 100%;
                         max-width: 250px;
                         background-color: #fff;
@@ -191,7 +193,7 @@
                         margin: 20px;
                         position: relative;
 
-                        img{
+                        img {
                             width: 100%;
                             height: 100%;
                             object-fit: cover;
@@ -200,7 +202,7 @@
                         }
                     }
 
-                    p{
+                    p {
                         font-family: OpenSansRegular, Arial, Helvetica, sans-serif;
                         color: #000;
                         font-size: 1.2rem;
@@ -209,7 +211,7 @@
                     }
                 }
 
-                .date{
+                .date {
                     width: 70%;
                     min-height: 50px;
                     padding: 10px;
@@ -219,7 +221,7 @@
                     align-items: center;
                     justify-content: center;
 
-                    p{
+                    p {
                         color: #fff;
                         font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
                         font-size: 1.4rem;
@@ -227,7 +229,7 @@
                     }
                 }
 
-                .result{
+                .result {
                     width: 70%;
                     display: flex;
                     flex-direction: column;
@@ -237,23 +239,23 @@
                     border-radius: 10px;
                     min-height: 50px;
 
-                    h3{
-                        font-family: OpenSansBold,Arial, Helvetica, sans-serif;
+                    h3 {
+                        font-family: OpenSansBold, Arial, Helvetica, sans-serif;
                         font-size: 1.8rem;
                         margin-bottom: 10px;
                         color: #fff;
                         margin-top: 5px;
                     }
 
-                    p{
-                        font-family: OpenSansRegular,Arial, Helvetica, sans-serif;
+                    p {
+                        font-family: OpenSansRegular, Arial, Helvetica, sans-serif;
                         font-size: 1.4rem;
                         margin-bottom: 10px;
                         color: #fff;
                     }
 
-                    span{
-                        font-family: OpenSansBold,Arial, Helvetica, sans-serif;
+                    span {
+                        font-family: OpenSansBold, Arial, Helvetica, sans-serif;
                         font-size: 3rem;
                         color: #fff;
                     }
@@ -261,7 +263,7 @@
             }
         }
 
-        .paymentI{
+        .paymentI {
             width: 90%;
             max-width: 650px;
             display: flex;
@@ -269,11 +271,11 @@
             align-items: center;
         }
 
-        .iconBtn{
+        .iconBtn {
             margin-right: 20px;
         }
 
-        .ticketsSelection{
+        .ticketsSelection {
             width: 100%;
             padding: 40px 20px;
             display: flex;
@@ -281,7 +283,7 @@
             align-items: center;
         }
 
-        .containerTickets{
+        .containerTickets {
             width: 100%;
             padding: 40px 20px;
             display: flex;
@@ -290,11 +292,11 @@
         }
     }
 
-    .fC{
+    .fC {
         width: 100%;
     }
 
-    .menuVertical{
+    .menuVertical {
         width: 100%;
         height: calc(100vh - 50px);
         background-color: #fff;
@@ -302,7 +304,7 @@
         top: -150vh;
         z-index: 9;
 
-        ul{
+        ul {
             height: auto;
             width: 100%;
             display: flex;
@@ -310,7 +312,7 @@
             flex-wrap: nowrap;
             padding: 0;
 
-            .section{
+            .section {
                 height: 50px;
                 width: 100%;
                 background-color: #fff;
@@ -321,7 +323,7 @@
                 text-decoration: none;
                 border-bottom: 1px solid #a1a1a1;
 
-                li{
+                li {
                     text-decoration: none;
                     color: #000;
                     font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
@@ -331,12 +333,12 @@
                     margin-left: 20px;
                 }
 
-                &:hover{
+                &:hover {
                     background-color: #f2f2f2;
                 }
             }
 
-            .selected{
+            .selected {
                 background-color: #000;
                 height: 50px;
                 width: 100%;
@@ -346,7 +348,7 @@
                 padding: 5px 0;
                 text-decoration: none;
 
-                li{
+                li {
                     text-decoration: none;
                     color: #fff;
                     font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
@@ -355,6 +357,48 @@
                     list-style: none;
                     margin-left: 20px;
                 }
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .containerBuyTicket {
+        main {
+            .containerData {
+                padding: 30px 0;
+            }
+
+            .containerTickets {
+                padding: 10px;
+            }
+
+            .ticketsSelection{
+                padding: 10px;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .containerBuyTicket {
+        main {
+            .containerData {
+                padding: 30px 0;
+
+                .dataR{
+                    .result{
+                        width: 100%;
+
+                        p{
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+
+            .containerTickets {
+                padding: 10px;
             }
         }
     }

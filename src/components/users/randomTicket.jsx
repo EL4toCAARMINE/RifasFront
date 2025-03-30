@@ -26,6 +26,14 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
 
     const [nameError, setNameError] = useState("");
     const [phoneError, setPhoneError] = useState("");
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const validateInputs = () => {
         let flag = true;
@@ -260,7 +268,7 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
                     colorBg={canRaffle ? "grey" : "#c71585"}
                     colorBgH={"#df47a7"}
                     size={"1.4rem"}
-                    styles={{ width: "50%", height: 40, justifyContent: "space-around", cursor: canRaffle && "default" }}
+                    styles={{ width: width <= 475 ? "100%" : "50%", height: 40, justifyContent: width <= 475 ? "center" : "space-around", cursor: canRaffle && "default", gap: 10}}
                     disable={canRaffle}
                     action={randomTicketSelect}
                 >
@@ -292,7 +300,7 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
                     txt={"Confirmar selección"}
                     size={"1.4rem"}
                     colorBg={canBuy && "grey"}
-                    styles={{ width: "70%", height: 40, cursor: canBuy && "default" }}
+                    styles={{ width: width <= 475 ? "100%" : "70%", height: 40, cursor: canBuy && "default" }}
                     action={createPurchase}
                     disable={canBuy}
                 />
@@ -301,15 +309,15 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
             <div className="containerPayM">
                 <p>Puedes realizar el pago de tus boletos a través de los siguientes medios:</p>
 
-                {raffleData && raffleData.paymentC && (
+                {raffleData && raffleData.paymentC ? (
                     <p>Número de cuenta CLABE: <span>{raffleData.nameAccount} | {raffleData.account}</span></p>
-                )}
-                {raffleData && raffleData.paymentT && (
+                ) : <></>}
+                {raffleData && raffleData.paymentT ? (
                     <p>Tarjeta de débito: <span>{raffleData.nameCard} | {raffleData.card}</span></p>
-                )}
-                {raffleData && raffleData.paymentE && (
+                ) : <></>}
+                {raffleData && raffleData.paymentE ? (
                     <p>Efectivo: <span>Contáctame por WhatsApp o por Teléfono al {raffleData.contactPhone}</span></p>
-                )}
+                ) : <></>}
             </div>
 
             <Loader visible={isVisibleLoader} />

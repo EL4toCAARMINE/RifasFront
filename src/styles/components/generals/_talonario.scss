@@ -1,20 +1,20 @@
 @use "../../others/colors";
 
-.containerTComponent{
+.containerTComponent {
     width: 90%;
     max-width: 650px;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    h2{
+    h2 {
         font-family: OpenSansBold, Arial, Helvetica, sans-serif;
         color: colors.$violetBlue;
         margin-block: 30px;
         font-size: 2rem;
     }
 
-    .containerfilter{
+    .containerfilter {
         margin-bottom: 20px;
         width: 100%;
         display: flex;
@@ -22,12 +22,12 @@
         justify-content: space-between;
     }
 
-    .ticketsArea{
+    .ticketsArea {
         width: 100%;
         display: flex;
         flex-direction: column;
 
-        .tickets{
+        .tickets {
             width: 100%;
             display: flex;
             flex-direction: row;
@@ -35,12 +35,12 @@
             flex-wrap: wrap;
         }
 
-        .bottomR{
+        .bottomR {
             margin-top: 30px;
         }
     }
 
-    .errorMenssage{
+    .errorMenssage {
         padding: 50px 0;
         display: flex;
         align-items: center;
@@ -48,7 +48,7 @@
     }
 }
 
-.ticketElement{
+.ticketElement {
     width: calc(10% - 5px);
     height: auto;
     aspect-ratio: 1;
@@ -60,7 +60,7 @@
     border-radius: 10px;
     position: relative;
 
-    p{
+    p {
         font-size: 2rem;
         font-family: OpenSansBold, Arial, Helvetica, sans-serif;
         z-index: 2;
@@ -68,13 +68,28 @@
     }
 }
 
-.ticketElementN{
+.ticketElementN {
     background-color: transparent;
 
-    svg{
+    svg {
         width: 100%;
         height: 100%;
         position: absolute;
         z-index: 1;
+    }
+}
+
+@media (max-width: 500px) {
+    .containerTComponent{
+        h2{
+            margin-block: 10px;
+        }
+    }
+}
+
+@media (max-width: 430px) {
+    .ticketElement{
+        width: calc(20% - 10px);
+        margin: 5px 5px;
     }
 }

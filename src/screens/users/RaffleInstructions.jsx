@@ -119,7 +119,7 @@ export default function RaffleInstructions() {
                             txt={"Buscar mi ticket"}
                             colorBg={"#c71585"}
                             colorBgH={"#df47a7"}
-                            size={width <= 500 ? "1.8rem" : "1.6rem"}
+                            size={width <= 500 ? "1.3rem" : "1.6rem"}
                             action={goToSearch}
                             styles={{
                                 height: width <= 500 ? 40 : 50,
@@ -131,7 +131,7 @@ export default function RaffleInstructions() {
 
                         <Btn
                             txt={"Seleccionar boletos"}
-                            size={width <= 500 ? "1.8rem" : "1.6rem"}
+                            size={width <= 500 ? "1.3rem" : "1.6rem"}
                             action={goToBuy}
                             styles={{
                                 height: width <= 500 ? 40 : 50,

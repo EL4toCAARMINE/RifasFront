@@ -1,6 +1,6 @@
 @use "../../others/colors";
 
-.containerRandomTicketForm{
+.containerRandomTicketForm {
     width: 90%;
     max-width: 650px;
     height: auto;
@@ -12,27 +12,27 @@
     align-items: center;
     padding: 20px;
 
-    .inputRF{
+    .inputRF {
         height: 90px;
         margin-bottom: 0;
         padding-top: 0;
         padding: 0;
 
-        label{
+        label {
             font-size: 1.4rem;
         }
 
-        input{
+        input {
             height: 40px;
             font-size: 1.4rem;
         }
 
-        .inputError{
+        .inputError {
             font-size: 1.3rem;
         }
     }
 
-    .containerAddBtn{
+    .containerAddBtn {
         width: 90%;
         display: flex;
         flex-direction: row;
@@ -40,14 +40,14 @@
         align-items: center;
         margin-bottom: 20px;
 
-        .ticketsS{
+        .ticketsS {
             max-width: 50%;
             font-family: OpenSansBold, Arial, Helvetica, sans-serif;
             font-size: 1.6rem;
         }
     }
 
-    .ticketsRR{
+    .ticketsRR {
         width: 90%;
         display: flex;
         align-items: center;
@@ -55,28 +55,29 @@
         flex-direction: column;
         height: auto;
 
-        .errorPage{
+        .errorPage {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 150px;
 
-            p{
+            p {
                 font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
                 color: colors.$grey;
                 font-size: 1.8rem;
+                text-align: center;
             }
         }
 
-        .ticketsSelected{
+        .ticketsSelected {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             height: auto;
 
-            .ticketS{
+            .ticketS {
                 width: 100%;
                 height: 50px;
                 margin-block: 10px;
@@ -88,7 +89,7 @@
                 align-items: center;
                 justify-content: center;
 
-                p{
+                p {
                     font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
                     font-size: 1.4rem;
                     margin-left: 10px;
@@ -97,7 +98,7 @@
         }
     }
 
-    .containerTotalC{
+    .containerTotalC {
         width: 90%;
         display: flex;
         flex-direction: row;
@@ -105,27 +106,27 @@
         align-items: center;
         margin-block: 20px;
 
-        .totalTxt{
+        .totalTxt {
             max-width: 30%;
             font-family: OpenSansBold, Arial, Helvetica, sans-serif;
             font-size: 2rem;
         }
     }
 
-    .containerPayM{
+    .containerPayM {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
 
-        p{
+        p {
             font-size: 1.4rem;
             font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
             color: colors.$grey;
             margin-bottom: 2px;
             text-align: center;
 
-            span{
+            span {
                 font-size: 1.4rem;
                 font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
             }
@@ -133,30 +134,71 @@
     }
 }
 
-.swalHTMLBuy{
-    div{
+.swalHTMLBuy {
+    div {
         display: flex;
         flex-direction: column;
         align-items: center;
 
-        p{
+        p {
             color: #000;
-            font-family: OpenSansSemiBold,Arial, Helvetica, sans-serif;
+            font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
             font-size: 1.2rem;
         }
 
-        span{
+        span {
             color: colors.$redViolet;
-            font-family: OpenSansSemiBold,Arial, Helvetica, sans-serif;
+            font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
             font-size: 1.3rem;
             margin-block: 10px;
         }
 
-        strong{
+        strong {
             color: colors.$redViolet;
-            font-family: OpenSansBold,Arial, Helvetica, sans-serif;
+            font-family: OpenSansBold, Arial, Helvetica, sans-serif;
             font-size: 1.3rem;
             margin-block: 10px;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .containerRandomTicketForm {
+        width: 100%;
+        padding: 10px 10px 20px 10px;
+    }
+}
+
+@media (max-width: 475px) {
+    .containerRandomTicketForm {
+        .containerAddBtn{
+            flex-direction: column-reverse;
+            width: 90%;
+            
+            .ticketsS{
+                margin-top: 10px;
+                max-width: 100%;
+            }
+        }
+
+        .ticketsRR{
+            .ticketsSelected{
+                .ticketS{
+                    height: 35px;
+                    border-radius: 5px;
+                }
+            }
+        }
+
+        .containerTotalC{
+            flex-direction: column;
+            width: 90%;
+            align-items: flex-end;
+
+            .totalTxt{
+                margin-bottom: 10px;
+                max-width: 100%;
+            }
         }
     }
 }

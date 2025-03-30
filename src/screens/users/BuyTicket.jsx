@@ -27,7 +27,6 @@ export default function BuyTicket() {
     const [raffleExist, setRaffleExist] = useState(true);
     const [menuStatus, setMenuStatus] = useState(1);
     const [winner, setWinner] = useState(null);
-    // const [winner, setWinner] = useState({idWinner: 2, numberWinner: 2});
 
     const [today, setToday] = useState(null);
     const [needInstructionsP, setNeedInstructionsP] = useState(false);
@@ -101,7 +100,7 @@ export default function BuyTicket() {
 
             const now = Math.floor(new Date().getTime() / 1000);
 
-            if (raffleData.date && now > raffleData.date) {
+            if ((raffleData.date && (now > raffleData.date)) && raffleData.winner) {
                 setWinner({ winner: raffleData.winner === 1 ? true : false, numberWinner: raffleData.winnerNumber })
             }
         }

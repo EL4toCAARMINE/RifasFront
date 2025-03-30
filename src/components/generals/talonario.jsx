@@ -7,10 +7,20 @@ import Loader from "./Loader";
 import { showAlert } from "../../utils/showAlert";
 
 const TicketS = ({dataT, action, isAdmin}) => {
+    const canClick = () => {
+        if(isAdmin){
+            if(dataT.status === 1){
+                showAlert("No puedes modificar este boleto, ya que aun no ha sido apartado", "info");
+            }else{
+                action(dataT)
+            }
+        }
+    }
+
     return(
         <div 
             className={`ticketElement ${dataT.status !== 1 &&  "ticketElementN"}`} 
-            onClick={()=>{ isAdmin && dataT.status === 1 ? showAlert("No puedes modificar este boleto, ya que aun no ha sido apartado", "info") : action(dataT)}}
+            onClick={canClick}
             style={{cursor: isAdmin && dataT.status !== 1 && "pointer"}}
         >
             {dataT.status !== 1 && <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="#df47a7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/><path d="M7 12a5 5 0 1 0 10 0a5 5 0 1 0-10 0m5-9v4m0 10v4m-9-9h4m10 0h4m-2.636-6.364l-2.828 2.828m-7.072 7.072l-2.828 2.828m0-12.728l2.828 2.828m7.072 7.072l2.828 2.828"/></g></svg>}
