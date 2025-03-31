@@ -10,7 +10,7 @@
     h2 {
         font-family: OpenSansBold, Arial, Helvetica, sans-serif;
         color: colors.$violetBlue;
-        margin-block: 30px;
+        margin-block: 20px;
         font-size: 2rem;
     }
 
@@ -83,6 +83,10 @@
     .containerTComponent{
         h2{
             margin-block: 10px;
+        }
+
+        .containerfilter{
+            flex-wrap: wrap;
         }
     }
 }

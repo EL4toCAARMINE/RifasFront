@@ -78,6 +78,7 @@
                         display: flex;
                         flex-direction: column;
                         overflow: hidden;
+                        margin-bottom: 10px;
 
                         .title{
                             font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
@@ -90,9 +91,10 @@
                             display: flex;
                             flex-direction: row;
                             justify-content: space-between;
+                            margin-block: 5px;
 
                             .copyB{
-                                flex: 1;
+                                // flex: 1;
                                 margin-right: 10px;
                                 border-radius: 10px;
                                 border: none;
@@ -104,6 +106,7 @@
                                 font-size: 1.4rem;
                                 text-align: center;
                                 box-shadow: 0 4px 8px #00000070;
+                                width: 100%;
                             }
 
                             .buttonG{
@@ -216,6 +219,27 @@
 
             &:hover{
                 background-color: colors.$pinkFH;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .containerAdminRaffle {
+        .arrowBack{
+            position: relative;
+            left: 0;
+            margin-right: 10px;
+        }
+
+        main {
+            .containerData {
+                padding: 30px 0;
+            }
+
+            .containerTickets {
+                padding: 10px;
+                padding-top: 20px;
             }
         }
     }

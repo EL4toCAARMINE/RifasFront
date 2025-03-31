@@ -41,6 +41,15 @@ export default function Talonario({isAdmin, tickets, getRaffle}){
     const [page, setPage] = React.useState(1);
     const [forPage, setForPage] = React.useState(100);
 
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     // Filtro
     const filterTickets = (number) => {
         if (number == 0) {
@@ -71,7 +80,7 @@ export default function Talonario({isAdmin, tickets, getRaffle}){
                 <div className="containerfilter">
                     <Btn 
                         txt={"Todos"}
-                        styles={{width: "24%", height: 30}}
+                        styles={{width: width < 500 ? "49%" : "24%", marginBottom: width < 500 ? 10 : 0, height: 30}}
                         colorBg={filterFocus == 0 ? "#000" : "#324AB2"}
                         colorBgH={filterFocus == 0 ? "#4d4d4d" : "#3b57f2"}
                         action={()=>filterTickets(0)}
@@ -79,7 +88,7 @@ export default function Talonario({isAdmin, tickets, getRaffle}){
                     ></Btn>
                     <Btn 
                         txt={"Disponibles"}
-                        styles={{width: "24%", height: 30}}
+                        styles={{width: width < 500 ? "49%" : "24%", marginBottom: width < 500 ? 10 : 0, height: 30}}
                         colorBg={filterFocus == 1 ? "#000" : "#324AB2"}
                         colorBgH={filterFocus == 1 ? "#4d4d4d" : "#3b57f2"}
                         action={()=>filterTickets(1)}
@@ -87,7 +96,7 @@ export default function Talonario({isAdmin, tickets, getRaffle}){
                     ></Btn>
                     <Btn 
                         txt={"No pagados"}
-                        styles={{width: "24%", height: 30}}
+                        styles={{width: width < 500 ? "49%" : "24%", marginBottom: width < 500 ? 10 : 0, height: 30}}
                         colorBg={filterFocus == 2 ? "#000" : "#324AB2"}
                         colorBgH={filterFocus == 2 ? "#4d4d4d" : "#3b57f2"}
                         action={()=>filterTickets(2)}
@@ -95,7 +104,7 @@ export default function Talonario({isAdmin, tickets, getRaffle}){
                     ></Btn>
                     <Btn 
                         txt={"Pagados"}
-                        styles={{width: "24%", height: 30}}
+                        styles={{width: width < 500 ? "49%" : "24%", marginBottom: width < 500 ? 10 : 0, height: 30}}
                         colorBg={filterFocus == 3 ? "#000" : "#324AB2"}
                         colorBgH={filterFocus == 3 ? "#4d4d4d" : "#3b57f2"}
                         action={()=>filterTickets(3)}

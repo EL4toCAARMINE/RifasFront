@@ -29,6 +29,15 @@ export default function AdminRaffle() {
     const [isVisible, setIsVisible] = useState(false);
 
     const [tickets, setTickets] = useState(null);
+    
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const Toast = Swal.mixin({
         toast: true,
@@ -220,7 +229,8 @@ export default function AdminRaffle() {
                             size={"1.2rem"}
                             txt={"Editar Rifa"}
                             action={editRaffle}
-                            styles={{ borderRadius: 25, width: 120, height: 35, justifyContent: "space-evenly", marginRight: 20 }}
+                            hidden={width < 800 ? true : false }
+                            styles={{ borderRadius: 25, width: width < 800 ? 35 : 120, height: 35, justifyContent: "space-evenly", marginRight: width < 800 ? 10 : 20 }}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><path fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m5 16l-1 4l4-1L19.586 7.414a2 2 0 0 0 0-2.828l-.172-.172a2 2 0 0 0-2.828 0zM15 6l3 3m-5 11h8" /></svg>
                         </Btn>
@@ -256,7 +266,7 @@ export default function AdminRaffle() {
                                             colorBgH={"#c8559e"}
                                             size={"1.2rem"}
                                             txt={"Copiar"}
-                                            styles={{ flex: 2, maxWidth: 70, borderRadius: 10, height: 30 }}
+                                            styles={{ flex: 2, maxWidth: 70, borderRadius: 10, height: 30, minWidth: 70 }}
                                         ></Btn>
                                     </div>
                                     <p className='details'>Este ID es el medio por el cual el usuario puede encontrar esta rifa.</p>
@@ -271,7 +281,7 @@ export default function AdminRaffle() {
                                             colorBgH={"#c8559e"}
                                             size={"1.2rem"}
                                             txt={"Copiar"}
-                                            styles={{ flex: 2, maxWidth: 70, borderRadius: 10, height: 30 }}
+                                            styles={{ flex: 2, maxWidth: 70, borderRadius: 10, height: 30, minWidth: 70 }}
                                         ></Btn>
                                     </div>
                                     <p className='details'>Este link es el medio por el cual las personas podrán obtener boletos.</p>
@@ -287,7 +297,7 @@ export default function AdminRaffle() {
                                                 colorBgH={"#c8559e"}
                                                 size={"1.2rem"}
                                                 txt={"Copiar"}
-                                                styles={{ flex: 2, maxWidth: 70, borderRadius: 10, height: 30 }}
+                                                styles={{ flex: 2, maxWidth: 70, borderRadius: 10, height: 30, minWidth: 70 }}
                                             ></Btn>
                                         </div>
                                         <p className='details'>Canal de WhatsApp en el que se daran noticias respecto a la rifa.</p>
@@ -336,7 +346,8 @@ export default function AdminRaffle() {
                                     justifyContent: "space-evenly",
                                     width: 250,
                                     height: 50,
-                                    boxShadow: "0px 4px 4px #00000060"
+                                    boxShadow: "0px 4px 4px #00000060",
+                                    marginBottom: 10
                                 }}
                                 txt={"Realizar sorteo"}
                                 colorBg={"linear-gradient(90deg, #80E0E6 0%, #227ABA 50%, #C71585 100%)"}
