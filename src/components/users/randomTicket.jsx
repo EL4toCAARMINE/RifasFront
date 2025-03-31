@@ -50,6 +50,7 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
             flag = false;
         } else if (!/^\d{10}$/.test(phone)) {
             setPhoneError("Ingresa un numero de télefono valido")
+            flag = false;
         }
 
         return flag;
@@ -118,7 +119,7 @@ export default function RandomTicket({ listAvailableT, raffleData, reloadPage })
             html: ` <div> <p>Para concluir y asegurar tus boletos, no olvides realizar tu pago, ya que los boletos no pagados no se tomarán en cuenta para el sorteo</p> <span>Número de seguimiento:</span> <strong>${purchaseCode}</strong> <p>Guarda este código, ya que te servirá para consultar esta transacción en otro momento o descargar tu ticket</p> </div>`,
             allowOutsideClick: true,
             customClass: {
-                container: "alertSwal",
+                container: "alertSwal alertSwalSuccess",
                 confirmButton: "buttonCancel buttonCancel2",
                 cancelButton: "button button2",
                 title: "text",
