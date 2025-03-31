@@ -1,6 +1,6 @@
 @use "../others/colors";
 
-.searchTicketContainer{
+.searchTicketContainer {
     height: auto;
     min-height: 100vh;
     padding: 0;
@@ -11,7 +11,7 @@
     align-items: center;
     justify-content: center;
 
-    main{
+    main {
         width: 100%;
         flex: 1;
         min-height: calc(100vh - 150px);
@@ -22,7 +22,7 @@
         padding: 100px;
         position: relative;
 
-        .containerI{
+        .containerI {
             width: 90%;
             max-width: 900px;
             display: flex;
@@ -32,16 +32,16 @@
             padding: 20px;
             overflow: hidden;
             z-index: 4;
-    
-            h2{
+
+            h2 {
                 font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
                 font-size: 2rem;
                 color: #000;
                 text-align: center;
                 margin-bottom: 20px;
             }
-    
-            .containerInputS{
+
+            .containerInputS {
                 width: 90%;
                 height: 40px;
                 position: relative;
@@ -54,21 +54,21 @@
                 border: 1px solid #000;
                 border-radius: 50px;
                 box-sizing: border-box;
-    
-                .search{
+
+                .search {
                     position: relative;
                 }
-    
-                .searchA{
+
+                .searchA {
                     cursor: pointer;
                     transition: all 0.3s ease;
-    
-                    &:hover{
+
+                    &:hover {
                         scale: 1.1;
                     }
                 }
-                
-                input{
+
+                input {
                     position: relative;
                     flex: 1;
                     border: none;
@@ -77,52 +77,52 @@
                     font-size: 1.6rem;
                     height: 100%;
                     background-color: #fff;
-    
-                    &:focus{
+
+                    &:focus {
                         outline: none;
                     }
                 }
-    
-                &:focus-within{
+
+                &:focus-within {
                     outline: 1px solid #000;
                 }
             }
         }
 
-        img{
+        img {
             width: 75px;
             position: absolute;
             z-index: 1;
         }
 
-        .uno{
+        .uno {
             top: 25%;
             left: 25%;
         }
 
-        .dos{
+        .dos {
             top: 25%;
             right: 25%;
         }
 
-        .tres{
+        .tres {
             bottom: 30%;
             right: 7%;
         }
 
-        .cuatro{
+        .cuatro {
             bottom: 30%;
             left: 7%;
         }
 
-        .cinco{
+        .cinco {
             bottom: 10%;
             display: flex;
             align-self: center;
         }
     }
 
-    .ticketFind{
+    .ticketFind {
         width: 90%;
         max-width: 650px;
         height: auto;
@@ -131,11 +131,11 @@
         align-items: center;
         flex-direction: column;
 
-        .iconBtn{
+        .iconBtn {
             margin-right: 20px;
         }
 
-        .goToRaffle{
+        .goToRaffle {
             cursor: pointer;
             margin-top: 20px;
             font-family: OpenSansSemiBold, Arial, Helvetica, sans-serif;
@@ -143,8 +143,60 @@
             text-decoration: underline;
             color: #000;
 
-            &:hover{
+            &:hover {
                 color: colors.$greyFH;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .searchTicketContainer {
+        main {
+            padding: 0px;
+
+            .uno,
+            .dos {
+                top: 15%;
+                width: 50px;
+            }
+
+            .tres,
+            .cuatro {
+                bottom: 20%;
+                width: 50px;
+            }
+
+            .cinco {
+                bottom: 7%;
+                width: 50px;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .searchTicketContainer {
+        main {
+            .containerI {
+                width: 95%;
+
+                h2{
+                    font-size: 1.7rem;
+                }
+
+                .containerInputS {
+                    width: 100%;
+                    height: 30px;
+
+                    input {
+                        font-size: 1.3rem;
+                    }
+
+                    svg{
+                        height: 1.7rem;
+                    }
+                }
             }
         }
     }

@@ -7,6 +7,7 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-inline: 10px;
 
     .contact{
         margin-bottom: 10px;
@@ -32,10 +33,18 @@ footer{
     }
 }
 
+@media (max-width: 800px) {
+    footer{
+        .contact{
+            .name, .phone{
+                font-size: 1.6rem;
+            }
+        }
+    }
+}
+
 @media (max-width: 500px) {
     footer{
-        padding-inline: 10px;
-
         .contact{
             flex-wrap: wrap;
             .name{

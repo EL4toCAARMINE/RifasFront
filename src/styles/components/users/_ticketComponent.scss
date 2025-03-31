@@ -11,7 +11,7 @@
     align-items: center;
     padding: 20px 30px;
 
-    svg{
+    .iconHead{
         margin-bottom: 10px;
     }
 
@@ -152,6 +152,62 @@
         svg{
             margin: 0;
             margin-right: 10px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .ticketComponent{
+        .iconHead{
+            width: 6rem;
+            height: 6rem;
+        }
+        
+        .code{
+            text-align: center;
+        }
+
+        .message{
+            font-size: 1.2rem;
+            width: 100%;
+        }
+        .containerPayM{
+            p{
+                font-size: 1.2rem;
+                
+                span{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+
+    .containerTicketOnTicket{
+        padding: 5px 10px;
+        height: 40px;
+
+        p{
+            font-size: 1.3rem;
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .ticketComponent{
+        .containerDataPurchase{
+            flex-direction: column;
+            
+            p{
+                width: 100%;
+                text-align: start;
+                font-size: 1.1rem;
+            }
+
+            .value{
+                width: 100%;
+                text-align: end;
+                font-size: 1.1rem;
+            }
         }
     }
 }

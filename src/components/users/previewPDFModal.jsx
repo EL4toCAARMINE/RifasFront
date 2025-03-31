@@ -8,6 +8,10 @@ import jsPDF from 'jspdf';
 export default function PreviewPDFModal({visibleM, setIsVisibleM, raffleData, purchase, tickets, setIsVisible, needReload, reload}){
     // Ref poara almacenar el componente
     const ticketRef = useRef(null);
+    
+    
+    // ancho de la pantalla para mostrar un menu de un diseño u otro
+    const width = useRef(window.innerWidth);
 
     // Si visible es true, se bloquea el scroll
     useEffect(() => {
@@ -111,7 +115,7 @@ export default function PreviewPDFModal({visibleM, setIsVisibleM, raffleData, pu
                     colorBgH={"#df47a7"}
                     size={"1.6rem"}
                     styles={{
-                        padding: 30,
+                        padding: width.current < 500 ? 20 : 30,
                         width: "80%",
                         position: "sticky",
                         bottom: 0,

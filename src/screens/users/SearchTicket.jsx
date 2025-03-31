@@ -34,6 +34,9 @@ export default function SearchTicket() {
     const [seeTicket, setSeeTicket] = useState("");
     const [searchText, setSearchText] = useState("");
 
+    // ancho de la pantalla para mostrar un menu de un diseño u otro
+    const width = useRef(window.innerWidth);
+
     // Busqueda de el ticket
     const search = async (id) => {
         setSeeTicket(false);
@@ -151,7 +154,7 @@ export default function SearchTicket() {
 
                             <input type="text" name="search" id="search" className='search' placeholder='Código de la seguimiento' maxLength={16} value={searchText} onChange={(e) => setSearchText(e.target.value)} />
 
-                            <svg className='search searchA' onClick={()=>search(idRaffle)} xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 15 15"><path fill="#324AB2" d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414" /></svg>
+                            <svg className='search searchA' onClick={() => search(idRaffle)} xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 15 15"><path fill="#324AB2" d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414" /></svg>
                         </div>
 
                     </div>
@@ -170,7 +173,7 @@ export default function SearchTicket() {
                         colorBgH={"#df47a7"}
                         size={"1.6rem"}
                         styles={{
-                            height: 75,
+                            height: width.current < 500 ? 50 : 75,
                             width: "100%",
                             marginTop: 20
                         }}
