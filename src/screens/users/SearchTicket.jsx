@@ -35,7 +35,14 @@ export default function SearchTicket() {
     const [searchText, setSearchText] = useState("");
 
     // ancho de la pantalla para mostrar un menu de un diseño u otro
-    const width = useRef(window.innerWidth);
+    const [width, setWidth] = useState(window.innerWidth); 
+    
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     // Busqueda de el ticket
     const search = async (id) => {
@@ -173,7 +180,7 @@ export default function SearchTicket() {
                         colorBgH={"#df47a7"}
                         size={"1.6rem"}
                         styles={{
-                            height: width.current < 500 ? 50 : 75,
+                            height: width < 500 ? 50 : 75,
                             width: "100%",
                             marginTop: 20
                         }}
