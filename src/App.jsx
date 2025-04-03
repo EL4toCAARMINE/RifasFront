@@ -48,7 +48,7 @@ function App() {
   const auth = useSelector((state) => state.auth);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/rifasahuazo'>
       <Routes>
         <Route path='/loginAdmin' element={auth.session ? <Navigate to="/dashAdmin"/> : <LoginAdmin />} />
         <Route path='/dashAdmin' element={auth.session ? <DashAdmin/> : <Navigate to="/loginAdmin"/>} />
