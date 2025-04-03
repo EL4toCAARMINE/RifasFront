@@ -34,6 +34,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            flex-wrap: wrap;
 
             .containerI{
                 width: 50%;
@@ -307,6 +308,7 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                flex-wrap: wrap;
             }
         }
     }
@@ -319,5 +321,40 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+    }
+}
+
+@media (max-width: 800px) {
+    .containerCreateRaffle{
+        .arrowBack{
+            position: relative;
+            left: 0;
+            margin-right: 10px;
+        }
+    }
+}
+
+@media (max-width: 675px) {
+    .containerCreateRaffle{
+        form{
+            .containerInputTwo{
+                .containerI{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .containerCreateRaffle{
+        form{
+            .containerCheck{
+                .checks{
+                    flex-direction: column;
+                    gap: 10px;
+                }
+            }
+        }
     }
 }

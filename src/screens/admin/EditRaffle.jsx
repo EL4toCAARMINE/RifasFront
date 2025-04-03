@@ -66,6 +66,15 @@ export default function EditRaffle() {
     const [isLoading, setIsLoading] = useState(false);
     const [winner, settWinner] = useState(null);
 
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     const showAlertAction = (title, icon, action) => {
         Swal.fire({
             title: title,
@@ -319,7 +328,7 @@ export default function EditRaffle() {
                                 textError={organizerNameError}
                                 text={"Nombre del organizador:"}
                                 textPlace={"Ingresa un nombre"}
-                                width={"50%"}
+                                width={width < 675 ? "100%" : "50%"}
                                 val={organizerName}
                                 setVal={setOrganizerName}
                                 maxL={150}
@@ -329,7 +338,7 @@ export default function EditRaffle() {
                                 textError={contactPhoneError}
                                 text={"Número de telefono para contacto (WhatsApp):"}
                                 textPlace={"Ingresa un número de teléfono"}
-                                width={"50%"}
+                                width={width < 675 ? "100%" : "50%"}
                                 val={contactPhone}
                                 setVal={setContactPhone}
                                 maxL={10}
@@ -404,7 +413,7 @@ export default function EditRaffle() {
                                 text={"Número de boletos:"}
                                 textPlace={"0"}
                                 maxL={3}
-                                width={"50%"}
+                                width={width < 675 ? "100%" : "50%"}
                                 textError={numberOfTicketsError}
                                 val={numberOfTickets}
                                 setVal={setNumberOfTickets}
@@ -475,7 +484,7 @@ export default function EditRaffle() {
                                 <p className="textP">Al seleccionar "pago con tarjeta", el cliente que desee pagar sus boletos se pondrá en contacto contigo mediante el número que proporcionaste para coordinar la transacción. Debes solicitar el ticket de pago y el comprobante de pago. Una vez que confirmes que recibiste el pago, marcarás el boleto como "pagado".</p>
                                 <div className="inputsP">
                                     <InputText
-                                        width={"50%"}
+                                        width={width < 675 ? "100%" : "50%"}
                                         text={"Nombre del titular de la tarjeta:"}
                                         textPlace={"Ingresa el nombre del titular"}
                                         maxL={150}
@@ -484,7 +493,7 @@ export default function EditRaffle() {
                                         textError={nameCardError}
                                     />
                                     <InputText
-                                        width={"50%"}
+                                        width={width < 675 ? "100%" : "50%"}
                                         text={"Ingresa los 16 números de la tarjeta:"}
                                         textPlace={"XXXXXXXXXXXX1234"}
                                         maxL={16}
@@ -502,7 +511,7 @@ export default function EditRaffle() {
                                 <p className="textP">Si el cliente selecciona "transferencia a cuenta CLABE", se pondrá en contacto contigo mediante el número que proporcionaste para confirmar los detalles de la cuenta. Debes solicitar el comprobante de pago de la transferencia. Una vez confirmes que recibiste el pago, marcarás el boleto como "pagado".</p>
                                 <div className="inputsP">
                                     <InputText
-                                        width={"50%"}
+                                        width={width < 675 ? "100%" : "50%"}
                                         text={"Nombre del titular de la cuenta:"}
                                         textPlace={"Ingresa el nombre del titular"}
                                         maxL={150}
@@ -511,7 +520,7 @@ export default function EditRaffle() {
                                         textError={nameAccountError}
                                     />
                                     <InputText
-                                        width={"50%"}
+                                        width={width < 675 ? "100%" : "50%"}
                                         text={"Ingresa los 18 dígitos de la cuenta CLABE:"}
                                         textPlace={"XXXXXXXXXXXXXX1234"}
                                         maxL={18}

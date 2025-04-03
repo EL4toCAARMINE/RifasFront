@@ -19,11 +19,20 @@ export default function DashAdmin() {
 
     const [raffles, setRaffles] = useState(null);
 
+    const auth = useSelector((state) => state.auth);
+
     //Paginacion
     const [page, setPage] = React.useState(1);
     const [forPage, setForPage] = React.useState(6);
 
-    const auth = useSelector((state) => state.auth);
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     // lllamamos al action
     const logOutR = () => {
@@ -80,7 +89,14 @@ export default function DashAdmin() {
                     colorBgH={"#dc2626"}
                     txt={"Cerrar Sesión"}
                     action={() => logOut()}
-                    styles={{ justifyContent: "space-evenly", borderRadius: 25, position: "absolute", right: 20, width: 150, height: 35 }}
+                    hidden={width < 375 ? true : false}
+                    styles={{ 
+                        justifyContent: "space-evenly", 
+                        borderRadius: 25, 
+                        position: "absolute", 
+                        right: 20, 
+                        width: width < 375 ? 35 : 150, 
+                        height: 35 }}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 24 24"><g fill="none" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path strokeDasharray="36" strokeDashoffset="36" d="M12 4h-7c-0.55 0 -1 0.45 -1 1v14c0 0.55 0.45 1 1 1h7"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="36;0" /></path><path strokeDasharray="14" strokeDashoffset="14" d="M9 12h11.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="14;0" /></path><path strokeDasharray="6" strokeDashoffset="6" d="M20.5 12l-3.5 -3.5M20.5 12l-3.5 3.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" values="6;0" /></path></g></svg>
                 </Btn>

@@ -73,7 +73,7 @@ export default function Raffles({ data, getRaffles }) {
     }
 
     return (
-        <div className="col-12 col-md-6 col-lg-5 col-xl-4 raffleComponentContainer" onClick={goToRaffle}>
+        <div className="col-12 col-md-6 col-lg-4 col-xl-4 raffleComponentContainer" onClick={goToRaffle}>
             <div className="raffleC">
                 <div className="optionsI">
                     <div className="statusC" style={{ background: statustext.color }}>
