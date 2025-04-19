@@ -112,7 +112,7 @@ export default function BuyTicket() {
 
     return (
         <div className="container-fluid containerBuyTicket">
-            <HeaderUser name={raffleData ? raffleData.raffleName : " "} route={`/raffleInstructions/${idRaffle}`}>
+            <HeaderUser center={false} name={raffleData ? raffleData.raffleName : " "} route={`/raffleInstructions/${idRaffle}`}>
                 {width > 1000 ?
                     <nav className="menu">
                         <ul>
